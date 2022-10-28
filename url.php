@@ -25,9 +25,6 @@ class Url {
 		$this->url->append($this->iframe);
 	}
 
-	function create_url_frame():void {
-	}
-
 	/**
 	 * takes an array of string tags and add them
 	 * to an inner div with a class attribute of
@@ -50,6 +47,7 @@ class Url {
 		}
 		$this->iframe->append($tgs);
 	}
+
 	/**
 	 * insert the name of the --url frame
 	 * the name is shown above the url frame when set
@@ -73,7 +71,7 @@ class Url {
 		$this->iframe->append($des_hd);
 	}
 
-	function insert_url(string $name, string $url, array $tgs = []):void {
+	function insert_url_frame(string $name, string $url, array $tgs = []):void {
 		$this->set_url_name($name);
 		$this->set_iframe($url);
 		$this->set_tgs($tgs);

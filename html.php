@@ -4,10 +4,10 @@ declare(strict_types = 1);
 /**
  * the various h tags
  */
-enum Size {
-	case h1;
-	case h2;
-	case h3;
+enum Size: string {
+	case h1 = "h1";
+	case h2 = "h2";
+	case h3 = "h3";
 }
 
 /**
@@ -62,11 +62,11 @@ class Paragraph extends Element {
 	 *	if no class attribute is set, a default of [nan] is given
 	 *
 	 *	@param string $class -- the class attribute to set 
-	 *  
+	 *  @param int $ind -- the number of indent to set
 	 *
 	 *	@return the rendered tag to the document body
 	 */
-	function insert_tag($ind = 1):void {
+	function insert_tag(int $ind = 1):void {
 		fprint (sprintf (
 					$this->tag, 
 					$this->class,
@@ -89,6 +89,7 @@ class Heading extends Element {
 	/**
 	 * create a h tag and render it to the document body
 	 *
+	 * @param int $ind -- the number of indent to set
 	 *
 	 * @return the rendered tag to the document body
 	 */
@@ -107,7 +108,7 @@ class Div extends Element {
 
 	/**
 	 * print the --start div tag
-	 *
+	 * @param int $ind -- the number of indent to set
 	 */
 	private function start(int $ind = 1):void {
 		fprint("<div class=\"$this->class\">", true, $ind);

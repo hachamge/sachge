@@ -23,5 +23,5 @@
 	$url = new Url();
 	$tgs = ["delete","edit", "bug"];
 	
-	$url->insert_url("Etz Hayim","http://sachge.com/", $tgs);
+	$url->insert_url_frame("Etz Hayim","http://sachge.com/", $tgs);
 ?>
