@@ -33,7 +33,8 @@ enum Size: string {
  * @param bool $ind_set to enable indent
  * @param int $ind for number of indent to set
  * 
- * @return the formatted output
+ * @return the $input is rendered to the document. There is
+ *		   a line break after with a default indent of 1tb. 
  */
 function fprint($input, bool $ind_set = true, int $ind = 1):void {
 	if ($ind_set && $ind >= 1) {
@@ -45,7 +46,7 @@ function fprint($input, bool $ind_set = true, int $ind = 1):void {
 }
 
 /**
- * --descriptor is the text inside the element
+ * --Element referes to every tag on a document
  * this class packages all the main features that
  * --p, div, and --h tags etc. have such as id, and class attributes.
  */
