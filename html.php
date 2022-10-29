@@ -20,7 +20,7 @@ enum Size: string {
  * @return the formatted output
  */
 function fprint($input, bool $ind_set = true, int $ind = 1):void {
-	if ($ind_set) {
+	if ($ind_set && $ind >= 1) {
 		$tb = "\t";
 		for ($i = 1; $i < $ind; $i++) 	
 			$tb .= "\t";
@@ -100,10 +100,65 @@ class Heading extends Element {
 
 // html --div tag element
 class Div extends Element {
-	private array $elements = [];
+	/**
+	 * $ind is the indentation of the parent div
+	 * this ($ind) indent will be used to indent child
+	 * elements for inner div that are coupled inside the array
+	 */
+	public int $ind = 0;
+
+	/**
+	 * stores the html tags for the div elements. if a string was
+	 * given inside the array of elements then it will be converted
+	 * into a p tag by default and added to the array for printing 
+	 */
+	public array $elements = [];
 
 	public function __construct() {
 		parent::__construct();
+	}
+
+	/**
+	 * the wrapper function for the recursive rprint function
+	 * the descriptor from any div class can be used to set the
+	 * name of the div, or the div content itself if no elements exist
+	 */
+	public function print() {	
+		$this->rprint($this);
+	}
+
+	/**
+	 * recursively print every element inside a div.
+	 * for inner divs inside the array those will be indented
+	 * base on the parents indent level for better formating
+	 * so that all div elements are indented inside parent div
+
+	 * @param Div $div - with html elements to print from
+	 * @param int $ind - indentation level to start printing
+	 *
+	 * @return the printed div rendered to the document body
+	 */
+	private function rprint(Div $div, int &$ind = 0):void {
+		if ($div->is_empty()) return;
+		
+		$div->start($div->ind);
+		foreach ($div->elements as $tg) {
+			if ($tg instanceof Div) {
+				$tg->ind += 1;
+				$tg->set_class("$tg->ind");
+				$this->rprint ($tg, $ind);
+				continue;
+			}
+			$tg->insert_tag($div->ind + 1);
+		}
+		$div->endt($div->ind);
+		return;
+
+	}
+    
+	public function is_empty():bool {
+		if (count($this->elements) === 0) return true;
+		return false;
 	}
 
 	/**
@@ -115,11 +170,11 @@ class Div extends Element {
 	}
 
 	/** 
-	 * print the ending div tag
-	 *
+	 * print the ending div tag flags can be enabled for customization
+	 * such as whether to insert a newline after the div is printed
 	 */
 	private function endt(int $ind = 1):void {
-		fprint("</div>");
+		fprint("</div>", true, $ind);
 	}
 
 	/**
