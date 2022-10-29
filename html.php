@@ -22,8 +22,7 @@ enum Size: string {
 function fprint($input, bool $ind_set = true, int $ind = 1):void {
 	if ($ind_set && $ind >= 1) {
 		$tb = "\t";
-		for ($i = 1; $i < $ind; $i++) 	
-			$tb .= "\t";
+		for ($i = 1; $i < $ind; $i++) $tb .= "\t";
 		echo ("$tb $input\n");
 	}
 	else echo ("$input\n");
@@ -52,11 +51,11 @@ abstract class Element {
 // html --p tag element
 class Paragraph extends Element {
 
-	public function __construct(string $class = "!set") {
+	public function __construct(string $class_toset = "!set") {
 		parent::__construct();
-		$this->tag = match ($class) {
+		$this->tag = match ($class_toset) {
 			"!set" => "<p>%s</p>",
-				default => "<p class=\"$class\">%s</p>"
+				default => "<p class=\"$class_toset\">%s</p>"
 		};
 	} 
 
@@ -137,28 +136,33 @@ class Div extends Element {
 	 * base on the parents indent level for better formating
 	 * so that all div elements are indented inside parent div
 
-	 * @param Div $div - with html elements to print from
-	 * @param int $ind - indentation level to start printing
+	 * @param Div $div - with html elements to render to document body
+	 * 
 	 *
 	 * @return the printed div rendered to the document body
 	 */
-	private function rprint(Div $div, int &$ind = 0):void {
+	private function rprint(Div $div):void {
 		if ($div->isEmpty()) return;
 
 		$div->start($div->ind);
 		foreach ($div->elements as $tg) {
 			if ($tg instanceof Div) {
 				$tg->ind += 1;
-				$this->rprint ($tg, $ind);
+				$this->rprint ($tg);
 				continue;
 			}
 			$tg->insert_tag($div->ind + 1);
 		}
 		$div->endt($div->ind);
 		return;
-
 	}
-
+	
+	/**
+	* check whether the array of elements is empty or not
+	*
+	* @return true if there are no elements in the array
+	*		  otherwise return false if there are tags in the array
+	*/
 	public function isEmpty():bool {
 		if (count($this->elements) === 0) return true;
 		return false;
@@ -181,7 +185,7 @@ class Div extends Element {
 	}
 
 	/**
-	 ** takes an element and add it to the array of elements
+	 ** takes an html element tag and add it to the array of elements
 	 *
 	 * @param Element $element -- element to add to array
 	 *
