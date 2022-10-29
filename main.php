@@ -1,6 +1,6 @@
 <?php
-	require ("html.php");
-	require ("url.php");
+	require ("Html.php");
+	require ("Url.php");
 	
 
 ?>
