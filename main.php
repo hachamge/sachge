@@ -1,8 +1,8 @@
 <?php
-	require ("Html.php");
-	require ("Url.php");
-
-	$iframe = new iframe("http://1.com/");
-	$iframe->render();
-
+	require("Url.php");
+	require("Html.php");
+	require("Image.php");
+	
+	$img = new Image("Etz Hayin");
+	$img->render();
 ?>
