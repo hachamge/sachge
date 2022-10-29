@@ -56,7 +56,7 @@ class Paragraph extends Element {
 		parent::__construct();
 		$this->tag = match ($class) {
 			"!set" => "<p>%s</p>",
-			default => "<p class=\"$class\">%s</p>"
+				default => "<p class=\"$class\">%s</p>"
 		};
 	} 
 
@@ -117,8 +117,9 @@ class Div extends Element {
 	 */
 	public array $elements = [];
 
-	public function __construct() {
+	public function __construct(string $class_toset = "!set") {
 		parent::__construct();
+		$this->class = $class_toset;
 	}
 
 	/**
@@ -142,13 +143,12 @@ class Div extends Element {
 	 * @return the printed div rendered to the document body
 	 */
 	private function rprint(Div $div, int &$ind = 0):void {
-		if ($div->is_empty()) return;
-		
+		if ($div->isEmpty()) return;
+
 		$div->start($div->ind);
 		foreach ($div->elements as $tg) {
 			if ($tg instanceof Div) {
 				$tg->ind += 1;
-				$tg->set_class("$tg->ind");
 				$this->rprint ($tg, $ind);
 				continue;
 			}
@@ -158,8 +158,8 @@ class Div extends Element {
 		return;
 
 	}
-    
-	public function is_empty():bool {
+
+	public function isEmpty():bool {
 		if (count($this->elements) === 0) return true;
 		return false;
 	}
@@ -181,88 +181,28 @@ class Div extends Element {
 	}
 
 	/**
-	 * takes a url tag and add it to the element list
-	 * meant to add info about a url for a quick summary
+	 ** takes an element and add it to the array of elements
+	 *
+	 * @param Element $element -- element to add to array
+	 *
+	 * @return the element is appended to the array
 	 */
-	public function append_tg(string $tg) {
-		array_push($this->elements, $tg);
-	}  
+	public function append(Element $element):void {
+		array_push ($this->elements, $element);	
+	}
+}
 
-	/**
-	 * print the elements of an inner div. for each
-	 * inner div that is included increase the indent
-	 * count by 1 for better formatting
-	 */
-	private function eprint():void {
-		foreach($this->elements as $item) {
-			if ($item instanceof Div) {
-				//$item->start();
-				//foreach($item->elements as $item3) {
-				//$item3->insert_tag(2);
-			}
-			//$item->endt();
-			$item->insert_tag(2);
-			}
-		} 
+class iframe extends Element {
+	public string $src;
 
-		/**
-		 ** takes an element and add it to the array of elements
-		 *
-		 * @param Element $element -- element to add to array
-		 *
-		 * @return the element is appended to the array
-		 */
-		public function append(Element $element):void {
-			array_push ($this->elements, $element);	
-		}
-
-		/** 
-		 * set the class for the --div
-		 * 
-		 * @param string $class - the class name for the div
-		 *
-		 * @return the class attribute is set from the input
-		 */
-		public function set_class(string $class) {
-			$this->class = $class;
-		}
-
-		/**
-		 * create a --div tag and render it to the document body.
-		 * loop through the array of elements and parse them to the 
-		 * --div
-		 *
-		 * @return the rendered tag to the document body
-		 */
-		public function insert_tag():void {
-			echo ("<div class=\"$this->class\">\n");
-			foreach ($this->elements as $element) {
-				// print inner elements of div
-				if ($element instanceof Div) {
-					$element->start();
-					// print the inner --divs content
-					$element->eprint(2);	
-					$element->endt();
-					continue;
-				}
-				// print all other tags
-				echo $element->insert_tag();
-			}
-			echo ("</div>\n");
-		}
+	public function __construct(string $url) {
+		$this->src = $url;
+		$this->tag = "<iframe src=\"$this->src\"></iframe>";
 	}
 
-	class iframe extends Element {
-		public string $src;
-
-		public function __construct(string $url) {
-			$this->src = $url;
-			$this->tag = "<iframe src=\"$this->src\"></iframe>";
-		}
-
-		public function insert_tag($ind = 1):void {
-			fprint($this->tag, true, $ind);
-		}
+	public function insert_tag($ind = 1):void {
+		fprint($this->tag, true, $ind);
 	}
+}
 
-	?>
+?>
