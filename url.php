@@ -30,7 +30,7 @@ class Url {
 	 * to an inner div with a class attribute of
 	 * --tags
 	 *
-	 * tags are short descriptors for a url to higlight
+	 * tags are short innerHTMLs for a url to higlight
 	 * the main features of a url link content
 	 * from the list of --string tags create a p tag for
 	 * each and append to the inner div
@@ -42,7 +42,7 @@ class Url {
 
 		foreach ($tags as $tg) {
 			$p = new Paragraph();
-			$p->descriptor = $tg;
+			$p->innerHTML = $tg;
 			$tgs->append($p);
 		}
 		$this->iframe->append($tgs);
@@ -57,7 +57,7 @@ class Url {
 	 */
 	function set_url_name(string $name) {
 		$url_name = new Heading(Size::h3);
-		$url_name->descriptor = $name;
+		$url_name->innerHTML = $name;
 
 		$this->url->append($url_name);
 	}
@@ -67,7 +67,7 @@ class Url {
 
 		// purpose for url bookmark
 		$des_hd = new Heading(Size::h3);
-		$des_hd->descriptor = "bluehost server for url boomarks";
+		$des_hd->innerHTML = "bluehost server for url boomarks";
 		$this->iframe->append($des_hd);
 	}
 

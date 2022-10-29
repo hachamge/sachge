@@ -39,22 +39,25 @@ abstract class Element {
 	public string $tag;
 	public string $class;
 	public bool $attributes;
-	public string $descriptor;
+	public string $innerHTML;
 
 	public function __construct() {
-		$this->id = "Nan";
-		$this->tag = "Nan";
-		$this->class = "Nan";
-		$this->descriptor = "Nan";
+		$this->id = "!set";
+		$this->tag = "!set";
+		$this->class = "!set";
+		$this->descriptor = "!set";
 	}
 }
 
 // html --p tag element
 class Paragraph extends Element {
 
-	public function __construct() {
+	public function __construct(string $class = "!set") {
 		parent::__construct();
-		$this->tag = "<p class=\"%s\"> %s </p>";
+		$this->tag = match ($class) {
+			"!set" => "<p>%s</p>",
+			default => "<p class=\"$class\">%s</p>"
+		};
 	} 
 
 	/**
