@@ -1,5 +1,4 @@
 <?php
-
 /** 
  * this class is responsible for creating, and
  * formatting the entire url layout. Each url structure
@@ -32,21 +31,24 @@ class Url {
 		$this->urlFrame->append($title);
 
 		$url = new Div("Url");
-		#1st
+		#1st step
 		$url->append($iframe);
-		#2nd
+
+		#2nd step
 		$utgs = new Div("Utgs");
 		foreach ($tgs as $tg) $utgs->append(new Paragraph($tg));
 		$url->append($utgs);
-		#3rd
-		$url->append(new Heading(Size::h3));
-		#4th
+
+		#3rd step
+		$url->append(new Heading(Size::h3,"Descriptor!"));
+		#4th step
 		$url->append($date);
-		#5th
+		#5th step
 		$url->append($relativeDate);
-		#6th
+		#6th step
 		$url->append($descriptor);
 
+		#final step
 		$this->urlFrame->append($url);
 	}
 
