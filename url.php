@@ -2,81 +2,62 @@
 
 /** 
  * this class is responsible for creating, and
- * formatting the url, and bookmarks element --divs
+ * formatting the entire url layout. Each url structure
+ * has the url title and an inner div with the tags, date
+ * relative Date, and descriptor for the url
  */
 class Url {
-	/**
-	 * the --url is the parent --div that contains the
-	 * name of the url and the iframe --div, the iframe
-	 * --div is the container that has the iframe with the
-	 * loaded webpage view, the list of tags about the link
-	 * and a description about the url link contents saved
-	 */
-	public Div $url;
-	public Div $iframe;
-
-	public function __construct() {
-		$this->url = new Div();
-		$this->iframe = new Div();
-
-		$this->url->set_class("url");
-		$this->iframe->set_class("url_frame");
-
-		$this->url->append($this->iframe);
-	}
+	private Div $urlFrame;
 
 	/**
-	 * takes an array of string tags and add them
-	 * to an inner div with a class attribute of
-	 * --tags
-	 *
-	 * tags are short innerHTMLs for a url to higlight
-	 * the main features of a url link content
-	 * from the list of --string tags create a p tag for
-	 * each and append to the inner div
-	 * @param array $tags - tags to append 
+	 * takes a list of (elements) html tags and insert them into the div
+	 * --info the dependency is that the elements are entered in order as
+	 * they will appear in the url frame so that the frame is rendered correctly
+	 * @param Paragraph $title: the title for the url, also use to search for it
+	 * @param Paragraph $tgs: the list of p tags highlighting the main features
+	 * @param Heading $relativeDate: the relative date in realtion to date made
+	 * @param Heading $date: the date when the url was created and processed
+	 * @param iframe $iframe: the iframe containing the link to the site 
+	 * @param Paragraph: short summary of the url and why it was useful
 	 */
-	private function set_tgs(array $tags):void {
-		$tgs = new Div();
-		$tgs->set_class("tgs");
+	public function __construct(
+		array $tgs,
+		Heading $date,
+		iframe $iframe,
+		Paragraph $title,
+		Paragraph $descriptor,
+		Heading $relativeDate,	
+	) {
+		$this->urlFrame = new Div("UrlFrame");
+		$this->urlFrame->append($title);
 
-		foreach ($tags as $tg) {
-			$p = new Paragraph();
-			$p->innerHTML = $tg;
-			$tgs->append($p);
-		}
-		$this->iframe->append($tgs);
+		$url = new Div("Url");
+		#1st
+		$url->append($iframe);
+		#2nd
+		$utgs = new Div("Utgs");
+		foreach ($tgs as $tg) $utgs->append(new Paragraph($tg));
+		$url->append($utgs);
+		#3rd
+		$url->append(new Heading(Size::h3));
+		#4th
+		$url->append($date);
+		#5th
+		$url->append($relativeDate);
+		#6th
+		$url->append($descriptor);
+
+		$this->urlFrame->append($url);
 	}
 
 	/**
-	 * insert the name of the --url frame
-	 * the name is shown above the url frame when set
-	 *
-	 * @param string $url_name - the name of the url to set
-	 * @return the url div has a h3 tag with the name of the url
-	 */
-	function set_url_name(string $name) {
-		$url_name = new Heading(Size::h3);
-		$url_name->innerHTML = $name;
-
-		$this->url->append($url_name);
-	}
-
-	function set_iframe(string $url) {
-		$this->iframe->append(new iframe($url));
-
-		// purpose for url bookmark
-		$des_hd = new Heading(Size::h3);
-		$des_hd->innerHTML = "bluehost server for url boomarks";
-		$this->iframe->append($des_hd);
-	}
-
-	function insert_url_frame(string $name, string $url, array $tgs = []):void {
-		$this->set_url_name($name);
-		$this->set_iframe($url);
-		$this->set_tgs($tgs);
-
-		$this->url->insert_tag();
+	*  insert the url into the document body.Once the url is rendered
+	*  the according css attributes will become active and interactive
+	*  with the javacript that is responsible for highlighting relavant
+	*  search results for all url rendered that has a description tag 
+	*/
+	public function render():void {
+		$this->urlFrame->print();
 	}
 }
 

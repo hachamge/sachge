@@ -8,6 +8,9 @@ enum Size: string {
 	case h1 = "h1";
 	case h2 = "h2";
 	case h3 = "h3";
+	case h4 = "h4";
+	case h5 = "h5";
+	case h6 = "h6";
 }
 
 /**
@@ -38,7 +41,7 @@ abstract class Element {
 	public string $tag;
 	public string $class;
 	public bool $attributes;
-	public string $innerHTML;
+	public string $innerHtml;
 
 	public function __construct() {
 		$this->id = "!set";
@@ -51,12 +54,10 @@ abstract class Element {
 // html --p tag element
 class Paragraph extends Element {
 
-	public function __construct(string $class_toset = "!set") {
+	public function __construct(string $input = "!set") {
 		parent::__construct();
-		$this->tag = match ($class_toset) {
-			"!set" => "<p>%s</p>",
-				default => "<p class=\"$class_toset\">%s</p>"
-		};
+		$this->innerHtml = $input;
+		$this->tag = "<p>$this->innerHtml</p>";
 	} 
 
 	/**
@@ -72,20 +73,25 @@ class Paragraph extends Element {
 		fprint (sprintf (
 					$this->tag, 
 					$this->class,
-					$this->descriptor), true, $ind);
+					$this->innerHtml), true, $ind);
 	}
 }
 
 // html --h tag element
 class Heading extends Element {	
-	public function __construct(Size $size) {
+	public function __construct(Size $size, string $input = "!set") {
 		parent::__construct();
 
 		$this->tag = match($size) {
 			Size::h1 => "<h1> %s </h1>",
 				Size::h2 => "<h2> %s </h2>",
-				Size::h3 => "<h3> %s </h3>"
+				Size::h3 => "<h3> %s </h3>",
+				Size::h4 => "<h4> %s </h4>",
+				Size::h5 => "<h5> %s </h5>",
+				Size::h6 => "<h6> %s </h6>"
 		};
+		$this->innerHtml = $input;
+		if ($input != "!set") $this->tag = sprintf($this->tag, $this->innerHtml);
 	}
 
 	/**
@@ -192,7 +198,7 @@ class Div extends Element {
 	 * @return the element is appended to the array
 	 */
 	public function append(Element $element):void {
-		array_push ($this->elements, $element);	
+		array_push($this->elements,$element);	
 	}
 }
 
