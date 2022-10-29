@@ -2,7 +2,20 @@
 declare(strict_types = 1);
 
 /**
- * the various h tags
+ * Degree: represents the priority level of an element.
+ * this is useful for adding elements to div without 
+ * having to declare and add items in a sorted order
+ */
+enum Degree:int {
+	case d1 = 1;
+	case d2 = 2;
+	case d3 = 3;
+	case d4 = 4;
+	case d5 = 5;
+}
+
+/**
+ * support: the various h tags
  */
 enum Size: string {
 	case h1 = "h1";
@@ -40,6 +53,7 @@ abstract class Element {
 	public string $id;
 	public string $tag;
 	public string $class;
+	public Degree $degree;
 	public string $innerHtml;
 
 	public function __construct() {
@@ -161,13 +175,13 @@ class Div extends Element {
 		$div->endt($div->ind);
 		return;
 	}
-	
+
 	/**
-	* check whether the array of elements is empty or not
-	*
-	* @return true if there are no elements in the array
-	*		  otherwise return false if there are tags in the array
-	*/
+	 * check whether the array of elements is empty or not
+	 *
+	 * @return true if there are no elements in the array
+	 *		  otherwise return false if there are tags in the array
+	 */
 	public function isEmpty():bool {
 		if (count($this->elements) === 0) return true;
 		return false;
