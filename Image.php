@@ -1,6 +1,10 @@
 <?php
 include_once("Html.php");
 
+/**
+ * create, and render an image element to the document body
+ * the image sets the loading property to lazy by default.
+ */
 class Image extends Element {
 	private string $source;
 	private string $alt;
