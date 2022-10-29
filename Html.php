@@ -68,7 +68,7 @@ class Paragraph extends Element {
 	 *
 	 *	@return the rendered tag to the document body
 	 */
-	function insert_tag(int $ind = 1):void {
+	function render(int $ind = 1):void {
 		fprint (sprintf (
 					$this->tag, 
 					$this->class,
@@ -100,7 +100,7 @@ class Heading extends Element {
 	 *
 	 * @return the rendered tag to the document body
 	 */
-	function insert_tag(int $ind = 1):void {
+	function render(int $ind = 1):void {
 		fprint (sprintf ($this->tag, $this->descriptor ), true, $ind);
 	}
 }
@@ -156,7 +156,7 @@ class Div extends Element {
 				$this->rprint ($tg);
 				continue;
 			}
-			$tg->insert_tag($div->ind + 1);
+			$tg->render($div->ind + 1);
 		}
 		$div->endt($div->ind);
 		return;
@@ -209,7 +209,7 @@ class iframe extends Element {
 		$this->tag = "<iframe src=\"$this->src\" loading=\"lazy\" sandbox></iframe>";
 	}
 
-	public function insert_tag($ind = 1):void {
+	public function render($ind = 1):void {
 		fprint($this->tag, true, $ind);
 	}
 }
