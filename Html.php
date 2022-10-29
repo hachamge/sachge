@@ -34,13 +34,12 @@ function fprint($input, bool $ind_set = true, int $ind = 1):void {
 /**
  * --descriptor is the text inside the element
  * this class packages all the main features that
- * --p, div, and --h tags have such as id, and class attributes.
+ * --p, div, and --h tags etc. have such as id, and class attributes.
  */
 abstract class Element {
 	public string $id;
 	public string $tag;
 	public string $class;
-	public bool $attributes;
 	public string $innerHtml;
 
 	public function __construct() {
@@ -193,21 +192,21 @@ class Div extends Element {
 	/**
 	 ** takes an html element tag and add it to the array of elements
 	 *
-	 * @param Element $element -- element to add to array
+	 * @param Element $input -- Html element to add to array
 	 *
 	 * @return the element is appended to the array
 	 */
-	public function append(Element $element):void {
-		array_push($this->elements,$element);	
+	public function append(Element $input):void {
+		array_push($this->elements,$input);	
 	}
 }
 
 class iframe extends Element {
 	public string $src;
 
-	public function __construct(string $url) {
+	public function __construct(string $url = "!set") {
 		$this->src = $url;
-		$this->tag = "<iframe src=\"$this->src\"></iframe>";
+		$this->tag = "<iframe src=\"$this->src\" loading=\"lazy\" sandbox></iframe>";
 	}
 
 	public function insert_tag($ind = 1):void {
