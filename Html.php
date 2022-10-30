@@ -1,6 +1,7 @@
 <?php
 declare(strict_types = 1);
 
+include_once("Listing.php");
 /**
  * Degree: 
  * represents the priority level of an element.
@@ -123,6 +124,7 @@ class Heading extends Element {
 
 // html --div tag element
 class Div extends Element {
+	public Listing $tgs;
 	/**
 	 * $ind is the indentation of the parent div
 	 * this ($ind) indent will be used to indent child
@@ -139,8 +141,21 @@ class Div extends Element {
 
 	public function __construct(string $class_toset = "!set") {
 		parent::__construct();
+		$this->tgs = new Listing();
 		$this->class = $class_toset;
 	}
+	
+	public function inject(Element $input):void {
+		$this->tgs->insert($input);
+	}
+
+	public function iprint() {
+		$this->start($this->ind);
+		$this->tgs->render();
+		$this->endt($this->ind);
+		
+		$this->ind++;
+	}	
 
 	/**
 	 * the wrapper function for the recursive rprint function
@@ -193,7 +208,7 @@ class Div extends Element {
 	 * print the --start div tag
 	 * @param int $ind -- the number of indent to set
 	 */
-	private function start(int $ind = 1):void {
+	private function start(int $ind = 0):void {
 		fprint("<div class=\"$this->class\">", true, $ind);
 	}
 
@@ -202,7 +217,7 @@ class Div extends Element {
 	 * such as whether to insert a newline after the div is printed
 	 * @param int $ind the indent to set for the ending Html element
 	 */
-	private function endt(int $ind = 1):void {
+	private function endt(int $ind = 0):void {
 		fprint("</div>", true, $ind);
 	}
 
@@ -222,6 +237,8 @@ class iframe extends Element {
 	public string $src;
 
 	public function __construct(string $url = "!set") {
+		parent::__construct();
+
 		$this->src = $url;
 		$this->tag = "<iframe src=\"$this->src\" loading=\"lazy\" sandbox></iframe>";
 	}

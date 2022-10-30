@@ -1,8 +1,11 @@
 <?php
 	require("Url.php");
 	require("Html.php");
-	require("Image.php");
+	require("image.php");
 	
-	$img = new Image("Etz Hayin");
-	$img->render();
+	$div = new Div("Url");
+	$div->inject(new iframe("http://1.com"));
+	$div->inject(new iframe("http://2.com"));
+
+	$div->iprint();
 ?>
