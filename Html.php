@@ -2,21 +2,14 @@
 declare(strict_types = 1);
 
 /**
- * Degree: represents the priority level of an element.
+ * Degree: 
+ * represents the priority level of an element.
  * this is useful for adding elements to div without 
  * having to declare and add items in a sorted order
+ * 1 is the highest. this means that a element with degree 1 will
+ * be placed before a element with degree 2in that order on the Listing
  */
-enum Degree:int {
-	case d1 = 1;
-	case d2 = 2;
-	case d3 = 3;
-	case d4 = 4;
-	case d5 = 5;
-}
 
-/**
- * support: the various h tags
- */
 enum Size: string {
 	case h1 = "h1";
 	case h2 = "h2";
@@ -48,16 +41,18 @@ function fprint($input, bool $ind_set = true, int $ind = 1):void {
 /**
  * --Element referes to every tag on a document
  * this class packages all the main features that
+ * every element is given a default Degree of d1
  * --p, div, and --h tags etc. have such as id, and class attributes.
  */
 abstract class Element {
 	public string $id;
+	public int $degree;
 	public string $tag;
 	public string $class;
-	public Degree $degree;
 	public string $innerHtml;
 
 	public function __construct() {
+		$this->degree = 1;
 		$this->id = "!set";
 		$this->tag = "!set";
 		$this->class = "!set";
@@ -136,9 +131,9 @@ class Div extends Element {
 	public int $ind = 0;
 
 	/**
-	 * stores the html tags for the div elements. if a string was
-	 * given inside the array of elements then it will be converted
-	 * into a p tag by default and added to the array for printing 
+	 * stores the html tags for the div elements inside a Listing instance.
+	 * items are inserted at the front for insertion unless the items have
+	 * the degree set. if set the item is then insert based on that degree
 	 */
 	public array $elements = [];
 
