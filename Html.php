@@ -151,11 +151,11 @@ class Div extends Element {
 	/**
 	* renders the elements inside the Listing $tgs to the document
 	* the children for the parent div are indented for formating
-	* @param int $indStart - the starting ind for the parent div
-	* 
+	*
+	* @param int $indStart - the starting ind for the parent div 
 	* @return the div contents to render to the document in order
 	*/
-	public function iprint(int $indStart = 0):void {
+	public function iprint(int &$indStart = 0):void {
 		$this->start($indStart);
 		$this->tgs->render($indStart + 1);
 		$this->endt($indStart);
@@ -167,8 +167,8 @@ class Div extends Element {
 	 * print the --start div tag
 	 * @param int $ind -- the number of indent to set
 	 */
-	private function start(int $ind = 0):void {
-		fprint("<div class=\"$this->class\">", true, $ind);
+	private function start(int $indStart):void {
+		fprint("<div class=\"$this->class\">", true, $indStart);
 	}
 
 	/** 
@@ -176,8 +176,8 @@ class Div extends Element {
 	 * such as whether to insert a newline after the div is printed
 	 * @param int $ind the indent to set for the ending Html element
 	 */
-	private function endt(int $ind = 0):void {
-		fprint("</div>", true, $ind);
+	private function endt(int $indStart):void {
+		fprint("</div>", true, $indStart);
 	}
 }
 

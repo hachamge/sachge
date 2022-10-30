@@ -61,20 +61,25 @@ class Listing {
 		return false;
 	}
 
-	public function render(int $in = 1):void {
+	/**
+	 * renders the elements inside the Listing to the document
+	 * the $inStart variable is use to indent elements except for div
+	 * the $indtart is used to indent elements for a div in format
+	 *
+	 * @param int $in - the indentation start for the elements
+	 * @return the elements inside the Listing are rendered to document
+	 */
+	public function render(int $indStart = 1):void {
 		if ($this->head == null) return;
 
 		$tmp = $this->head;
-		$indStart = 0;
 		while($tmp) {
 			if ($tmp->element instanceof Div) {
-				$indStart += 1;
-				fprint("Listing.php: 70");
 				$tmp->element->iprint($indStart);
 				$tmp = $tmp->next;
 				continue;
 			}
-			$tmp->element->render($in);
+			$tmp->element->render($indStart);
 			$tmp = $tmp->next;
 		}
 	}
