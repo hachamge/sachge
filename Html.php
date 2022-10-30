@@ -123,21 +123,13 @@ class Heading extends Element {
 }
 
 // html --div tag element
-class Div extends Element {
-	public Listing $tgs;
-	/**
-	 * $ind is the indentation of the parent div
-	 * this ($ind) indent will be used to indent child
-	 * elements for inner div that are coupled inside the array
-	 */
-	public int $ind = 0;
-
+class Div extends Element {	
 	/**
 	 * stores the html tags for the div elements inside a Listing instance.
 	 * items are inserted at the front for insertion unless the items have
 	 * the degree set. if set the item is then insert based on that degree
 	 */
-	public array $elements = [];
+	public Listing $tgs;
 
 	public function __construct(string $class_toset = "!set") {
 		parent::__construct();
@@ -145,64 +137,31 @@ class Div extends Element {
 		$this->class = $class_toset;
 	}
 	
+	/** 
+	* the element to insert into the Listing instance $tgs
+	* the Listing instance inserts elements in order or degree
+	* 
+	* @param Element $input - the input to insert inside into $tgs
+	* @return the input element is inserted inside the Listing $tgs
+	*/
 	public function inject(Element $input):void {
 		$this->tgs->insert($input);
 	}
-
-	public function iprint() {
-		$this->start($this->ind);
-		$this->tgs->render();
-		$this->endt($this->ind);
-		
-		$this->ind++;
-	}	
-
+	
 	/**
-	 * the wrapper function for the recursive rprint function
-	 * the descriptor from any div class can be used to set the
-	 * name of the div, or the div content itself if no elements exist
-	 */
-	public function render():void {	
-		$this->rprint($this);
+	* renders the elements inside the Listing $tgs to the document
+	* the children for the parent div are indented for formating
+	* @param int $indStart - the starting ind for the parent div
+	* 
+	* @return the div contents to render to the document in order
+	*/
+	public function iprint(int $indStart = 0):void {
+		$this->start($indStart);
+		$this->tgs->render($indStart + 1);
+		$this->endt($indStart);
 	}
 
-	/**
-	 * recursively print every element inside a div.
-	 * for inner divs inside the array those will be indented
-	 * base on the parents indent level for better formating
-	 * so that all div elements are indented inside parent div
-
-	 * @param Div $div - with html elements to render to document body
-	 * 
-	 *
-	 * @return the printed div rendered to the document body
-	 */
-	private function rprint(Div $div):void {
-		if ($div->isEmpty()) return;
-
-		$div->start($div->ind);
-		foreach ($div->elements as $tg) {
-			if ($tg instanceof Div) {
-				$tg->ind += 1;
-				$this->rprint ($tg);
-				continue;
-			}
-			$tg->render($div->ind + 1);
-		}
-		$div->endt($div->ind);
-		return;
-	}
-
-	/**
-	 * check whether the array of elements is empty or not
-	 *
-	 * @return true if there are no elements in the array
-	 *		  otherwise return false if there are tags in the array
-	 */
-	public function isEmpty():bool {
-		if (count($this->elements) === 0) return true;
-		return false;
-	}
+	public function render():void {}
 
 	/**
 	 * print the --start div tag
@@ -220,17 +179,6 @@ class Div extends Element {
 	private function endt(int $ind = 0):void {
 		fprint("</div>", true, $ind);
 	}
-
-	/**
-	 ** takes an html element tag and add it to the array of elements
-	 *
-	 * @param Element $input -- Html element to add to array
-	 *
-	 * @return the element is appended to the array
-	 */
-	public function append(Element $input):void {
-		array_push($this->elements,$input);	
-	}
 }
 
 class iframe extends Element {
@@ -243,7 +191,7 @@ class iframe extends Element {
 		$this->tag = "<iframe src=\"$this->src\" loading=\"lazy\" sandbox></iframe>";
 	}
 
-	public function render($ind = 1):void {
+	public function render(int $ind = 1):void {
 		fprint($this->tag, true, $ind);
 	}
 }

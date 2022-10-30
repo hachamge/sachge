@@ -61,13 +61,21 @@ class Listing {
 		return false;
 	}
 
-	public function render():void {
+	public function render(int $in = 1):void {
 		if ($this->head == null) return;
 
-		$current = $this->head;
-		while($current) {
-			$current->element->render();
-			$current = $current->next;
+		$tmp = $this->head;
+		$indStart = 0;
+		while($tmp) {
+			if ($tmp->element instanceof Div) {
+				$indStart += 1;
+				fprint("Listing.php: 70");
+				$tmp->element->iprint($indStart);
+				$tmp = $tmp->next;
+				continue;
+			}
+			$tmp->element->render($in);
+			$tmp = $tmp->next;
 		}
 	}
 }
