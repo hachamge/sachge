@@ -59,7 +59,7 @@ class Url {
 	*  search results for all url rendered that has a description tag 
 	*/
 	public function render():void {
-		$this->urlFrame->print();
+		$this->urlFrame->render();
 	}
 }
 

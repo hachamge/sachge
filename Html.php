@@ -63,6 +63,12 @@ abstract class Element {
 		$this->class = "!set";
 		$this->descriptor = "!set";
 	}
+
+	/**
+	 * each inheried class implements this function to
+	 * to render thier content to the html document body
+	 */
+	abstract public function render():void;
 }
 
 // html --p tag element
@@ -146,7 +152,7 @@ class Div extends Element {
 	 * the descriptor from any div class can be used to set the
 	 * name of the div, or the div content itself if no elements exist
 	 */
-	public function print() {	
+	public function render():void {	
 		$this->rprint($this);
 	}
 
@@ -199,6 +205,7 @@ class Div extends Element {
 	/** 
 	 * print the ending div tag flags can be enabled for customization
 	 * such as whether to insert a newline after the div is printed
+	 * @param int $ind the indent to set for the ending Html element
 	 */
 	private function endt(int $ind = 1):void {
 		fprint("</div>", true, $ind);
