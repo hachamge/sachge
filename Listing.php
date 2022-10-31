@@ -11,6 +11,11 @@ class Node {
 	}
 }
 
+/**
+* Linear Linked List to manage an infinite List of html elements.
+* it is setup to iteratively render inner html div elements and
+* auto indent to maintain the format for the parent div tags.
+*/
 class Listing {
 	private ?Node $head;
 
@@ -21,7 +26,7 @@ class Listing {
 	 * @return a head is set before any operation can take place
 	 */
 	public function __construct() {
-		$this->head = new node;
+		$this->head = null;
 	}
 
 	/**
@@ -35,14 +40,18 @@ class Listing {
 		$this->insertSort($this->head, $input);	
 	}
 
+	/**
+	 * recursively insert the element into the Listing in sorted order
+	 * if the input has the same order as another element, the input is
+	 * inserted in front of that element to indicate the order it occurred
+	 *
+	 * @param Node $head - the head of the Listing passed in by reference
+	 * @param Element $input - the html element to add to the Listing the
+	 * @return input is added to the Listing and the status is returned
+	 */
 	public function insertSort(&$head, Element $input):bool {
-		if ($head == null) {
+		if (!$head) {
 			$head = new Node;
-			$head->element = $input;
-			return true;
-		}
-
-		if ($head->element == null) {
 			$head->element = $input;
 			return true;
 		}
@@ -79,6 +88,7 @@ class Listing {
 				$tmp = $tmp->next;
 				continue;
 			}
+			if (!$tmp->element) return;
 			$tmp->element->render($indStart);
 			$tmp = $tmp->next;
 		}

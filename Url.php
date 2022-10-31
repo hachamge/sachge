@@ -6,7 +6,7 @@
  * relative Date, and descriptor for the url
  */
 class Url {
-	private Div $urlFrame;
+	private Div $Url;
 
 	/**
 	 * takes a list of (elements) html tags and insert them into the div
@@ -22,35 +22,44 @@ class Url {
 	public function __construct(
 		array $tgs,
 		Heading $date,
+		Heading $rDate,
 		iframe $iframe,
 		Paragraph $title,
-		Paragraph $descriptor,
-		Heading $relativeDate,	
+		Paragraph $descriptor
 	) {
-		$this->urlFrame = new Div("UrlFrame");
-		$this->urlFrame->append($title);
+		$this->Url = new Div("Url");
+		$Utgs = new Div("Utgs");
+		$Uframe = new Div("Uframe");
+		$dHeading = new Heading(Size::h3,"Description!");
 
-		$url = new Div("Url");
-		#1st step
-		$url->append($iframe);
+		# convert the tgs into p tags and insert
+		foreach($tgs as $input) {
+			$Utgs->inject(new Paragraph($input));	
+		}
+		
+		# set the degree for the Url.div inputs
+		$title->dset(1);
+		$Uframe->dset(2);
 
-		#2nd step
-		$utgs = new Div("Utgs");
-		foreach ($tgs as $tg) $utgs->append(new Paragraph($tg));
-		$url->append($utgs);
+		# set the degree for the Uframe.div inputs
+		$Utgs->dset(2);
+		$date->dset(4);
+		$rDate->dset(5);
+		$iframe->dset(1);
+		$dHeading->dset(3);
+		$descriptor->dset(6);
 
-		#3rd step
-		$url->append(new Heading(Size::h3,"Descriptor!"));
-		#4th step
-		$url->append($date);
-		#5th step
-		$url->append($relativeDate);
-		#6th step
-		$url->append($descriptor);
-
-		#final step
-		$this->urlFrame->append($url);
-	}
+		# inject the items into the Url
+		$Uframe->inject($Utgs);
+		$Uframe->inject($date);
+		$Uframe->inject($rDate);
+		$Uframe->inject($iframe);
+		$Uframe->inject($dHeading);
+		$Uframe->inject($descriptor);
+		
+		$this->Url->inject($title);
+		$this->Url->inject($Uframe);
+	  }
 
 	/**
 	*  insert the url into the document body.Once the url is rendered
@@ -59,7 +68,7 @@ class Url {
 	*  search results for all url rendered that has a description tag 
 	*/
 	public function render():void {
-		$this->urlFrame->render();
+		$this->Url->iprint();
 	}
 }
 

@@ -46,11 +46,16 @@ function fprint($input, bool $ind_set = true, int $ind = 1):void {
  * --p, div, and --h tags etc. have such as id, and class attributes.
  */
 abstract class Element {
-	public string $id;
+	/**
+	 * @var integer
+	 * @range (1,6)
+	 * @label ('the max sorting priority')
+	 */
 	public int $degree;
-	public string $tag;
-	public string $class;
-	public string $innerHtml;
+	protected ?string $id;
+	protected ?string $tag;
+	protected ?string $class;
+	protected ?string $innerHtml;
 
 	public function __construct() {
 		$this->degree = 1;
@@ -60,11 +65,10 @@ abstract class Element {
 		$this->descriptor = "!set";
 	}
 
-	/**
-	 * each inheried class implements this function to
-	 * to render thier content to the html document body
-	 */
-	abstract public function render():void;
+	public function iset(string $id) { $this->id = $id; }
+	public function dset(int $deg) { $this->degree = $deg; }
+	public function cset(string $css) {$this->class = $css; }
+	public function innerHtml(string $innerHtml) {$this->innerHtml = $innerHtml; }
 }
 
 // html --p tag element
@@ -74,7 +78,7 @@ class Paragraph extends Element {
 		parent::__construct();
 		$this->innerHtml = $input;
 		$this->tag = "<p>$this->innerHtml</p>";
-	} 
+	}
 
 	/**
 	 * 	create a p tag and render it to the document body
@@ -82,7 +86,6 @@ class Paragraph extends Element {
 	 *
 	 *	@param string $class -- the class attribute to set 
 	 *  @param int $ind -- the number of indent to set
-	 *
 	 *	@return the rendered tag to the document body
 	 */
 	function render(int $ind = 1):void {
@@ -136,25 +139,25 @@ class Div extends Element {
 		$this->tgs = new Listing();
 		$this->class = $class_toset;
 	}
-	
+
 	/** 
-	* the element to insert into the Listing instance $tgs
-	* the Listing instance inserts elements in order or degree
-	* 
-	* @param Element $input - the input to insert inside into $tgs
-	* @return the input element is inserted inside the Listing $tgs
-	*/
+	 * the element to insert into the Listing instance $tgs
+	 * the Listing instance inserts elements in order or degree
+	 * 
+	 * @param Element $input - the input to insert inside into $tgs
+	 * @return the input element is inserted inside the Listing $tgs
+	 */
 	public function inject(Element $input):void {
 		$this->tgs->insert($input);
 	}
-	
+
 	/**
-	* renders the elements inside the Listing $tgs to the document
-	* the children for the parent div are indented for formating
-	*
-	* @param int $indStart - the starting ind for the parent div 
-	* @return the div contents to render to the document in order
-	*/
+	 * renders the elements inside the Listing $tgs to the document
+	 * the children for the parent div are indented for formating
+	 *
+	 * @param int $indStart - the starting ind for the parent div 
+	 * @return the div contents to render to the document in order
+	 */
 	public function iprint(int &$indStart = 0):void {
 		$this->start($indStart);
 		$this->tgs->render($indStart + 1);
