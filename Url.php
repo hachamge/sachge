@@ -30,7 +30,8 @@ class Url {
 		$this->Url = new Div("Url");
 		$Utgs = new Div("Utgs");
 		$Uframe = new Div("Uframe");
-		$dHeading = new Heading(Size::h3,"Description!");
+		$Details = new Div("Details");
+		$dHeading = new Heading(Size::h3,"Description");
 
 		# convert the tgs into p tags and insert
 		foreach($tgs as $input) {
@@ -40,6 +41,7 @@ class Url {
 		# set the degree for the Url.div inputs
 		$title->dset(1);
 		$Uframe->dset(2);
+		$Details->dset(2);
 
 		# set the degree for the Uframe.div inputs
 		$Utgs->dset(2);
@@ -50,13 +52,14 @@ class Url {
 		$descriptor->dset(6);
 
 		# inject the items into the Url
-		$Uframe->inject($Utgs);
-		$Uframe->inject($date);
-		$Uframe->inject($rDate);
+		$Details->inject($Utgs);
+		$Details->inject($date);
+		$Details->inject($rDate);
 		$Uframe->inject($iframe);
-		$Uframe->inject($dHeading);
-		$Uframe->inject($descriptor);
-		
+		$Details->inject($dHeading);
+		$Details->inject($descriptor);
+		$Uframe->inject($Details);
+
 		$this->Url->inject($title);
 		$this->Url->inject($Uframe);
 	  }

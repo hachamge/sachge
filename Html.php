@@ -191,7 +191,7 @@ class iframe extends Element {
 		parent::__construct();
 
 		$this->src = $url;
-		$this->tag = "<iframe src=\"$this->src\" loading=\"lazy\" sandbox></iframe>";
+		$this->tag = "<iframe src=\"$this->src\" loading=\"lazy\" frameBorder=\"0\" scrolling=\"no\" sandbox></iframe>";
 	}
 
 	public function render(int $ind = 1):void {
