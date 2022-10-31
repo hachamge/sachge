@@ -59,7 +59,7 @@ class Url {
 		$Details->inject($dHeading);
 		$Details->inject($descriptor);
 		$Uframe->inject($Details);
-
+		
 		$this->Url->inject($title);
 		$this->Url->inject($Uframe);
 	  }

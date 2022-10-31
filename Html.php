@@ -77,7 +77,7 @@ class Paragraph extends Element {
 	public function __construct(string $input = "!set") {
 		parent::__construct();
 		$this->innerHtml = $input;
-		$this->tag = "<p>$this->innerHtml</p>";
+		$this->tag = "<p> $this->innerHtml</p>";
 	}
 
 	/**
