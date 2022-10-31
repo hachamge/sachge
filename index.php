@@ -7,11 +7,11 @@
 	require("Url.php");
 	require("Html.php");
 	
-	$smp = ["github.blog/","nodejs.org/en/", "dev.java/"];
+	$smp = ["github.blog/","nodejs.org/en/", "dev.java/","message.choomno.com/"];
 	foreach($smp as $ind=>$input) {
 	$Url = new Url(
 		array("Color Palette","Themes","Background","$input"),
-		new Heading(Size::h4,"August 11, 2022"),
+		new Heading(Size::h4,"August 1$ind, 202$ind"),
 		new Heading(Size::h5,"$ind minutes ago"),
 		new iframe("https://$input"),
 		new Paragraph($input),
