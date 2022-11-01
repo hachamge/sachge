@@ -1,16 +1,21 @@
 <?php
-	require("Url.php");
-	require("Html.php");
-	require("image.php");
+	require("input.php");
 	
-	$Url = new Url(
-		array("iprint","dset","rDate"),
-		new Heading(Size::h4,"August 11, 2022"),
-		new Heading(Size::h5,"3days ago"),
-		new iframe("http://1.com/"),
-		new Paragraph("Etz Hayim"),
-		new Paragraph("rain!")
-	);
+	$input = [
+				inputType::url,
+				inputType::text,
+				inputType::color,
+				inputType::radio,
+				inputType::checkbox];
 
-	$Url->render();
+	$in = new input(inputType::text,"cache");
+	$in->iset("cache_in");
+	$in->render();
+	
+	/*foreach($input as $key=>$inp) {
+		$in = new input($inp,"input_$key");	
+		#$in->iset("id_$key");
+
+		$in->render();
+	}*/
 ?>
