@@ -39,25 +39,16 @@ class input extends Element {
 		$this->regx = "pattern=\"[A-Za-z]{15}\"";
 		$this->type = $type->value;
 		$this->tag = match($type) {
-			inputType::reset => "<input type=\"reset\" >",	
-			inputType::url => "<input type=\"url\" name=\"$name\">",
-			inputType::file => "<input type=\"file\" name=\"$name\">",
-			inputType::time => "<input type=\"time\" name=\"$name\">",	
-			inputType::date => "<input type=\"date\" name=\"$name\">",		
-			inputType::radio => "<input type=\"radio\" name=\"$name\">",	
-			inputType::email => "<input type=\"email\" name=\"$name\">",	
-			inputType::hidden => "<input type=\"hidden\" name=\"$name\">",	
-			inputType::number => "<input type=\"number\" name=\"$name\">",	
-			inputType::search => "<input type=\"search\" name=\"$name\">",	
-			inputType::submit => "<input type=\"submit\" name=\"$name\">",	
-			inputType::button => "<input type=\"button\" name=\"$name\">",	
-			inputType::code => 	"<input type=\"password\" name=\"$name\">",
-			inputType::checkbox => "<input type=\"checkbox\" name=\"$name\">",	
-			inputType::month => "<input type=\"month\" name=\"$name\">",	
-			inputType::color => "<input type=\"color\" name=\"$name\" value=\"#ff0000\">",
-			inputType::text => "<input type=\"text\" name=\"$name\" $this->regx>",	
+			inputType::reset,inputType::url,inputType::file,inputType::time,
+			inputType::date, inputType::radio, inputType::email, inputType::hidden,
+			inputType::number, inputType::submit, inputType::button, inputType::checkbox, 
+			inputType::color, inputType::month => "<input type=\"$this->type\" name=\"$name\">",
 			
-			default => "<input type=\"text\" >"
+			#regx in
+			inputType::code, inputType::search, 
+			inputType::text => "<input type=\"$this->type\" name=\"$name\" $this->regx>",	
+			
+			default => "<input type=\"text\" $this->regx>"
 		};
 	}
 	
@@ -70,6 +61,8 @@ class input extends Element {
 		
 		$in1 = "<input type=\"$this->type\" id=\"$this->id\" name=\"$this->name\">";
 		$in2 = "<input type=\"$this->type\" id=\"$this->id\" name=\"$this->name\" $this->regx>";
+		
+		#return format input
 		$this->tag = match($this->type) {
 			"text","search","password" => $in2,
 			default => $in1
