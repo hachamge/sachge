@@ -8,8 +8,10 @@
 				inputType::radio,
 				inputType::checkbox];
 
-	$in = new input(inputType::text,"cache");
-	$in->iset("cache_in");
+	$in = new input(inputType::file,"cache");
+	$in->iset("∫1");
+	$in->min(2);
+	$in->autocomplete();
 	$in->render();
 	
 	/*foreach($input as $key=>$inp) {
