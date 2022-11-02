@@ -51,8 +51,7 @@ class Listing {
 	 */
 	public function insertSort(&$head, Element $input):bool {
 		if (!$head) {
-			$head = new Node;
-			$head->element = $input;
+			$head = $this->createNode($input);
 			return true;
 		}
 
@@ -60,6 +59,7 @@ class Listing {
 			return $this->insertSort($head->next, $input);
 		}
 
+		#prepend the input at the beginning 
 		if ($input->degree <= $head->element->degree) {
 			$tmp = $head->element;
 			$head->element = $input;
@@ -68,6 +68,19 @@ class Listing {
 		}
 
 		return false;
+	}
+	
+	/**
+	* create a Node, inject the input and return a reference  for
+	* the Node that was created. throw an exception if input is null
+	*
+	* @param Element $input - the html input to inject into the Node
+	* @return a reference to the Node that was created with the input
+	*/
+	public function createNode(Element $input):Node {
+		$tmp = new Node;
+		$tmp->element = $input;
+		return $tmp;
 	}
 
 	/**
@@ -84,15 +97,18 @@ class Listing {
 		$tmp = $this->head;
 		while($tmp) {
 			if ($tmp->element instanceof Div) {
+				# indent the parent div
 				$tmp->element->iprint($indStart);
 				$tmp = $tmp->next;
 				continue;
 			}
 			if (!$tmp->element) return;
+			# indent the children for the div
 			$tmp->element->render($indStart);
 			$tmp = $tmp->next;
 		}
 	}
-}
+
+}#endif
 
 ?>

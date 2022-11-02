@@ -1,6 +1,7 @@
 <?php
 	require("input.php");
-	
+
+/*
 	$input = [
 				inputType::url,
 				inputType::text,
@@ -16,4 +17,11 @@
 		$in->required();
 		$in->render();
 	}
+	*/
+	
+	$div = new Div();
+	$div->inject(new iframe());
+	$div->inject(new iframe());
+	
+	$div->iprint();
 ?>
