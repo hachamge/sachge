@@ -57,9 +57,11 @@ class Url {
 		$Details->inject($rDate);
 		$Uframe->inject($iframe);
 		$Details->inject($dHeading);
+		$descriptor->injectColor("#00ff2a");
 		$Details->inject($descriptor);
 		$Uframe->inject($Details);
 		
+		$title->injectColor();
 		$this->Url->inject($title);
 		$this->Url->inject($Uframe);
 	  }

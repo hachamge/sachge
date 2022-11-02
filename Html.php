@@ -79,7 +79,10 @@ class Paragraph extends Element {
 		$this->innerHtml = $input;
 		$this->tag = "<p> $this->innerHtml</p>";
 	}
-
+public function injectColor(string $color = "#ff0000"):void {
+		$append_str = "<input type=\"color\" value=\"$color\"> ";
+		$this->tag = substr_replace($this->tag, $append_str, 4, 0);
+	}
 	/**
 	 * 	create a p tag and render it to the document body
 	 *	if no class attribute is set, a default of [nan] is given
@@ -111,6 +114,11 @@ class Heading extends Element {
 		};
 		$this->innerHtml = $input;
 		if ($input != "!set") $this->tag = sprintf($this->tag, $this->innerHtml);
+	}
+
+	public function injectColor():void {
+		$append_str = "<input type=\"color\" value=\"#ff0000\"> ";
+		$this->tag = substr_replace($this->tag, $append_str, 4, 0);
 	}
 
 	/**
