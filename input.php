@@ -52,20 +52,27 @@ class input extends Element {
 		};
 	}
 
+	/**
+	 * returns the ending position of the input element '>' such that
+	 * append_str function can parse an attribute to the input element
+	 * @return the ending position of the input element is returned. 
+	 */
+	public function endpos():int {
+		return strlen($this->tag) - 1;
+	}
+
 	public function render(int $ind = 1) {
 		fprint($this->tag, true, $ind);
 	}
 
+	/**
+	 * sets the id for the input element.
+	 * @param string $id - the id to set for the input element.
+	 * @return the id is appended to the html input element tag
+	 */
 	public function iset(string $id):void {
 		parent::iset($id);
-
-		$in1 = "<input type=\"$this->type\" id=\"$this->id\" name=\"$this->name\">";
-		$in2 = "<input type=\"$this->type\" id=\"$this->id\" name=\"$this->name\" $this->regx>";
-
-		$this->tag = match($this->type) {
-			"text","search","password" => $in2,
-				default => $in1
-		};
+		$this->append_str(" id=\"$id\"");
 	}
 
 	/**
@@ -79,8 +86,7 @@ class input extends Element {
 
 	public function min(int $min):void {
 		$this->min = $min;
-		$in = "<input type=\"$this->type\" id=\"$this->id\" name=\"$this->name\" min=\"$min\">";
-		$this->tag= $in;
+		$this->append_str(" min=\"$min\"");
 	}
 
 	/**
@@ -93,14 +99,62 @@ class input extends Element {
 	 */
 	public function max(int $max):void {
 		$this->max = $max;
-		$in = "<input type=\"$this->type\" id=\"$this->id\" name=\"$this->name\" max=\"$min\">";
-		$this->tag= $in;
+		$this->append_str(" max=\"$max\"");
 	}
 
+	/**
+	 * set the autocomplete attribute for the element
+	 */
 	public function autocomplete():void {
-		$in = " autocomplete=\"on\"";
-		$endpos = strlen($this->tag) - 1;
-		$this->tag = substr_replace($this->tag, $in, $endpos);
+		$this->append_str(" autocomplete=\"on\"");
+	}
+
+	/**
+	 * set the disabled attribute for the element
+	 */
+	public function disable():void {
+		$this->append_str(" disabled");
+	}
+
+	/**
+	 * set the required attribute for the element
+	 */
+	public function required():void {
+		$this->append_str(" required");
+	}
+
+	/**
+	 * set the auto focus attribute for the element
+	 */
+	public function autofocus():void {
+		$this->append_str(" autofocus");
+	}
+
+	/**
+	 * set the size attribute for the input element.
+	 * @param string $size - the size to set for the input element
+	 */
+	public function size(string $size):void {
+		$this->size = $size;
+		$this->append_str("\" size=$size\"");
+	}
+
+	/**
+	 * set the multiple attribute for the input element
+	 */
+	public function multiple():void {
+		$this->append_str(" multiple");
+	}
+
+	/**
+	 * set the attribute for the html input element. this appends the input
+	 * into the element without overriding previously set attributes or repeat
+	 *
+	 * @param string $append_str - the attribute to append to the element input
+	 * @return the $append_str attribute is appended to the element input
+	 */
+	public function append_str(string $append_str):void {
+		$this->tag = substr_replace($this->tag, $append_str, $this->endpos());
 		$this->tag .= ">";
 	}
 
