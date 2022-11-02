@@ -51,16 +51,7 @@ class input extends Element {
 				default => "<input type=\"text\" $this->regx>"
 		};
 	}
-
-	/**
-	 * returns the ending position of the input element '>' such that
-	 * append_str function can parse an attribute to the input element
-	 * @return the ending position of the input element is returned. 
-	 */
-	public function endpos():int {
-		return strlen($this->tag) - 1;
-	}
-
+	
 	public function render(int $ind = 1) {
 		fprint($this->tag, true, $ind);
 	}
