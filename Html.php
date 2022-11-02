@@ -18,7 +18,7 @@ enum Size: string {
 	case h4 = "h4";
 	case h5 = "h5";
 	case h6 = "h6";
-}
+}#endif Size
 
 /**
  * prints to the --$input 
@@ -69,7 +69,7 @@ abstract class Element {
 	public function dset(int $deg) { $this->degree = $deg; }
 	public function cset(string $css) {$this->class = $css; }
 	public function innerHtml(string $innerHtml) {$this->innerHtml = $innerHtml; }
-}
+}#endif Element
 
 // html --p tag element
 class Paragraph extends Element {
@@ -94,7 +94,7 @@ class Paragraph extends Element {
 					$this->class,
 					$this->innerHtml), true, $ind);
 	}
-}
+}#endif Paragraph
 
 // html --h tag element
 class Heading extends Element {	
@@ -123,7 +123,7 @@ class Heading extends Element {
 	function render(int $ind = 1):void {
 		fprint (sprintf ($this->tag, $this->descriptor ), true, $ind);
 	}
-}
+}#endif Heading
 
 // html --div tag element
 class Div extends Element {	
@@ -181,8 +181,8 @@ class Div extends Element {
 	 */
 	private function endt(int $indStart):void {
 		fprint("</div>", true, $indStart);
-	}
-}
+	}	
+}#endif Div
 
 class iframe extends Element {
 	public string $src;
@@ -197,6 +197,6 @@ class iframe extends Element {
 	public function render(int $ind = 1):void {
 		fprint($this->tag, true, $ind);
 	}
-}
+}#endif iframe
 
 ?>
