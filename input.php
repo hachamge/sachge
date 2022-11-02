@@ -147,6 +147,13 @@ class input extends Element {
 	}
 
 	/**
+	* set the place holder for the input element
+	*/
+	public function placeHolder(string $pholder):void {
+		$this->tag = substr_replace($this->tag, " placeholder=\"$pholder\"", -1, 0);
+	}
+
+	/**
 	 * set the attribute for the html input element. this appends the input
 	 * into the element without overriding previously set attributes or repeat
 	 *
@@ -154,8 +161,7 @@ class input extends Element {
 	 * @return the $append_str attribute is appended to the element input
 	 */
 	public function append_str(string $append_str):void {
-		$this->tag = substr_replace($this->tag, $append_str, $this->endpos());
-		$this->tag .= ">";
+		$this->tag = substr_replace($this->tag, $append_str, -1, 0);
 	}
 
 }#endif
