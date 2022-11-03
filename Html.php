@@ -69,6 +69,15 @@ abstract class Element {
 	public function dset(int $deg) { $this->degree = $deg; }
 	public function cset(string $css) {$this->class = $css; }
 	public function innerHtml(string $innerHtml) {$this->innerHtml = $innerHtml; }
+	
+	/**
+	 * add a color input into the html element.
+	 * @param string $color - the color (hex) to set the color input
+	 */
+	public function injectColor(string $color = "#ff0000"):void {
+		$append_str = "<input type=\"color\" value=\"$color\"> ";
+		$this->tag = substr_replace($this->tag, $append_str, 4, 0);
+	}
 }#endif Element
 
 // html --p tag element
@@ -79,10 +88,7 @@ class Paragraph extends Element {
 		$this->innerHtml = $input;
 		$this->tag = "<p> $this->innerHtml</p>";
 	}
-public function injectColor(string $color = "#ff0000"):void {
-		$append_str = "<input type=\"color\" value=\"$color\"> ";
-		$this->tag = substr_replace($this->tag, $append_str, 4, 0);
-	}
+
 	/**
 	 * 	create a p tag and render it to the document body
 	 *	if no class attribute is set, a default of [nan] is given
@@ -92,11 +98,8 @@ public function injectColor(string $color = "#ff0000"):void {
 	 *	@return the rendered tag to the document body
 	 */
 	function render(int $ind = 1):void {
-		fprint (sprintf (
-					$this->tag, 
-					$this->class,
-					$this->innerHtml), true, $ind);
-	}
+		fprint ($this->tag, true, $ind);
+	}	
 }#endif Paragraph
 
 // html --h tag element
@@ -114,11 +117,6 @@ class Heading extends Element {
 		};
 		$this->innerHtml = $input;
 		if ($input != "!set") $this->tag = sprintf($this->tag, $this->innerHtml);
-	}
-
-	public function injectColor():void {
-		$append_str = "<input type=\"color\" value=\"#ff0000\"> ";
-		$this->tag = substr_replace($this->tag, $append_str, 4, 0);
 	}
 
 	/**
