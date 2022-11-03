@@ -51,8 +51,13 @@ class input extends Element {
 				default => "<input type=\"text\" $this->regx>"
 		};
 	}
-	
-	public function render(int $ind = 1) {
+
+	/** 
+	 * add the input element into the html document body.
+	 * @param int $ind - the indentation for the element. this is used only 
+	 * when the class elements are being tested on the terminal to verify format
+	 */
+	public function render(int $ind = 1):void {
 		fprint($this->tag, true, $ind);
 	}
 
@@ -136,10 +141,19 @@ class input extends Element {
 	public function multiple():void {
 		$this->append_str(" multiple");
 	}
-
-	/**
-	* set the place holder for the input element
+	
+	/** 
+	* set the max length for the text html element
+	* @param int $maxlen - the max length to set the input for text
 	*/
+	public function maxlen(int $maxlen):void {
+		$this->maxlen = $maxlen;
+		$this->append_str($this->tag, " maxlength=\"$maxlen\"", -1, 0);
+	}
+	
+	/**
+	 * set the place holder for the input element
+	 */
 	public function placeHolder(string $pholder):void {
 		$this->tag = substr_replace($this->tag, " placeholder=\"$pholder\"", -1, 0);
 	}
