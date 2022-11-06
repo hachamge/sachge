@@ -11,7 +11,7 @@
 	foreach($smp as $ind=>$input) {
 	$Url = new Url(
 		array("Color Palette","Themes","Background","$input"),
-		new Heading(Size::h4,"August 1$ind, 202$ind"),
+		new Heading(Size::h4,"08/03/202$ind 9:5$ind"),
 		new Heading(Size::h5,"$ind minutes ago"),
 		new iframe("https://$input"),
 		new Paragraph($input),

@@ -194,7 +194,39 @@ class iframe extends Element {
 		parent::__construct();
 
 		$this->src = $url;
-		$this->tag = "<iframe src=\"$this->src\" loading=\"lazy\" frameBorder=\"0\" scrolling=\"no\" sandbox></iframe>";
+		$this->tag = "<iframe src=\"$this->src\" loading=\"lazy\"></iframe>";
+	}
+	
+	/** 
+	* enable the sanbox attribute for the iframe element. by default iframe
+	* elements are not setup to have sandbox enabled. to disable the sandbox option
+	* call the method disableSandbox to unset the sandbox configuration setting.
+	*/
+	public function sandbox() {
+		$this->tag = substr_replace($this->tag, " sandbox", -10, 0);
+	}
+
+	/**
+	* set the border frame for the iframe element. a default of 0 is given
+	* if the input is not set to a certain border.
+	* @param int $border - the border to set the iframe element
+	*/
+	public function frameBorder(int $border = 0):void {
+		$this->tag = substr_replace($this->tag, " frameBorder=\"$border\"", -10, 0);
+	}
+	
+	/**
+	* set the scrolling configuration for the iframe element. if true
+	* is given then the scrolling attribute is set to 0 to disable the 
+	* the scrolling behavior. if false is set then the scolling attribue
+	* is disabled.
+	* @param bool $config - the boolean status to set the scrolling to
+	*/
+	public function scroll(bool $config):void {
+		$this->tag = match($config) {
+			true => substr_replace($this->tag, " scrolling=\"0\"", -10, 0),
+			default => "unable to set the scroll config"
+		};
 	}
 
 	public function render(int $ind = 1):void {
