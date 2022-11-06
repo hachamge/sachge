@@ -31,12 +31,9 @@ enum Size: string {
  *		   a line break after with a default indent of 1tb. 
  */
 function fprint($input, bool $ind_set = true, int $ind = 1):void {
-	if ($ind_set && $ind >= 1) {
-		$tb = "\t";
-		for ($i = 1; $i < $ind; $i++) $tb .= "\t";
-		echo ("$tb $input\n");
-	}
-	else echo ("$input\n");
+	$tb = "\t";
+	for ($i = 1; $i <= $ind; $i++) $tb .= "\t";
+	echo ("$tb $input\n");
 }
 
 /**
@@ -69,7 +66,7 @@ abstract class Element {
 	public function dset(int $deg) { $this->degree = $deg; }
 	public function cset(string $css) {$this->class = $css; }
 	public function innerHtml(string $innerHtml) {$this->innerHtml = $innerHtml; }
-	
+
 	/**
 	 * add a color input into the html element.
 	 * @param string $color - the color (hex) to set the color input
