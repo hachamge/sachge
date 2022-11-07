@@ -35,7 +35,9 @@ class Url {
 
 		# convert the tgs into p tags and insert
 		foreach($tgs as $input) {
-			$Utgs->inject(new Paragraph($input));	
+			$in = new Paragraph($input);
+			$in->iset("pointer");
+			$Utgs->inject($in);	
 		}
 		
 		# set the degree for the Url.div inputs
