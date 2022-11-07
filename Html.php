@@ -31,9 +31,9 @@ enum Size: string {
  *		   a line break after with a default indent of 1tb. 
  */
 function fprint($input, bool $ind_set = true, int $ind = 1):void {
-	$tb = "\t";
-	for ($i = 1; $i <= $ind; $i++) $tb .= "\t";
-	echo ("$tb $input\n");
+	$indent = "\t";
+	for ($i = 1; $i <= $indent; $i++) $indent .= "\t";
+	echo ("$indent $input\n");
 }
 
 /**
@@ -59,7 +59,7 @@ abstract class Element {
 		$this->id = "!set";
 		$this->tag = "!set";
 		$this->class = "!set";
-		$this->descriptor = "!set";
+		$this->innerHtml = "!set";
 	}
 
 	public function iset(string $id) { $this->id = $id; }
@@ -82,13 +82,22 @@ class Paragraph extends Element {
 
 	public function __construct(string $input = "!set") {
 		parent::__construct();
-		$this->innerHtml = $input;
-		$this->tag = "<p> $this->innerHtml</p>";
+		$this->tag = "<p></p>";
+		$this->innerHtml($input);
 	}
 
 	public function iset(string $id) {
 		parent::iset($id);
 		$this->tag = substr_replace($this->tag, " id=\"$id\"", 2, 0);
+	}
+
+	/**
+	* set the innerHTML content for the Paragraph.
+	* @param string $innerHtml - the innerHTML content to set
+	*/
+	public function innerHtml(string $innerHtml):void {
+		parent::innerHtml($innerHtml);
+		$this->tag = substr_replace($this->tag, $innerHtml, -4, 0);
 	}
 
 	/**
@@ -110,26 +119,40 @@ class Heading extends Element {
 		parent::__construct();
 
 		$this->tag = match($size) {
-			Size::h1 => "<h1> %s </h1>",
-				Size::h2 => "<h2> %s </h2>",
-				Size::h3 => "<h3> %s </h3>",
-				Size::h4 => "<h4> %s </h4>",
-				Size::h5 => "<h5> %s </h5>",
-				Size::h6 => "<h6> %s </h6>"
+			Size::h1 => "<h1></h1>",
+				Size::h2 => "<h2></h2>",
+				Size::h3 => "<h3></h3>",
+				Size::h4 => "<h4></h4>",
+				Size::h5 => "<h5></h5>",
+				Size::h6 => "<h6></h6>"
 		};
-		$this->innerHtml = $input;
-		if ($input != "!set") $this->tag = sprintf($this->tag, $this->innerHtml);
+	}
+	
+	/**
+	* set the id for the html header element
+	* @param string $id - the id to set the html element
+	*/
+	public function iset(string $id):void {
+		parent::iset($id);
+		$this->tag = substr_replace($this->tag, " id=\"$id\"", 3, 0);
+	}
+
+	/**
+	* set the innerHTML content for the heading.
+	* @param string $innerHtml - the innerHTML content to set
+	*/
+	public function innerHtml(string $innerHtml):void {
+		parent::innerHtml($innerHtml);
+		$this->tag = substr_replace($this->tag, $innerHtml, -5, 0);
 	}
 
 	/**
 	 * create a h tag and render it to the document body
-	 *
 	 * @param int $ind -- the number of indent to set
-	 *
 	 * @return the rendered tag to the document body
 	 */
 	function render(int $ind = 1):void {
-		fprint (sprintf ($this->tag, $this->descriptor ), true, $ind);
+		fprint (sprintf ($this->tag, $this->innerHtml ), true, $ind);
 	}
 }#endif Heading
 
