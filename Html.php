@@ -73,7 +73,7 @@ abstract class Element {
 	 */
 	public function injectColor(string $color = "#ff0000"):void {
 		$append_str = "<input type=\"color\" value=\"$color\"> ";
-		$this->tag = substr_replace($this->tag, $append_str, 4, 0);
+		$this->tag = substr_replace($this->tag, $append_str, 3, 0);
 	}
 }#endif Element
 
@@ -126,6 +126,8 @@ class Heading extends Element {
 				Size::h5 => "<h5></h5>",
 				Size::h6 => "<h6></h6>"
 		};
+
+		$this->innerHtml($input);
 	}
 	
 	/**
