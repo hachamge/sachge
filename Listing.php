@@ -49,7 +49,7 @@ class Listing {
 	 * @param Element $input - the html element to add to the Listing the
 	 * @return input is added to the Listing and the status is returned
 	 */
-	public function insertSort(&$head, Element $input):bool {
+	private function insertSort(&$head, Element $input):bool {
 		if (!$head) {
 			$head = $this->createNode($input);
 			return true;
@@ -77,7 +77,7 @@ class Listing {
 	* @param Element $input - the html input to inject into the Node
 	* @return a reference to the Node that was created with the input
 	*/
-	public function createNode(Element $input):Node {
+	private function createNode(Element $input):Node {
 		$tmp = new Node;
 		$tmp->element = $input;
 		return $tmp;
