@@ -6,8 +6,19 @@
 <?php
 	require("Url.php");
 	require("Html.php");
+	require("input.php");
 	
 	$smp = ["github.blog/","nodejs.org/en/", "dev.java/","message.choomno.com/"];
+
+	$search = new input(inputType::search);
+	$search->iset("search");
+	$search->render();
+
+	$btn = new input(inputType::button);
+	$btn->iset("hsearch");
+	$btn->innerHtml("Highlight");
+	$btn->render();
+
 	foreach($smp as $ind=>$input) {
 	$Url = new Url(
 		array("Color Palette","Themes","Background","$input"),
@@ -21,9 +32,8 @@
 	$Url->render();
 }
 
-	#$Url->render();
-	#$Url->render();
-	#$Url->render();
 ?>
+
+<script src="UrlSearch.js"></script>
 </body>
 </html>

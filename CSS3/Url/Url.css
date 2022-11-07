@@ -7,16 +7,8 @@
 	box-sizing: border-box;
 }
 
-body {
-	width: 100%;
-	height: 100vh;
-	background-color: #DBD7D2;
-}
-
-input[type="color"] {
-	width: 25px;
-	height: 25px;
-}
+body { width: 100%; height: 100vh; background-color: #DBD7D2; }
+input[type="color"] { width: 25px; height: 25px; border: 0; }
 
 .Url {
 	top: 33px;
@@ -87,7 +79,7 @@ input[type="color"] {
 */
 .Details h3 { font-weight: bolder; }
 .Details { padding: 5px; border-top: #D3D3D3; }
-.Details > * { left: 35px; position: relative; }
 .Details h4 { color: gray; font-family: 'Ubuntu Condensed'}
 .Details h5 { color: #FF4500; font-family: 'Ubuntu Condensed', sans-serif; }
-.Details > p {	width: 95%; font-size: 21px; font-family: 'Ubuntu Condensed'}
+.Details > p {	width: 95%; font-size: 18px; top: 13px; position: relative; }
+.Details > * { left: 35px; position: relative; font-family: 'Ubuntu Condensed', sans-serif }

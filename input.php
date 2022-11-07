@@ -32,13 +32,14 @@ class input extends Element {
 	public string $name;
 	public string $type;
 
-	public function __construct(inputType $type, string $name) {
+	public function __construct(inputType $type, string $name = "!set") {
 		parent::__construct();
 
 		$this->name = $name;
 		$this->type = $type->value;
 		$this->regx = "pattern=\"[A-Za-z]{15}\"";
 
+		# set the default iframe to configure
 		$this->tag = match($type) {
 			inputType::reset,inputType::url,inputType::file,inputType::time,
 				inputType::date, inputType::radio, inputType::email, inputType::hidden,
@@ -50,6 +51,10 @@ class input extends Element {
 
 				default => "<input type=\"text\" $this->regx>"
 		};
+	}
+
+	public function innerHtml(string $input) {
+		$this->tag = substr_replace($this->tag, " value=\"$input\"", -1, 0);
 	}
 
 	/** 

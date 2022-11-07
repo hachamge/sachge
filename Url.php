@@ -55,9 +55,11 @@ class Url {
 		$Details->inject($Utgs);
 		$Details->inject($date);
 		$Details->inject($rDate);
+		$iframe->scroll(true);
 		$Uframe->inject($iframe);
 		$Details->inject($dHeading);
 		$descriptor->injectColor("#00ff2a");
+		$descriptor->iset("descriptor");
 		$Details->inject($descriptor);
 		$Uframe->inject($Details);
 		

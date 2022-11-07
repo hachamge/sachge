@@ -86,6 +86,11 @@ class Paragraph extends Element {
 		$this->tag = "<p> $this->innerHtml</p>";
 	}
 
+	public function iset(string $id) {
+		parent::iset($id);
+		$this->tag = substr_replace($this->tag, " id=\"$id\"", 2, 0);
+	}
+
 	/**
 	 * 	create a p tag and render it to the document body
 	 *	if no class attribute is set, a default of [nan] is given
@@ -224,7 +229,7 @@ class iframe extends Element {
 	*/
 	public function scroll(bool $config):void {
 		$this->tag = match($config) {
-			true => substr_replace($this->tag, " scrolling=\"0\"", -10, 0),
+			true => substr_replace($this->tag, " scrolling=\"no\"", -10, 0),
 			default => "unable to set the scroll config"
 		};
 	}
