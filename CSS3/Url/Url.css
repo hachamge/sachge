@@ -17,6 +17,7 @@ input[type="color"] { width: 25px; height: 25px; border: 0; }
 	max-width: 635px;
 	position: relative;
 	font-weight: bolder;
+	margin-top: 5px;
 	background-color: transparent;
 	font-family: 'Roboto Condensed', sans-serif;
 }
@@ -26,7 +27,6 @@ input[type="color"] { width: 25px; height: 25px; border: 0; }
 	color: #FFFFFF;
 	padding: 10px 25px;
 	display: inline-block;
-	border-radius: 0 15px 0 0;
 	background-color: #000000;
 }
 
@@ -60,7 +60,6 @@ input[type="color"] { width: 25px; height: 25px; border: 0; }
     font-family: 'Ubuntu Condensed', sans-serif;
 	background-color: #FFDC00;
 }
-
 
 .Utgs p:nth-child(1) {
 	padding: 10px 15px;
@@ -112,6 +111,6 @@ input[type="color"] { width: 25px; height: 25px; border: 0; }
 .Details h3 { font-weight: bolder; }
 .Details > p {	width: 95%; font-size: 18px; }
 .Details { padding: 5px; border-top: #D3D3D3; }
-.Details h4 { color: gray; font-family: 'Ubuntu Condensed'}
+.Details h4 { color: gray; font-family: 'Ubuntu Condensed'; filter: blur(1px) }
 .Details h5 { color: #FF4500; font-family: 'Ubuntu Condensed', sans-serif; }
 .Details > * { left: 35px; position: relative; font-family: 'Ubuntu Condensed', sans-serif }

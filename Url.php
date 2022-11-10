@@ -66,6 +66,7 @@ class Url {
 		$Uframe->inject($Details);
 		
 		$title->injectColor();
+		$title->iset("pointer");
 		$this->Url->inject($title);
 		$this->Url->inject($Uframe);
 	  }
