@@ -7,6 +7,9 @@
  */
 class Url {
 	private Div $Url;
+	private Div $Utgs;
+	private Div $Uframe;
+	private Div $Details;
 
 	/**
 	 * takes a list of (elements) html tags and insert them into the div
@@ -28,18 +31,11 @@ class Url {
 		Paragraph $descriptor
 	) {
 		$this->Url = new Div("Url");
-		$Utgs = new Div("Utgs");
 		$Uframe = new Div("Uframe");
 		$Details = new Div("Details");
 		$dHeading = new Heading(Size::h3,"Description");
-
-		# convert the tgs into p tags and insert
-		foreach($tgs as $input) {
-			$in = new Paragraph($input);
-			$in->iset("pointer");
-			$Utgs->inject($in);	
-		}
-		
+	
+		$this->injectUtags($tgs);
 		# set the degree for the Url.div inputs
 		$title->dset(1);
 		$Uframe->dset(2);
@@ -52,7 +48,7 @@ class Url {
 		$label2 = new input(inputType::label);
 
 		# set the degree for the Uframe.div inputs
-		$Utgs->dset(2);
+		$this->Utgs->dset(2);
 		$date->dset(4);
 		$rDate->dset(5);
 		$iframe->dset(1);
@@ -81,7 +77,7 @@ class Url {
 		$label3->innerHtmlForLabel("rating 1 - 10");
 
 		# inject the items into the Url
-		$Details->inject($Utgs);
+		$Details->inject($this->Utgs);
 		$Details->inject($date);
 		$Details->inject($rDate);
 		$iframe->scroll(true);
@@ -113,6 +109,17 @@ class Url {
 	public function render():void {
 		$this->Url->iprint();
 	}
-}
+
+	private function injectUtags(array $tgs):void {
+		$this->Utgs = new Div("Utgs");
+		
+		foreach($tgs as $input) {
+			$in = new Paragraph($input);
+			$in->iset("pointer");
+			$this->Utgs->inject($in);	
+		}
+	}
+
+}#endif
 
 ?>
