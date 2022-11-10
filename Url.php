@@ -3,7 +3,7 @@
  * this class is responsible for creating, and
  * formatting the entire url layout. Each url structure
  * has the url title and an inner div with the tags, date
- * relative Date, and descriptor for the url
+ * relative Date, and descp for the url
  */
 class Url {
 	private Div $Url;
@@ -28,32 +28,73 @@ class Url {
 		Heading $rDate,
 		iframe $iframe,
 		Paragraph $title,
-		Paragraph $descriptor
+		Paragraph $descp
 	) {
 		$this->Url = new Div("Url");
-		$Uframe = new Div("Uframe");
-		$Details = new Div("Details");
+		$this->Uframe = new Div("Uframe");
+		$this->Utgs = new Div("Utgs");
+		$this->Details = new Div("Details");
 		$dHeading = new Heading(Size::h3,"Description");
-	
+		
+		$descp->injectColor("#00ff2a");
+		$descp->iset("descp");
+		
+		# create and inject the tags for the Url
 		$this->injectUtags($tgs);
-		# set the degree for the Url.div inputs
-		$title->dset(1);
-		$Uframe->dset(2);
-		$Details->dset(2);
+		
+		# set the degree for the h elements, Uframe and Utgs
+		$hElementsDegree = [2, 4, 5, 1, 2, 3, 6, 1, 2];
+		$hElements = [$this->Utgs, $date, $rDate, $iframe, $this->Details, $dHeading, $descp, $title, $this->Uframe];
+		$this->setDegree($hElements, $hElementsDegree);
+		
+		# create and inject the Uframe elements for the Url
+		$iframe->scroll(true);
+		$UframeElements = [$iframe, $this->Details];
+		$this->injectElementsForUframe($UframeElements);
+		
+		# create, and inject  the radio elements for the Url
+		$radioElements = $this->createRadioElements();	
+		$headingElements = [ $this->Utgs, $date, $rDate, $dHeading, $descp ];
+		$this->injectElementsForDetail($headingElements);
+		$this->injectElementsForDetail($radioElements);
 
+		$title->injectColor("#00FF2A");
+		$title->iset("pointer");
+		$this->Url->inject($title);
+		$this->Url->inject($this->Uframe);
+	  }
+
+	/**
+	*  insert the url into the document body.Once the url is rendered
+	*  the according css attributes will become active and interactive
+	*  with the javacript that is responsible for highlighting relavant
+	*  search results for all url rendered that has a description tag 
+	*/
+	public function render():void {
+		$this->Url->iprint();
+	}
+
+	private function injectUtags(array $tgs):void {
+		foreach($tgs as $input) {
+			$in = new Paragraph($input);
+			$in->iset("pointer");
+			$this->Utgs->inject($in);	
+		}
+	}
+
+	private function injectElementsForDetail(array $dElements):void {
+		foreach ($dElements as $element) {
+			$this->Details->inject($element);	
+		}
+	}
+
+	private function createRadioElements():array {
 		# the radio input
 		$radio = new input(inputType::radio);
 		$radio2 = new input(inputType::radio);
 		$label1 = new input(inputType::label);
 		$label2 = new input(inputType::label);
-
-		# set the degree for the Uframe.div inputs
-		$this->Utgs->dset(2);
-		$date->dset(4);
-		$rDate->dset(5);
-		$iframe->dset(1);
-		$dHeading->dset(3);
-		$descriptor->dset(6);
+		
 		$radio->dset(7);
 		$radio->iset("helpful");
 		$label1->dset(8);
@@ -75,48 +116,18 @@ class Url {
 		$label3->dset(12);
 		$label3->setLabelFor("rating");
 		$label3->innerHtmlForLabel("rating 1 - 10");
-
-		# inject the items into the Url
-		$Details->inject($this->Utgs);
-		$Details->inject($date);
-		$Details->inject($rDate);
-		$iframe->scroll(true);
-		$Uframe->inject($iframe);
-		$Details->inject($dHeading);
-		$descriptor->injectColor("#00ff2a");
-		$descriptor->iset("descriptor");
-		$Details->inject($descriptor);
-		$Uframe->inject($Details);
-		$Details->inject($radio);
-		$Details->inject($label1);
-		$Details->inject($radio2);
-		$Details->inject($label2);
-		$Details->inject($range);
-		$Details->inject($label3);
-		
-		$title->injectColor("#00FF2A");
-		$title->iset("pointer");
-		$this->Url->inject($title);
-		$this->Url->inject($Uframe);
-	  }
-
-	/**
-	*  insert the url into the document body.Once the url is rendered
-	*  the according css attributes will become active and interactive
-	*  with the javacript that is responsible for highlighting relavant
-	*  search results for all url rendered that has a description tag 
-	*/
-	public function render():void {
-		$this->Url->iprint();
+		return array($radio, $radio2, $label1, $label2, $range, $label3);
 	}
 
-	private function injectUtags(array $tgs):void {
-		$this->Utgs = new Div("Utgs");
-		
-		foreach($tgs as $input) {
-			$in = new Paragraph($input);
-			$in->iset("pointer");
-			$this->Utgs->inject($in);	
+	private function setDegree(array &$Elements, array $Degrees):void {
+		foreach ($Elements as $index=>$element) {
+			$element->dset($Degrees[$index]);			
+		}
+	}
+
+	private function injectElementsForUframe(array $Elements):void {
+		foreach ($Elements as $element) {
+			$this->Uframe->inject($element);
 		}
 	}
 
