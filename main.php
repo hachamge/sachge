@@ -1,8 +1,9 @@
 <?php
-	require("input.php");
+	require("Html.php");
 	
-	$out = new input(inputType::label);
-	$out->setLabelFor("helpful");
-	$out->innerHtmlForLabel("helpful");
-	$out->render();
+	$div = new Div();
+	$p = new Paragraph("http://");
+
+	$div->inject($p);
+	$div->iprint();
 ?>

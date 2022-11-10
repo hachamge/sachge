@@ -32,7 +32,7 @@ enum Size: string {
  */
 function fprint($input, bool $ind_set = true, int $ind = 1):void {
 	$indent = "\t";
-	for ($i = 1; $i <= $indent; $i++) $indent .= "\t";
+	for ($i = 1; $i <= $ind; $i++) $indent .= "\t";
 	echo ("$indent $input\n");
 }
 
