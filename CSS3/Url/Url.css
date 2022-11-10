@@ -55,7 +55,7 @@ input[type="color"] { width: 25px; height: 25px; border: 0; }
 
 .Utgs > p {
 	color: #FFFFFF;
-	margin-right: 20px;
+	margin-right: 25px;
 	font-size: 18px;
     font-family: 'Ubuntu Condensed', sans-serif;
 	background-color: #FFDC00;
@@ -63,11 +63,9 @@ input[type="color"] { width: 25px; height: 25px; border: 0; }
 
 
 .Utgs p:nth-child(1) {
-	top: -50px;
 	padding: 10px 15px;
 	color: #FFFFFF;
 	border-radius: 0;
-	position: absolute;
 	background-color: #000000;
 }
 

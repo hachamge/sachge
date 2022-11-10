@@ -12,7 +12,7 @@
 	
 	foreach($smp as $ind=>$input) {
 	$Url = new Url(
-		array("Color Palette","Themes","Background","$input"),
+		array("http://1.com/","http://2.com/","http://3.com/"),
 		new Heading(Size::h4,"08/03/202$ind 9:5$ind"),
 		new Heading(Size::h5,"$ind minutes ago"),
 		new iframe("https://$input"),
