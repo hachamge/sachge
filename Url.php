@@ -98,7 +98,7 @@ class Url {
 		$Details->inject($range);
 		$Details->inject($label3);
 		
-		$title->injectColor();
+		$title->injectColor("#00FF2A");
 		$title->iset("pointer");
 		$this->Url->inject($title);
 		$this->Url->inject($Uframe);
