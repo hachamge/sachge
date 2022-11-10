@@ -19,6 +19,8 @@ enum inputType:string {
 	case search = "search";
 	case submit = "submit";
 	case button = "button";
+	case label = "label";
+	case range = "range";
 	case checkbox = "checkbox";
 }
 
@@ -43,14 +45,23 @@ class input extends Element {
 		$this->tag = match($type) {
 			inputType::reset,inputType::url,inputType::file,inputType::time,
 				inputType::date, inputType::radio, inputType::email, inputType::hidden,
-				inputType::number, inputType::submit, inputType::button, inputType::checkbox, 
-				inputType::color, inputType::month => "<input type=\"$this->type\" name=\"$name\">",
+				inputType::number, inputType::submit, inputType::button, inputType::checkbox, inputType::color, 	inputType::month, inputType::range => "<input type=\"$this->type\" name=\"$name\">",
 
 				inputType::code, inputType::search, 
-				inputType::text => "<input type=\"$this->type\" name=\"$name\" $this->regx>",	
+				inputType::text => "<input type=\"$this->type\" name=\"$name\" $this->regx>",
+
+				inputType::label => "<label></label>",
 
 				default => "<input type=\"text\" $this->regx>"
 		};
+	}
+	
+	public function setLabelFor(string $fset):void {
+		$this->tag = substr_replace($this->tag, " for=\"$fset\"", 6, 0);
+	}
+
+	public function innerHtmlForLabel(string $buffer):void {
+		$this->tag = substr_replace($this->tag, "$buffer", -8, 0);
 	}
 
 	public function innerHtml(string $input) {

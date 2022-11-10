@@ -1,7 +1,8 @@
 <?php
 	require("input.php");
 	
- 	$in = new Paragraph("Etz Hayim");
-	$in->iset("descriptor");
-	$in->render();
+	$out = new input(inputType::label);
+	$out->setLabelFor("helpful");
+	$out->innerHtmlForLabel("helpful");
+	$out->render();
 ?>

@@ -45,6 +45,12 @@ class Url {
 		$Uframe->dset(2);
 		$Details->dset(2);
 
+		# the radio input
+		$radio = new input(inputType::radio);
+		$radio2 = new input(inputType::radio);
+		$label1 = new input(inputType::label);
+		$label2 = new input(inputType::label);
+
 		# set the degree for the Uframe.div inputs
 		$Utgs->dset(2);
 		$date->dset(4);
@@ -52,6 +58,27 @@ class Url {
 		$iframe->dset(1);
 		$dHeading->dset(3);
 		$descriptor->dset(6);
+		$radio->dset(7);
+		$radio->iset("helpful");
+		$label1->dset(8);
+		$label1->setLabelFor("helpful");
+		$label1->innerHtmlForLabel("helpful");
+
+		$radio2->dset(9);
+		$radio2->iset("appropriate");
+		$label2->dset(10);
+		$label2->setLabelFor("appropriate");
+		$label2->innerHtmlForLabel("appropriate");
+
+		$range = new input(inputType::number);
+		$range->min(1);
+		$range->max(10);
+		$range->dset(11);
+		$range->iset("rating");
+		$label3 = new input(inputType::label);
+		$label3->dset(12);
+		$label3->setLabelFor("rating");
+		$label3->innerHtmlForLabel("rating 1 - 10");
 
 		# inject the items into the Url
 		$Details->inject($Utgs);
@@ -64,6 +91,12 @@ class Url {
 		$descriptor->iset("descriptor");
 		$Details->inject($descriptor);
 		$Uframe->inject($Details);
+		$Details->inject($radio);
+		$Details->inject($label1);
+		$Details->inject($radio2);
+		$Details->inject($label2);
+		$Details->inject($range);
+		$Details->inject($label3);
 		
 		$title->injectColor();
 		$title->iset("pointer");
