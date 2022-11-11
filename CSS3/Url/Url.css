@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Charmonman&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 
 * {
 	margin: 0;
@@ -40,17 +41,12 @@ body { width: 100%; height: 100vh; background-color: #D3D3D3; }
 
 .UFrame {
 	width: 100%;
-	height: 590px;
+	height: 630px;
 	background-color: #FFFFFF;
 }
 
 .UFrame iframe { width: 100%; height: 60%; }
 
-/**
-* the list of tags,snapshot of the Url. the first tag
-* is used in a different color highlight for the Url iframe.
-* every children as a set of default config apart from the 1st.
-*/
 .Utgs {
 	top: 13px;
 	left: 35px;
@@ -140,6 +136,6 @@ input[type="number"] {
 .Details h3 { font-weight: bolder; }
 .Details > p {	width: 95%; font-size: 18px; margin-bottom: 3px; }
 .Details { padding: 5px; border-top: #D3D3D3; }
-.Details h4 { color: #6F00FF; font-family: 'Ubuntu Condensed'; filter: blur(1px); text-decoration: line-through; }
+.Details h4 { color: #6F00FF;font-family: 'Charmonman', cursive; }
 .Details h5 { color: #FF4500; font-family: 'Ubuntu Condensed', sans-serif; }
 .Details > * { left: 35px; position: relative; font-family: 'Ubuntu Condensed', sans-serif }

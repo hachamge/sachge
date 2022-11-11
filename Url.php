@@ -1,7 +1,7 @@
 <?php
 
-include_once("input.php");
-include_once("Html.php");
+require_once("input.php");
+require_once("Html.php");
 /** 
  * this class is responsible for creating, and
  * formatting the entire url layout. Each url structure
@@ -40,7 +40,6 @@ class Url {
 		$dHeading = new Heading(Size::h3,"Description");
 		
 		$descp->injectColor("#00ff2a");
-		$descp->iset("descp");
 		
 		# create and inject the tags for the Url
 		$this->injectUtags($tgs);
@@ -92,37 +91,6 @@ class Url {
 		foreach ($dElements as $element) {
 			$this->Details->inject($element);	
 		}
-	}
-
-	private function createRa():array {
-		# the radio input
-		$radio = new input(inputType::radio);
-		$radio2 = new input(inputType::radio);
-		$label1 = new input(inputType::label);
-		$label2 = new input(inputType::label);
-		
-		$radio->dset(7);
-		$radio->iset("helpful");
-		$label1->dset(8);
-		$label1->setLabelFor("helpful");
-		$label1->innerHtmlForLabel("helpful");
-
-		$radio2->dset(9);
-		$radio2->iset("appropriate");
-		$label2->dset(10);
-		$label2->setLabelFor("appropriate");
-		$label2->innerHtmlForLabel("appropriate");
-
-		$range = new input(inputType::number);
-		$range->min(1);
-		$range->max(10);
-		$range->dset(11);
-		$range->iset("rating");
-		$label3 = new input(inputType::label);
-		$label3->dset(12);
-		$label3->setLabelFor("rating");
-		$label3->innerHtmlForLabel("rating 1 - 10");
-		return array($radio, $radio2, $label1, $label2, $range, $label3);
 	}
 
 	public static function createRadioElements(array $radioElements_str, array $Degree = []):array {
