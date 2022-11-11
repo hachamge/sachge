@@ -264,4 +264,19 @@ class iframe extends Element {
 	}
 }#endif iframe
 
+class Link extends Element {
+	public function __construct(string $Url, string $descriptor) {
+		$this->tag = "<a href=\"$Url\">$descriptor</a>";
+	}
+
+	public function iset(string $id):void {
+		parent::iset($id);
+		$this->tag = substr_replace($this->tag, " id=\"$id\"", 2, 0);
+	}
+
+	public function render():void {
+		fprint($this->tag, true, 1);
+	}
+}
+
 ?>

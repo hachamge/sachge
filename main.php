@@ -1,9 +1,8 @@
 <?php
-	require("Url.php");
+	require_once("Url.php");
+	require_once("Html.php");
 
-	$radio_deg = [7,9];
-	$radio_str = ["helpful", "appropriate"];
-
-	$radio_arr = Url::createRadio($radio_str, $radio_deg);
-	print_r($radio_arr);
+	$a_tag = new Link("http://1","Url.php");
+	$a_tag->iset("pointer");
+	$a_tag->render();
 ?>
