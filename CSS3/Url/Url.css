@@ -46,3 +46,5 @@ input[type="color"] {
 	height: 30px;
 	background-color: transparent;
 }
+
+input[type="number"] { text-align: center; }
