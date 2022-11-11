@@ -39,7 +39,7 @@ class Url {
 		$this->Details = new Div("Details");
 		$dHeading = new Heading(Size::h3,"Description");
 		
-		$descp->injectColor("#00ff2a");
+		#$descp->injectColor("#00ff2a");
 		
 		# create and inject the tags for the Url
 		$this->injectUtags($tgs);
@@ -62,6 +62,8 @@ class Url {
 		$this->injectElementsForDetail($headingElements);
 		$this->injectElementsForDetail($radioElements);
 		$this->injectElementsForDetail($numberElement);
+		$cinput = new input(inputType::color); $cinput->dset(13); $cinput->setColor();
+		$this->injectElementsForDetail([$cinput]);
 
 		//$title->injectColor("#00FF2A");
 		$title->iset("pointer");

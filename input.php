@@ -56,6 +56,20 @@ class input extends Element {
 		};
 	}
 	
+	public function setColor(string $color = "!set"):void {
+		($color == "!set") ? ($color = $this->randomColor()) : ($color); 
+		$this->tag = substr_replace($this->tag, " value=\"$color\"", -1, 0);
+	}
+
+	public static function randomColor():string {
+		$letters = "0123456789ABCDEF";
+  		$color = "#";
+  		for ($i = 0; $i < 6; $i++) {
+    		$color .= $letters[rand(0,16)];
+  		}
+  		return $color;	
+	}
+
 	public function setLabelFor(string $fset):void {
 		$this->tag = substr_replace($this->tag, " for=\"$fset\"", 6, 0);
 	}
