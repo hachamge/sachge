@@ -80,8 +80,9 @@ class Url {
 	}
 
 	private function injectUtags(array $tgs):void {
-		foreach($tgs as $input) {
-			$in = new Paragraph($input);
+		foreach($tgs as $key=>$input) {
+			$in = new Link($input,"http://$key.com/");
+			//$in = new Paragraph($input);
 			$in->iset("pointer");
 			$this->Utgs->inject($in);	
 		}

@@ -266,7 +266,8 @@ class iframe extends Element {
 
 class Link extends Element {
 	public function __construct(string $Url, string $descriptor) {
-		$this->tag = "<a href=\"$Url\">$descriptor</a>";
+		parent::__construct();
+		$this->tag = "<a href=\"$Url\" target=\"_blank\">$descriptor</a>";
 	}
 
 	public function iset(string $id):void {
@@ -274,8 +275,8 @@ class Link extends Element {
 		$this->tag = substr_replace($this->tag, " id=\"$id\"", 2, 0);
 	}
 
-	public function render():void {
-		fprint($this->tag, true, 1);
+	public function render($ind = 1):void {
+		fprint($this->tag, true, $ind);
 	}
 }
 

@@ -57,18 +57,24 @@ body { width: 100%; height: 100vh; background-color: #D3D3D3; }
 	margin-bottom: 15px;
 }
 
-.Utgs > p {
+.Utgs > a:link {
 	color: #FFFFFF;
 	margin-right: 25px;
 	font-size: 18px;
+	text-decoration: none;
     font-family: 'Ubuntu Condensed', sans-serif;
 	background-color: #FFDC00;
 }
 
-.Utgs p:nth-child(1) {
-	padding: 10px 15px;
-	color: #FFFFFF;
-	border-radius: 0;
+.Utgs > a:visited {
+	color: purple;
+}
+
+.Utgs > a:hover {
+	text-decoration: underline;
+}
+
+.Utgs > a:active {
 	background-color: #000000;
 }
 
