@@ -1,4 +1,7 @@
 <?php
+
+include_once("input.php");
+include_once("Html.php");
 /** 
  * this class is responsible for creating, and
  * formatting the entire url layout. Each url structure
@@ -53,10 +56,13 @@ class Url {
 		$this->injectElementsForUframe($UframeElements);
 		
 		# create, and inject  the radio elements for the Url
-		$radioElements = $this->createRadioElements();	
+		#$radioElements = $this->createRadioElements();	
+		$radioElements = $this->createRadioElements(["helpful","appropriate"], [7,9]);
+		$numberElement = $this->createNumberElements(["rating"],[10]);
 		$headingElements = [ $this->Utgs, $date, $rDate, $dHeading, $descp ];
 		$this->injectElementsForDetail($headingElements);
 		$this->injectElementsForDetail($radioElements);
+		$this->injectElementsForDetail($numberElement);
 
 		$title->injectColor("#00FF2A");
 		$title->iset("pointer");
@@ -88,7 +94,7 @@ class Url {
 		}
 	}
 
-	private function createRadioElements():array {
+	private function createRa():array {
 		# the radio input
 		$radio = new input(inputType::radio);
 		$radio2 = new input(inputType::radio);
@@ -117,6 +123,41 @@ class Url {
 		$label3->setLabelFor("rating");
 		$label3->innerHtmlForLabel("rating 1 - 10");
 		return array($radio, $radio2, $label1, $label2, $range, $label3);
+	}
+
+	public static function createRadioElements(array $radioElements_str, array $Degree = []):array {
+		$radio_arr = [];
+		foreach ($radioElements_str as $index=>$radio_str) {
+			$deg = $Degree[$index];
+			$radio = new input(inputType::radio);
+			$radio->dset($deg);
+			$radio->iset($radioElements_str[$index]);
+			# create the label for the radio element
+			$descriptor = new input(inputType::label);
+			$descriptor->dset($deg+1);
+			$descriptor->setLabelFor($radioElements_str[$index]);
+			$descriptor->innerHtmlForLabel($radioElements_str[$index]);
+			array_push($radio_arr, $radio, $descriptor);
+		}
+		return $radio_arr;
+	}
+
+	public static function createNumberElements(array $numberElements_str, array $Degree = []):array {
+		$range_arr = [];
+		foreach ($numberElements_str as $index=>$radio_str) {
+			$number = new input(inputType::number);
+			$number->min(1);
+			$number->max(10);
+			$number->dset(11);
+			$number->iset("rating");
+			# create the descriptor for the number element
+			$descriptor = new input(inputType::label);
+			$descriptor->dset(12);
+			$descriptor->setLabelFor("rating");
+			$descriptor->innerHtmlForLabel("rating 1 - 10");	
+			array_push($range_arr, $number, $descriptor);
+		}
+		return $range_arr;
 	}
 
 	private function setDegree(array &$Elements, array $Degrees):void {

@@ -1,9 +1,9 @@
 <?php
-	require("Html.php");
-	
-	$div = new Div();
-	$p = new Paragraph("http://");
+	require("Url.php");
 
-	$div->inject($p);
-	$div->iprint();
+	$radio_deg = [7,9];
+	$radio_str = ["helpful", "appropriate"];
+
+	$radio_arr = Url::createRadio($radio_str, $radio_deg);
+	print_r($radio_arr);
 ?>

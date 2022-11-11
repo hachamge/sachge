@@ -4,9 +4,9 @@
 </head>
 <body>
 <?php
-	require("Url.php");
-	require("Html.php");
-	require("input.php");
+	require_once("Url.php");
+	require_once("Html.php");
+	require_once("input.php");
 	
 	$smp = ["github.blog/","nodejs.org/en/", "dev.java/","message.choomno.com/"];
 	$desc = [
