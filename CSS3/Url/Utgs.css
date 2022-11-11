@@ -1,0 +1,23 @@
+.Utgs {
+	top: 13px;
+	left: 35px;
+	width: 95%;
+	display: flex;
+	position: relative;
+	flex-direction: row;
+	margin-bottom: 15px;
+}
+
+.Utgs > a:link {
+	color: #FFFFFF;
+	font-size: 18px;
+	margin-right: 25px;
+	text-decoration: none;
+	background-color: #FFDC00;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+.Utgs > a:visited { color: purple; }
+.Utgs > a:hover { text-decoration: underline; }
+.Utgs > a:active { background-color: #000000; }
+
