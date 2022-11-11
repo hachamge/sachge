@@ -22,7 +22,7 @@
 		new Heading(Size::h4,"08/03/202$ind 9:5$ind"),
 		new Heading(Size::h5,"$ind minutes ago"),
 		new iframe("https://$input"),
-		new Paragraph($input),
+		new Link($input,$input),
 		new Paragraph($desc[$ind])
 	);
 	

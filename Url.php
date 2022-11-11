@@ -30,7 +30,7 @@ class Url {
 		Heading $date,
 		Heading $rDate,
 		iframe $iframe,
-		Paragraph $title,
+		Link $title,
 		Paragraph $descp
 	) {
 		$this->Url = new Div("Url");
@@ -63,7 +63,7 @@ class Url {
 		$this->injectElementsForDetail($radioElements);
 		$this->injectElementsForDetail($numberElement);
 
-		$title->injectColor("#00FF2A");
+		//$title->injectColor("#00FF2A");
 		$title->iset("pointer");
 		$this->Url->inject($title);
 		$this->Url->inject($this->Uframe);
