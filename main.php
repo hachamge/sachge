@@ -8,7 +8,7 @@
 		EUtil::h5,
 		EUtil::href,
 		EUtil::iframe,
-		//[EUtil::href,EUtil::href]
+		ElementUtils::createElements([EUtil::href,EUtil::href])
 	]);
 
 	Url::setDegree($EUtil_arr, [5,3,4,1,1]);

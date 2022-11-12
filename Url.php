@@ -18,7 +18,10 @@ class Url {
 	public function render():void { $this->Url->iprint(); }
 
 	public static function setDegree(array &$E_arr, array $Deg_arr):void {
-		foreach ($E_arr as $ind_k=>$T) $T->dset($Deg_arr[$ind_k]);			
+		foreach ($E_arr as $ind_k=>$E_info) {
+			if (is_array($E_info)) continue;
+			$E_info->dset($Deg_arr[$ind_k]);
+		}
 	}
 
 	private function config_Uframe(array $E_arr):Div {
@@ -31,6 +34,14 @@ class Url {
 
 		foreach ($E_arr as $E_info) {
 			if ($E_info instanceof href) continue;
+			if (is_array($E_info)) {
+				$Utgs = new Div("Utgs");
+				foreach ($E_info as $pb) {
+					$Utgs->inject($pb);
+				}
+				$Uframe[1]->inject($Utgs);
+				continue;
+			}
 			$Uframe[1]->inject($E_info);
 		}
 		$Uframe[1]->inject($Uframe[2]);
