@@ -116,7 +116,7 @@ class Paragraph extends Element {
 
 // html --h tag element
 class Heading extends Element {	
-	public function __construct(Size $size, string $input = "!set") {
+	public function __construct(Size $size) {
 		parent::__construct();
 
 		$this->tag = match($size) {
@@ -127,8 +127,6 @@ class Heading extends Element {
 				Size::h5 => "<h5></h5>",
 				Size::h6 => "<h6></h6>"
 		};
-
-		$this->innerHtml($input);
 	}
 	
 	/**
