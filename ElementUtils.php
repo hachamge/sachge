@@ -8,6 +8,7 @@
 		case h4;
 		case h5;
 		case div;
+		case href;
 		case image;
 		case radio;
 		case button;
@@ -23,6 +24,7 @@
 				$E_arr[$ind_K] = match($E_Util){
 					EUtil::div => new Div(),
 					EUtil::p => new Paragraph(),
+					EUtil::href => new href(),
 					EUtil::image => new image(),
 					EUtil::h3 => new Heading(Size::h3),
 					EUtil::h4 => new Heading(Size::h4),
