@@ -275,13 +275,14 @@ class href extends Element {
 
 	public function iset(string $id):href {
 		parent::iset($id);
-		$this->tag = substr_replace($this->tag, " id=\"$id\"", -4, 0);
+		$this->tag = substr_replace($this->tag, " id=\"$id\" ", 3, 0);
 		return $this;
 	}
 
-	public function innerHtml(string $innerHtml):void {
+	public function innerHtml(string $innerHtml):href {
 		parent::innerHtml($innerHtml);
 		$this->tag = substr_replace($this->tag, $innerHtml, -4, 0);
+		return $this;
 	}
 
 

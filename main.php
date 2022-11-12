@@ -8,9 +8,8 @@
 		EUtil::h5,
 		EUtil::href,
 		EUtil::iframe,
-		ElementUtils::createElements([EUtil::href,EUtil::href])
+		ElementUtils::createElements([EUtil::href,EUtil::href,EUtil::href])
 	]);
-
 	Url::setDegree($EUtil_arr, [5,3,4,1,1]);
 	
 	$Url = new Url($EUtil_arr);
@@ -21,5 +20,8 @@
 	$EUtil_arr[3]->href("http://Etz Hayim.com/");
 	$EUtil_arr[3]->innerHtml("http://1.com/");
 	$EUtil_arr[4]->href("http://2.com/");
+	$EUtil_arr[5][0]->innerHtml("http://1.com/");
+	$EUtil_arr[5][1]->innerHtml("http://2.com/");
+	$EUtil_arr[5][2]->innerHtml("http://3.com/");
 	$Url->render();
 ?>

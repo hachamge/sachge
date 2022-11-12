@@ -4,30 +4,38 @@
 </head>
 <body>
 <?php
-	require_once("Url.php");
-	require_once("Html.php");
-	require_once("input.php");
+	require_once ("Url.php");
+	require_once ("ElementUtils.php");
 	
-	$smp = ["github.blog/","nodejs.org/en/", "dev.java/","message.choomno.com/"];
-	$desc = [
-		"We are pleased to announce the expansion of All In for Students! All In for Students introduces college students to open source and provides them with the education, technical training and career development to prepare them for a summer internship in tech.So that the NodeJs Frame can be transfer",
-		"Copyright OpenJS Foundation and Node.js contributors. All rights reserved. The OpenJS Foundation has registered trademarks and uses trademarks. For a list of trademarks of the OpenJS Foundation, please see our Trademark Policy and Trademark List. ",
-		"JARs signed with SHA-1 algorithms are now restricted by default and treated as if they were unsigned. This applies to the algorithms used to digest, sign, and optionally timestamp the JAR. It also applies to the signature and digest algorithms of the certificates in the certificate ",
-		"Vim is a great text editor that allows you to work with text files in the terminal easily and comfortably. Although this tutorial shows various ways to comment on multiple lines in Vim editor, it barely scratched the surface of Vim’s capabilities,"
-	];
+	$href = ["github.blog/","nodejs.org/en/", "dev.java/","message.choomno.com/"];
+	$descriptor = "Copyright OpenJS Foundation and Node.js contributors. All rights reserved. The OpenJS Foundation has registered trademarks and uses trademarks. For a list of trademarks of the OpenJS Foundation, please see our Trademark Policy and Trademark List. ";
 
-	foreach($smp as $ind=>$input) {
-	$Url = new Url(
-		array("http://1.com/","http://2.com/","http://3.com/"),
-		new Heading(Size::h4,"08/03/202$ind 9:5$ind"),
-		new Heading(Size::h5,"$ind minutes ago"),
-		new iframe("https://$input"),
-		new Link($input,$input),
-		new Paragraph($desc[$ind])
-	);
+foreach($href as $ind_k=>$E_info) {
+	$EUtil_arr = ElementUtils::createElements([
+		EUtil::p,
+		EUtil::h4,
+		EUtil::h5,
+		EUtil::href,
+		EUtil::iframe,
+		ElementUtils::createElements([EUtil::href,EUtil::href,EUtil::href])
+	]);
+	Url::setDegree($EUtil_arr, [5,3,4,1,1]);
+
+		#initialize
+		$EUtil_arr[0]->innerHtml($descriptor);
+		$EUtil_arr[1]->innerHtml("08/15/202$ind_k 9:50");
+		$EUtil_arr[2]->innerHtml("$ind_k minutes ago");
+		$EUtil_arr[3]->href($E_info)->iset("pointer");
+		$EUtil_arr[3]->innerHtml($E_info);
+		$EUtil_arr[4]->href("http://$E_info");
+		$EUtil_arr[5][0]->href("http://1.com/")->iset("pointer")->innerHtml("http://1.com/");
+		$EUtil_arr[5][1]->href("http://2.com/")->iset("pointer")->innerHtml("http://2.com/");
+		$EUtil_arr[5][2]->href("http://3.com/")->iset("pointer")->innerHtml("http://3.com/");
+
+		$Url = new Url($EUtil_arr);
 	
-	$Url->render();
-}
+		$Url->render();
+ }
 
 ?>
 </body>

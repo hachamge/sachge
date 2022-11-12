@@ -26,16 +26,17 @@ class Url {
 
 	private function config_Uframe(array $E_arr):Div {
 		$Uframe = ElementUtils::createElements([EUtil::div,EUtil::div,EUtil::h3]);
-		$Uframe[2]->dset(2);
+		#$Uframe[2]->dset(2);
 		$Uframe[0]->dset(2);
 		$Uframe[0]->cset("Uframe");
 		$Uframe[1]->cset("Details");
-		$Uframe[2]->innerHtml("Description");
+		#$Uframe[2]->innerHtml("Description");
 
 		foreach ($E_arr as $E_info) {
 			if ($E_info instanceof href) continue;
 			if (is_array($E_info)) {
 				$Utgs = new Div("Utgs");
+				$Utgs->dset(2);
 				foreach ($E_info as $pb) {
 					$Utgs->inject($pb);
 				}
