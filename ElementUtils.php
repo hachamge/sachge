@@ -12,6 +12,7 @@
 		case image;
 		case radio;
 		case button;
+		case iframe;
 		case search; 
 	}
 
@@ -23,9 +24,10 @@
 			foreach ($EUtil_arr as $ind_K=>$E_Util) {
 				$E_arr[$ind_K] = match($E_Util){
 					EUtil::div => new Div(),
-					EUtil::p => new Paragraph(),
 					EUtil::href => new href(),
 					EUtil::image => new image(),
+					EUtil::p => new Paragraph(),
+					EUtil::iframe => new iframe(),
 					EUtil::h3 => new Heading(Size::h3),
 					EUtil::h4 => new Heading(Size::h4),
 					EUtil::h5 => new Heading(Size::h5),
