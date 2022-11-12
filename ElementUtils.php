@@ -5,6 +5,7 @@
 	enum EUtil {
 		case p;
 		case div;
+		case image;
 		case button;
 		case search; 
 	}
@@ -18,6 +19,7 @@
 				$E_arr[$ind_K] = match($E_Util){
 					EUtil::div => new Div(),
 					EUtil::p => new Paragraph(),
+					EUtil::image => new image(),
 					EUtil::button => new input(inputType::button),
 					EUtil::search => new input(inputType::search)
 				};
