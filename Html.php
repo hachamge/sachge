@@ -212,13 +212,17 @@ class Div extends Element {
 }#endif Div
 
 class iframe extends Element {
-	public string $src;
+	public string $href;
 
-	public function __construct(string $url = "!set") {
+	public function __construct() {
 		parent::__construct();
+		$this->tag = "<iframe></iframe>";
+	}
 
-		$this->src = $url;
-		$this->tag = "<iframe src=\"$this->src\" loading=\"lazy\"></iframe>";
+	public function href(string $href):iframe {
+		$this->href = $href;
+		$this->tag = substr_replace($this->tag, " src=\"href\"", 6, 0);
+		return $this;
 	}
 	
 	/** 
