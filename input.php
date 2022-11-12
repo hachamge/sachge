@@ -72,15 +72,17 @@ class input extends Element {
   		return "#00ff2a";	
 	}
 
-	public function setLabelFor(string $fset):void {
+	public function for(string $fset):input {
 		$this->tag = substr_replace($this->tag, " for=\"$fset\"", 6, 0);
+		return $this;
 	}
 
-	public function innerHtmlForLabel(string $buffer):void {
+	public function innerHtml(string $buffer):input {
 		$this->tag = substr_replace($this->tag, "$buffer", -8, 0);
+		return $this;
 	}
 
-	public function innerHtml(string $input) {
+	public function value(string $input) {
 		$this->tag = substr_replace($this->tag, " value=\"$input\"", -1, 0);
 	}
 
