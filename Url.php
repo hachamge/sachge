@@ -131,7 +131,7 @@ class Url {
 		return $range_arr;
 	}
 
-	private function setDegree(array &$Elements, array $Degrees):void {
+	public static function setDegree(array &$Elements, array $Degrees):void {
 		foreach ($Elements as $index=>$element) {
 			$element->dset($Degrees[$index]);			
 		}
