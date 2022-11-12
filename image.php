@@ -25,9 +25,9 @@ class image extends Element {
 	}
 
 	public static function create_img(string $src):image {
-			$img = new image();
-			$img->injectSrc($src);
-			return $img;
+		$img = new image();
+		$img->injectSrc($src);
+		return $img;
 	}
 }
 ?>
