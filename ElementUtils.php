@@ -21,7 +21,11 @@
 
 		public static function createElements(array $EUtil_arr):array {
 			$E_arr = [];
-			foreach ($EUtil_arr as $ind_K=>$E_Util) {
+			foreach ($EUtil_arr as $ind_K=>$E_Util) {	
+				if (is_array($E_Util)) {
+					$E_arr[$ind_K] = ElementUtils::createElements($E_Util);
+					continue;
+				}
 				$E_arr[$ind_K] = match($E_Util){
 					EUtil::div => new Div(),
 					EUtil::href => new href(),
@@ -33,10 +37,10 @@
 					EUtil::h5 => new Heading(Size::h5),
 					EUtil::radio => new input(inputType::radio),
 					EUtil::button => new input(inputType::button),
-					EUtil::search => new input(inputType::search)
+					EUtil::search => new input(inputType::search),
+					default => new href()
 				};
 			}
-
 			return $E_arr;
 		}
 
