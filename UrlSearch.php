@@ -41,6 +41,7 @@
 		private function config_searchBtn_tags ():void {
 			$this->searchFrame->inject($this->createSearchBtns());
 			$this->searchFrame->inject($this->createSearchTags());
+			$this->searchFrame->inject(image::create_img("../config/image/bg"));
 		}
 
 
