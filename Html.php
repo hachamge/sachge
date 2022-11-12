@@ -258,20 +258,26 @@ class iframe extends Element {
 	}
 }#endif iframe
 
-class Link extends Element {
-	public function __construct(string $Url, string $descriptor) {
+class href extends Element {
+	public function __construct() {
 		parent::__construct();
-		$this->tag = "<a href=\"$Url\" target=\"_blank\">$descriptor</a>";
+		$this->tag = "<a></a>";
 	}
 
-	public function iset(string $id):void {
+	public function render($ind = 1):void { fprint($this->tag, true, $ind); }
+
+	public function href(string $href):href {
+		$this->tag = substr_replace($this->tag, " href=\"$href\"", 2, 0);
+		return $this;
+	}
+
+	public function iset(string $id):href {
 		parent::iset($id);
-		$this->tag = substr_replace($this->tag, " id=\"$id\"", 2, 0);
+		$this->tag = substr_replace($this->tag, " id=\"$id\"", -4, 0);
+		return $this;
 	}
 
-	public function render($ind = 1):void {
-		fprint($this->tag, true, $ind);
-	}
-}
+
+}#endif href
 
 ?>
