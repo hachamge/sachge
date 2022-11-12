@@ -6,18 +6,28 @@ include_once("Html.php");
  * the image sets the loading property to lazy by default.
  */
 class image extends Element {
-	private string $source;
-	private string $alt;
+	private string $src;
+	private string $descriptor;
 
-	public function __construct(string $source = "!set", string $alt = "!set") {
+	public function __construct() {
 		parent::__construct();
-		$this->alt = $alt;
-		$this->source = $source;
-		$this->tag = sprintf("<img src=\"%s\" alt=\"%s\" loading=\"lazy\">", $this->source, $this->alt);
+		$this->src = "!set";
+		$this->descriptor = "!set";
+		$this->tag = "<img>";
 	} 
 
-	public function render():void {
-		fprint($this->tag);
+	public function render():void { fprint($this->tag); }
+
+	public function injectSrc(string $src):image {
+		$this->src = $src;
+		$this->tag = substr_replace($this->tag, " src=\"$this->src\"", 4, 0);
+		return $this;
+	}
+
+	public static function create_img(string $src):image {
+			$img = new image();
+			$img->injectSrc($src);
+			return $img;
 	}
 }
 ?>
