@@ -219,7 +219,7 @@ class iframe extends Element {
 
 	public function href(string $href):iframe {
 		$this->href = $href;
-		$this->tag = substr_replace($this->tag, " src=\"href\"", 6, 0);
+		$this->tag = substr_replace($this->tag, " src=\"$href\"", 7, 0);
 		return $this;
 	}
 	
