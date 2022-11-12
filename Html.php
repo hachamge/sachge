@@ -80,15 +80,16 @@ abstract class Element {
 // html --p tag element
 class Paragraph extends Element {
 
-	public function __construct(string $input = "!set") {
+	public function __construct(string $input = "") {
 		parent::__construct();
 		$this->tag = "<p></p>";
 		$this->innerHtml($input);
 	}
 
-	public function iset(string $id) {
+	public function iset(string $id):Paragraph {
 		parent::iset($id);
 		$this->tag = substr_replace($this->tag, " id=\"$id\"", 2, 0);
+		return $this;
 	}
 
 	/**
