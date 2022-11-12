@@ -9,7 +9,13 @@
 	font-family: 'Ubuntu Condensed';
 }
 
-.UFrame iframe { width: 100%; height: 60%; }
+.UFrame iframe { 
+	left: 0;
+	width: 100%; 
+	height: 60%;
+	margin-bottom: 13px;
+}
+
 label { color: #6F00FF; margin-right: 13px; }
 body { width: 100%; height: 100vh; background-color: #D3D3D3; }
 
