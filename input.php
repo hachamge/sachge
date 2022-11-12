@@ -64,10 +64,12 @@ class input extends Element {
 	public static function randomColor():string {
 		$letters = "0123456789ABCDEF";
   		$color = "#";
+		/**
   		for ($i = 0; $i < 6; $i++) {
     		$color .= $letters[rand(0,16)];
   		}
-  		return $color;	
+		*/
+  		return "#00ff2a";	
 	}
 
 	public function setLabelFor(string $fset):void {
