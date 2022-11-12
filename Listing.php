@@ -16,7 +16,7 @@ class Node {
 * it is setup to iteratively render inner html div elements and
 * auto indent to maintain the format for the parent div tags.
 */
-class Listing {
+trait Listing {
 	private ?Node $head;
 
 	/**
@@ -36,7 +36,7 @@ class Listing {
 	 * @param Element $input the element to insert into the list
 	 * @return the input element is added to the list based on the degree
 	 */
-	public function insert(Element $input):void {
+	public function inject(Element $input):void {
 		$this->insertSort($this->head, $input);	
 	}
 
@@ -113,6 +113,10 @@ class Listing {
 		foreach ($arr_str as $str) {
 			$this->insertSort($this->head, new Paragraph($str));
 		}
+	}
+
+	public function gtest():void {
+		fprint("</gtest>");
 	}
 
 }#endif Listing
