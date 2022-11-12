@@ -4,6 +4,9 @@
 
 	enum EUtil {
 		case p;
+		case h3;
+		case h4;
+		case h5;
 		case div;
 		case image;
 		case button;
@@ -20,6 +23,9 @@
 					EUtil::div => new Div(),
 					EUtil::p => new Paragraph(),
 					EUtil::image => new image(),
+					EUtil::h3 => new Heading(Size::h3),
+					EUtil::h4 => new Heading(Size::h4),
+					EUtil::h5 => new Heading(Size::h5),
 					EUtil::button => new input(inputType::button),
 					EUtil::search => new input(inputType::search)
 				};
