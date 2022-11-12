@@ -165,23 +165,15 @@ class Div extends Element {
 	 * items are inserted at the front for insertion unless the items have
 	 * the degree set. if set the item is then insert based on that degree
 	 */
-	public Listing $tgs;
+	use Listing {
+		render as public render;
+		inject as public inject;
+	}
 
 	public function __construct(string $class_toset = "!set") {
 		parent::__construct();
-		$this->tgs = new Listing();
+		#$this->tgs = new Listing();
 		$this->class = $class_toset;
-	}
-
-	/** 
-	 * the element to insert into the Listing instance $tgs
-	 * the Listing instance inserts elements in order or degree
-	 * 
-	 * @param Element $input - the input to insert inside into $tgs
-	 * @return the input element is inserted inside the Listing $tgs
-	 */
-	public function inject(Element $input):void {
-		$this->tgs->insert($input);
 	}
 
 	/**
@@ -193,11 +185,9 @@ class Div extends Element {
 	 */
 	public function iprint(int &$indStart = 0):void {
 		$this->start($indStart);
-		$this->tgs->render($indStart + 1);
+		$this->render($indStart + 1);
 		$this->endt($indStart);
 	}
-
-	public function render():void {}
 
 	/**
 	 * print the --start div tag
