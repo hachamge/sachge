@@ -12,8 +12,8 @@ class image extends Element {
 	public function __construct() {
 		parent::__construct();
 		$this->src = "!set";
-		$this->descriptor = "!set";
 		$this->tag = "<img>";
+		$this->descriptor = "!set";
 	} 
 
 	public function render():void { fprint($this->tag); }
