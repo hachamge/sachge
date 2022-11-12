@@ -9,6 +9,7 @@
 		case h5;
 		case div;
 		case image;
+		case radio;
 		case button;
 		case search; 
 	}
@@ -26,6 +27,7 @@
 					EUtil::h3 => new Heading(Size::h3),
 					EUtil::h4 => new Heading(Size::h4),
 					EUtil::h5 => new Heading(Size::h5),
+					EUtil::radio => new input(inputType::radio),
 					EUtil::button => new input(inputType::button),
 					EUtil::search => new input(inputType::search)
 				};
