@@ -279,6 +279,11 @@ class href extends Element {
 		return $this;
 	}
 
+	public function innerHtml(string $innerHtml):void {
+		parent::innerHtml($innerHtml);
+		$this->tag = substr_replace($this->tag, $innerHtml, -4, 0);
+	}
+
 
 }#endif href
 
