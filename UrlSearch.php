@@ -1,8 +1,6 @@
 <?php
-	require_once ("Url.php");
 	require_once ("Html.php");
 	require_once ("image.php");
-	require_once ("input.php");
 	require_once ("ElementUtils.php");
 	
 	class UrlSearch {
