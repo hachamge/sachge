@@ -8,7 +8,7 @@
 		
 		public function __construct() {
 			$this->searchFrame = new Div("UrlSearch");
-			$this->config_searchBtn_tags();
+			$this->config();
 		}
 		
 		public function render():void { $this->searchFrame->iprint(); }
@@ -36,7 +36,7 @@
 			return $E_arr[0];
 		}
 
-		private function config_searchBtn_tags ():void {
+		private function config ():void {
 			$this->searchFrame->inject($this->createSearchBtns());
 			$this->searchFrame->inject($this->createSearchTags());
 			$this->searchFrame->inject(image::create_img("../config/image/bg"));
