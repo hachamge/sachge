@@ -172,14 +172,17 @@ class Div extends Element {
 
 	public function __construct(string $class_toset = "!set") {
 		parent::__construct();
-		#$this->tgs = new Listing();
 		$this->class = $class_toset;
+	}
+
+	public function cset(string $cset):void {
+		parent::cset($cset);
+		$this->tag = substr_replace($this->tag, " class=\"$cset\"", 4, 0);
 	}
 
 	/**
 	 * renders the elements inside the Listing $tgs to the document
 	 * the children for the parent div are indented for formating
-	 *
 	 * @param int $indStart - the starting ind for the parent div 
 	 * @return the div contents to render to the document in order
 	 */
