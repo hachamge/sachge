@@ -1,17 +1,25 @@
 <?php
-	require_once("Url.php");
-	require_once("Html.php");
-	require_once("Listing.php");
+	require_once ("Url.php");
+	require_once ("ElementUtils.php");
 	
-	$div = new Div();
-	$Lst = new Listing();
-	$a_tag = new Link("http://1","Url.php");
-	$a_tag->iset("pointer");
-	//$a_tag->render();
+	$EUtil_arr = ElementUtils::createElements([
+		EUtil::p,
+		EUtil::h4,
+		EUtil::h5,
+		EUtil::href,
+		EUtil::iframe,
+		//[EUtil::href,EUtil::href]
+	]);
 
-	$div->inject($a_tag);
-	$div->iprint();
-
-	$Lst->insertSort($a_tag);
-	$Lst->iprint();
+	Url::setDegree($EUtil_arr, [5,3,4,1,1]);
+	
+	$Url = new Url($EUtil_arr);
+	#initialize
+	$EUtil_arr[0]->innerHtml("python 3.0");
+	$EUtil_arr[1]->innerHtml("08/15/2022 9:50");
+	$EUtil_arr[2]->innerHtml("2 minutes ago");
+	$EUtil_arr[3]->href("http://Etz Hayim.com/");
+	$EUtil_arr[3]->innerHtml("http://1.com/");
+	$EUtil_arr[4]->href("http://2.com/");
+	$Url->render();
 ?>
