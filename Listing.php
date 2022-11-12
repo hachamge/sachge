@@ -109,6 +109,12 @@ class Listing {
 		}
 	}
 
-}#endif
+	public static function injectStrToPtags(array $arr_str):void {
+		foreach ($arr_str as $str) {
+			$this->insertSort($this->head, new Paragraph($str));
+		}
+	}
+
+}#endif Listing
 
 ?>
