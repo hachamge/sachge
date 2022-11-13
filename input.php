@@ -81,8 +81,9 @@ class input extends Element {
 		return $this;
 	}
 
-	public function value(string $input) {
+	public function value(string $input):input {
 		$this->tag = substr_replace($this->tag, " value=\"$input\"", -1, 0);
+		return $this;
 	}
 
 	/** 
@@ -99,9 +100,10 @@ class input extends Element {
 	 * @param string $id - the id to set for the input element.
 	 * @return the id is appended to the html input element tag
 	 */
-	public function iset(string $id):void {
+	public function iset(string $id):input {
 		parent::iset($id);
 		$this->append_str(" id=\"$id\"");
+		return $this;
 	}
 
 	/**

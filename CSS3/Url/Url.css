@@ -9,15 +9,12 @@
 	font-family: 'Ubuntu Condensed';
 }
 
-.UFrame iframe { 
-	left: 0;
-	width: 100%; 
-	height: 60%;
-	margin-bottom: 13px;
-}
-
-label { color: #6F00FF; }
-body { width: 100%; height: 100vh; background-color: #D3D3D3; }
+input[type="number"] { text-align: center; }
+label { color: #6F00FF; font-size: 18px; margin-right: 6px; }
+body { width: 100%; height: 100vh; background-color: #000000; }
+.UFrame { width: 100%; height: 630px; background-color: #FFFFFF; }
+.UFrame iframe { left: 0; width: 100%; height: 60%; margin-bottom: 13px; }
+input[type="color"] { border: 0; width: 30px; height: 30px; background-color: transparent; }
 
 .Url {
 	top: 33px;
@@ -36,17 +33,4 @@ body { width: 100%; height: 100vh; background-color: #D3D3D3; }
 	font-family: 'Roboto Condensed', sans-serif;
 }
 
-input[type="number"] { text-align: center; }
-.UFrame { width: 100%; height: 630px; background-color: #FFFFFF; }
-
-/**
- * style the color input inside each paragraph descriptor.
- * these colors change according to the search that is queried.
- */
-input[type="color"] {
-	border: 0;
-	width: 30px;
-	height: 30px;
-	background-color: transparent;
-}
 

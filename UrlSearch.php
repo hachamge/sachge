@@ -16,7 +16,7 @@
 		private function createSearchBtns():Div {	
 			$EUtil_arr = [EUtil::div, EUtil::search, EUtil::button];
 			$E_arr = ElementUtils::createElements($EUtil_arr);
-			$E_arr[2]->iset("hl_btn");
+			$E_arr[2]->iset("highlight_search")->value("highlight");
 			$E_arr[1]->iset("urlSearch_btn");
 			$E_arr[0]->cset("UrlSearchBtns");
 			$E_arr[0]->inject($E_arr[2]);
@@ -25,21 +25,30 @@
 		}
 
 		private function createSearchTags():Div {
-			$EUtil_arr = [EUtil::div, EUtil::p, EUtil::p];
+			$EUtil_arr = [EUtil::div, EUtil::p, EUtil::p,EUtil::p,EUtil::p,EUtil::p];
 			$E_arr = ElementUtils::createElements($EUtil_arr);
 			$E_arr[0]->dset(2);
 			$E_arr[0]->cset("UrlSearchTags");
 			$E_arr[1]->iset("pointer")->innerHtml("github.com/");
 			$E_arr[2]->iset("pointer")->innerHtml("Etz Hayim");
+			$E_arr[3]->iset("pointer")->innerHtml("seeq.com/");
+			$E_arr[4]->iset("pointer")->innerHtml("hulu.com/");
+			$E_arr[5]->iset("pointer")->innerHtml("apple.com/");
 			$E_arr[0]->inject($E_arr[1]);
 			$E_arr[0]->inject($E_arr[2]);
+			$E_arr[0]->inject($E_arr[3]);
+			$E_arr[0]->inject($E_arr[4]);
+			$E_arr[0]->inject($E_arr[5]);
 			return $E_arr[0];
 		}
 
 		private function config ():void {
-			$this->searchFrame->inject($this->createSearchBtns());
-			$this->searchFrame->inject($this->createSearchTags());
-			$this->searchFrame->inject(image::create_img("../config/image/bg"));
+			$div = new Div("searchFrame");
+			$div->inject($this->createSearchBtns());
+			$div->inject($this->createSearchTags());
+			$this->searchFrame->inject(image::create_img("globe2.webp"));
+
+			$this->searchFrame->inject($div);
 		}
 
 
