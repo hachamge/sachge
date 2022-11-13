@@ -27,3 +27,9 @@
 	position: absolute;
 }
 
+.UStatistics > input[type="range"] {
+	right: 45px;
+	bottom: 5px;
+	position: absolute;
+}
+

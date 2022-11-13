@@ -14,13 +14,13 @@ enum inputType:string {
 	case time = "time";
 	case email = "email";
 	case month = "month";
+	case label = "label";
+	case range = "range";
 	case hidden = "hidden";
 	case number = "number";
 	case search = "search";
 	case submit = "submit";
 	case button = "button";
-	case label = "label";
-	case range = "range";
 	case checkbox = "checkbox";
 }
 
@@ -34,10 +34,9 @@ class input extends Element {
 	public string $name;
 	public string $type;
 
-	public function __construct(inputType $type, string $name = "!set") {
+	public function __construct(inputType $type) {
 		parent::__construct();
 
-		$this->name = $name;
 		$this->type = $type->value;
 		$this->regx = "pattern=\"[A-Za-z]{15}\"";
 
@@ -45,10 +44,10 @@ class input extends Element {
 		$this->tag = match($type) {
 			inputType::reset,inputType::url,inputType::file,inputType::time,
 				inputType::date, inputType::radio, inputType::email, inputType::hidden,
-				inputType::number, inputType::submit, inputType::button, inputType::checkbox, inputType::color, 	inputType::month, inputType::range => "<input type=\"$this->type\" name=\"$name\">",
+				inputType::number, inputType::submit, inputType::button, inputType::checkbox, inputType::color, 	inputType::month, inputType::range => "<input type=\"$this->type\">",
 
 				inputType::code, inputType::search, 
-				inputType::text => "<input type=\"$this->type\" name=\"$name\" $this->regx>",
+				inputType::text => "<input type=\"$this->type\" $this->regx>",
 
 				inputType::label => "<label></label>",
 

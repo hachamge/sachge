@@ -63,9 +63,11 @@ class Url {
 		$radio_arr[4]->max(10);
 		$radio_arr[4]->iset("rating");
 		array_push($radio_arr,new input(inputType::label));
+		array_push($radio_arr, new input(inputType::range));
 		$radio_arr[5]->for("rating");
+		$radio_arr[6]->disable();
 		$radio_arr[5]->innerHtml("rating 1-10");
-		$this->setDegree($radio_arr,[1,2,3,4,5,6]);
+		$this->setDegree($radio_arr,[1,2,3,4,5,6,7]);
 		return $this->inject_insideDiv($div,$radio_arr);
 	}
 	private function inject_insideDiv(Div &$div, array $E_contents):Div {
