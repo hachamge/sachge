@@ -24,6 +24,7 @@ foreach($href as $ind_k=>$E_info) {
 		EUtil::iframe,
 		ElementUtils::createElements([EUtil::href,EUtil::href,EUtil::href])
 	]);
+	$EUtil_arr[0]->iset("Descriptor");
 	Url::setDegree($EUtil_arr, [5,3,4,1,1]);
 
 		#initialize
@@ -43,5 +44,7 @@ foreach($href as $ind_k=>$E_info) {
  }
 
 ?>
+
+<script src="UrlSearch.js"></script>
 </body>
 </html>

@@ -16,8 +16,8 @@
 		private function createSearchBtns():Div {	
 			$EUtil_arr = [EUtil::div, EUtil::search, EUtil::button];
 			$E_arr = ElementUtils::createElements($EUtil_arr);
-			$E_arr[2]->iset("highlight_search")->value("highlight");
-			$E_arr[1]->iset("urlSearch_btn");
+			$E_arr[2]->iset("hsearch")->value("highlight");
+			$E_arr[1]->iset("iframeSearch");
 			$E_arr[0]->cset("UrlSearchBtns");
 			$E_arr[0]->inject($E_arr[2]);
 			$E_arr[0]->inject($E_arr[1]);
