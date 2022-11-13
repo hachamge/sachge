@@ -46,29 +46,26 @@ class Url {
 		$Uframe[1]->inject($Uframe[2]);
 		$Uframe[0]->inject($Uframe[1]);
 		$Uframe[1]->inject($this->config_radio());
-		#$this->inject_insideDiv($Uframe[0],$this->config_radio());
 		return $Uframe[0];
 	}
 	private function config_radio():Div {
 		$div = new Div("UStatistics");
 		$div->dset(6);
 		$radio_arr = ElementUtils::createElements([EUtil::radio,EUtil::label,EUtil::radio,EUtil::label]);
-		$radio_arr[0]->dset(1);
 		$radio_arr[0]->iset("highlight");
-		$radio_arr[2]->dset(3);
 		$radio_arr[2]->iset("appropriate");
-		#label initialization
-		$radio_arr[1]->for("highlight")->innerHtml("highlight")->dset(2);
-		$radio_arr[3]->for("appropriate")->innerHtml("appropriate")->dset(4);
+		$radio_arr[1]->for("highlight")->innerHtml("highlight");
+		$radio_arr[3]->for("appropriate")->innerHtml("appropriate");
 		#number iniatialization
 		array_push($radio_arr,new input(inputType::number));
-		$radio_arr[4]->dset(5);
+		#$radio_arr[4]->dset(5);
 		$radio_arr[4]->min(1);
 		$radio_arr[4]->max(10);
 		$radio_arr[4]->iset("rating");
 		array_push($radio_arr,new input(inputType::label));
 		$radio_arr[5]->for("rating");
-		$radio_arr[5]->innerHtml("rating 1-10")->dset(6);
+		$radio_arr[5]->innerHtml("rating 1-10");
+		$this->setDegree($radio_arr,[1,2,3,4,5,6]);
 		return $this->inject_insideDiv($div,$radio_arr);
 	}
 	private function inject_insideDiv(Div &$div, array $E_contents):Div {

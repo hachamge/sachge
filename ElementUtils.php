@@ -12,6 +12,7 @@
 		case image;
 		case radio;
 		case label;
+		case number;
 		case button;
 		case iframe;
 		case search; 
@@ -38,6 +39,7 @@
 					EUtil::h5 => new Heading(Size::h5),
 					EUtil::label => new input(inputType::label),
 					EUtil::radio => new input(inputType::radio),
+					EUtil::number => new input(inputType::number),
 					EUtil::button => new input(inputType::button),
 					EUtil::search => new input(inputType::search),
 					default => new href()
