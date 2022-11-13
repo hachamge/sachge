@@ -31,7 +31,7 @@ foreach($href as $ind_k=>$E_info) {
 		$EUtil_arr[0]->innerHtml($descriptor);
 		$EUtil_arr[1]->innerHtml("08/15/202$ind_k 9:50");
 		$EUtil_arr[2]->innerHtml("$ind_k minutes ago");
-		$EUtil_arr[3]->href($E_info)->iset("pointer");
+		$EUtil_arr[3]->href("http://$E_info")->iset("pointer");
 		$EUtil_arr[3]->innerHtml($E_info);
 		$EUtil_arr[4]->href("http://$E_info");
 		$EUtil_arr[5][0]->href("http://1.com/")->iset("pointer")->innerHtml("http://1.com/");

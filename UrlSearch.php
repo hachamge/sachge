@@ -32,8 +32,8 @@
 			$E_arr[1]->iset("pointer")->innerHtml("github.com/");
 			$E_arr[2]->iset("pointer")->innerHtml("Etz Hayim");
 			$E_arr[3]->iset("pointer")->innerHtml("seeq.com/");
-			$E_arr[4]->iset("pointer")->innerHtml("hulu.com/");
-			$E_arr[5]->iset("pointer")->innerHtml("apple.com/");
+			$E_arr[4]->iset("pointer")->innerHtml("Node.js");
+			$E_arr[5]->iset("pointer")->innerHtml("OpenJs");
 			$E_arr[0]->inject($E_arr[1]);
 			$E_arr[0]->inject($E_arr[2]);
 			$E_arr[0]->inject($E_arr[3]);
