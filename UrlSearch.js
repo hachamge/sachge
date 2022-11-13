@@ -3,6 +3,7 @@ document.querySelector("#hsearch").addEventListener("click", function(){
 	// get the search query and remove white space
 	const search = document.querySelector("#iframeSearch").value.trim();
 
+	pinnSearch(search);
 	// search every Url descriptor: for the search input
 	const iframes = Array.from(document.querySelectorAll("#Descriptor"));
 	iframes.forEach(function(item){
@@ -14,4 +15,11 @@ document.querySelector("#hsearch").addEventListener("click", function(){
 		item.innerHTML = result;
 	});
 	//alert(document.querySelector("#descriptor"));
-}, true);	
+}, true);
+
+function pinnSearch(hsearch) {
+	var pinn_phrase = document.createElement('p');
+	pinn_phrase.innerHTML = hsearch;
+	pinn_phrase.setAttribute("id","pointer");
+	document.querySelector(".UrlSearchTags").append(pinn_phrase);
+}
