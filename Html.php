@@ -168,15 +168,18 @@ class Div extends Element {
 		render as public render;
 		inject as public inject;
 	}
+	private string $start_tg;
 
 	public function __construct(string $class_toset = "!set") {
 		parent::__construct();
 		$this->class = $class_toset;
+		$this->start_tg = "<div>";
 	}
 
-	public function cset(string $cset):void {
+	public function cset(string $cset):Div {
 		parent::cset($cset);
 		$this->tag = substr_replace($this->tag, " class=\"$cset\"", 4, 0);
+		return $this;
 	}
 
 	/**
@@ -191,14 +194,10 @@ class Div extends Element {
 		$this->endt($indStart);
 	}
 
-	/**
-	 * print the --start div tag
-	 * @param int $ind -- the number of indent to set
-	 */
-	private function start(int $indStart):void {
-		fprint("<div class=\"$this->class\">", true, $indStart);
+	private function start(int $indStart):void { 
+		if ($this->class == "!set") fprint($this->start_tg, true, $indStart); 
+		else fprint(substr_replace($this->start_tg," class=\"$this->class\"",4,0), true, $indStart);
 	}
-
 	/** 
 	 * print the ending div tag flags can be enabled for customization
 	 * such as whether to insert a newline after the div is printed
