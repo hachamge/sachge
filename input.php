@@ -115,9 +115,10 @@ class input extends Element {
 	 * @return the min value is injected into the input element
 	 */
 
-	public function min(int $min):void {
+	public function min(int $min):input {
 		$this->min = $min;
 		$this->append_str(" min=\"$min\"");
+		return $this;
 	}
 
 	/**
