@@ -46,7 +46,6 @@
 			$div = new Div("searchFrame");
 			$div->inject($this->createSearchBtns());
 			$div->inject($this->createSearchTags());
-			$this->searchFrame->inject(image::create_img("globe2.webp"));
 
 			$this->searchFrame->inject($div);
 		}

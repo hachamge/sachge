@@ -54,7 +54,7 @@ class Url {
 		$radio_arr = ElementUtils::createElements([EUtil::radio,EUtil::label,EUtil::radio,EUtil::label]);
 		$radio_arr[0]->iset("highlight");
 		$radio_arr[2]->iset("appropriate");
-		$radio_arr[1]->for("highlight")->innerHtml("highlight");
+		$radio_arr[1]->for("highlight")->innerHtml("helpful");
 		$radio_arr[3]->for("appropriate")->innerHtml("appropriate");
 		#number iniatialization
 		array_push($radio_arr,new input(inputType::number));

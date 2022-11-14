@@ -19,8 +19,7 @@
 	position: relative;
 	flex-direction: row;
 	align-items: center;
-	border: 2px groove #000000;
-	background-color: #000000;
+	background-color: transparent;
 }
 
 .UrlSearch img {
@@ -38,7 +37,6 @@
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	border: 2px groove #000000;
 }
 .UrlSearchBtns * {
 	font-size: 18px;
@@ -88,7 +86,7 @@
   bottom: 0;
   content: "";
   position: absolute;
-  border-left: 10px solid #000000;
+  border-left: 10px solid #DCDCDC;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
