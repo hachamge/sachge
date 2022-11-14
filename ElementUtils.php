@@ -46,6 +46,7 @@
 					EUtil::search => new input(inputType::search),
 					default => new href()
 				};
+				if ($E_arr[$ind_K]->type == "number") $E_arr[$ind_K]->min(1)->max(10);
 			}
 			return $E_arr;
 		}
