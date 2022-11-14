@@ -48,32 +48,27 @@ class Url {
 		$Uframe[1]->inject($this->config_radio());
 		return $Uframe[0];
 	}
-	private function config_radio():Div {
-		$div = new Div("UStatistics");
-		$div->dset(6);
-		$radio_arr = ElementUtils::createElements([EUtil::radio,EUtil::label,EUtil::radio,EUtil::label]);
-		$radio_arr[0]->iset("highlight");
-		$radio_arr[2]->iset("appropriate");
-		$radio_arr[1]->for("highlight")->innerHtml("helpful");
-		$radio_arr[3]->for("appropriate")->innerHtml("appropriate");
-		#number iniatialization
-		array_push($radio_arr,new input(inputType::number));
-		#$radio_arr[4]->dset(5);
-		$radio_arr[4]->min(1);
-		$radio_arr[4]->max(10);
-		$radio_arr[4]->iset("rating");
-		array_push($radio_arr,new input(inputType::label));
-		array_push($radio_arr, new input(inputType::range));
-		$radio_arr[5]->for("rating");
-		$radio_arr[6]->disable();
-		$radio_arr[5]->innerHtml("rating 1-10");
-		$this->setDegree($radio_arr,[1,2,3,4,5,6,7]);
-		return $this->inject_insideDiv($div,$radio_arr);
+	private function config_radio():Div {	
+		$selection = [EUtil::radio,EUtil::radio,EUtil::number,EUtil::range];
+		$id = ["helpful","appropriate","rating",""];
+		$div = self::createSelection($selection, $id, [1,2,3,4,5,6,7,8]);
+		$div->cset("UStatistics")->dset(6);
+		return $div;
 	}
-	private function inject_insideDiv(Div &$div, array $E_contents):Div {
-		foreach ($E_contents as $E_info) {
-			$div->inject($E_info);
-		}	
+	public static  function createSelection(array $E_Utils, array $id_arr, array $degree):Div {
+		$div = new Div();
+		$radio_arr = [];
+		$E_Utils = ElementUtils::createElements($E_Utils);
+		foreach ($E_Utils as $ind_k=>$Element) {
+			$descriptor = new input(inputType::label);
+			$Element->iset($id_arr[$ind_k])->dset($degree[$ind_k]);
+			$descriptor->for($id_arr[$ind_k])->innerHtml($id_arr[$ind_k])->dset($ind_k + 1);
+			array_push($radio_arr, $descriptor, $Element);
+		}
+		return self::inject_insideDiv($div,$radio_arr);
+	}
+	public static function inject_insideDiv(Div &$div, array $E_contents):Div {
+		foreach ($E_contents as $E_info) { $div->inject($E_info); }	
 		return $div;
 	}
 	private function config_href(href $href):void { $this->Url->inject($href); }
