@@ -4,10 +4,12 @@
 </head>
 <body>
 <?php
-	require_once ("UrlSearch.php");
+	require_once ("Diagram.php");
 	
-	$searchFrame = new UrlSearch();
-	$searchFrame->render();
+	$Url = new Url();
+	$Url->reference = "Etz Hayim";
+	$node = new Url_node($Url);	
+	$node->render();
 ?>
 </body>
 </html>
