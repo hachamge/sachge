@@ -5,9 +5,9 @@
 <body>
 <?php
 	require_once ("Html.php");
-	require_once ("Diagram.php");
+	require_once ("Url_properties.php");
 	
-	$Url = new Url();
+	$Url = new Url_properties();
 	$Url->render();
 ?>
 </body>
