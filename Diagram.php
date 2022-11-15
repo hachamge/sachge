@@ -22,15 +22,30 @@
 
 	class Url_Diagram {
 		private ?Url_node $head;
+		private array $heading_tgs;
 
 		public function __construct() { $this->head = null; }
 		# wrapper function to the recursive print render_r
 		public function render(){ 
 			fprint("<table>", true, 0);
+			$this->hprint();
 			$this->render_r($this->head); 
 			fprint("</table>", true, 0);
 		}
 		
+		# create the heading for the Diagram:<th>
+		public function heading(array $heading) {
+			$htg = function(string $htg):string {return "<th>$htg</th>";};
+			$this->heading_tgs = array_map($htg, $heading);	
+		}
+
+		# print the heading tags before the content
+		private function hprint() {
+			fprint("<tr>");
+				foreach ($this->heading_tgs as $htg) { fprint($htg, true, 2); }
+			fprint("</tr>");
+		}
+
 		# inject an Url properties
 		public function inject($Url) {
 			if (!$this->head) {
