@@ -3,7 +3,6 @@ document.querySelector("#hsearch").addEventListener("click", function(){
 	// get the search query and remove white space
 	const search = document.querySelector("#iframeSearch").value.trim();
 
-	pinnSearch(search);
 	// search every Url descriptor: for the search input
 	const iframes = Array.from(document.querySelectorAll("#Descriptor"));
 	iframes.forEach(function(item){
