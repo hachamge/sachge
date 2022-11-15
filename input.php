@@ -36,20 +36,23 @@ class input extends Element {
 
 	public function __construct(inputType $type) {
 		parent::__construct();
-
+	
 		$this->type = $type->value;
+		$cHash = self::randomColor();
 		$this->regx = "pattern=\"[A-Za-z]{15}\"";
 
 		# set the default iframe to configure
 		$this->tag = match($type) {
 			inputType::reset,inputType::url,inputType::file,inputType::time,
 				inputType::date, inputType::radio, inputType::email, inputType::hidden,
-				inputType::number, inputType::submit, inputType::button, inputType::checkbox, inputType::color, 	inputType::month, inputType::range => "<input type=\"$this->type\">",
+				inputType::number, inputType::submit, inputType::button, inputType::checkbox, 
+				inputType::month, inputType::range => "<input type=\"$this->type\">",
 
 				inputType::code, inputType::search, 
 				inputType::text => "<input type=\"$this->type\" $this->regx>",
 
 				inputType::label => "<label></label>",
+				inputType::color => "<input type=\"color\" value=\"$cHash\">",
 
 				default => "<input type=\"text\" $this->regx>"
 		};
@@ -61,14 +64,11 @@ class input extends Element {
 	}
 
 	public static function randomColor():string {
-		$letters = "0123456789ABCDEF";
+		$cHash = "0123456789ABCDEF";
   		$color = "#";
-		/**
-  		for ($i = 0; $i < 6; $i++) {
-    		$color .= $letters[rand(0,16)];
-  		}
-		*/
-  		return "#00ff2a";	
+
+  		for ($i = 0; $i < 6; $i++) $color .= $cHash[rand(0,15)];
+  		return $color;	
 	}
 
 	public function for(string $fset):input {
