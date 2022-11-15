@@ -8,6 +8,7 @@
 		case h4;
 		case h5;
 		case div;
+		case time;
 		case href;
 		case image;
 		case radio;
@@ -38,6 +39,7 @@
 					EUtil::h3 => new Heading(Size::h3),
 					EUtil::h4 => new Heading(Size::h4),
 					EUtil::h5 => new Heading(Size::h5),
+					EUtil::time => new input(inputType::time),
 					EUtil::range => new input(inputType::range),
 					EUtil::label => new input(inputType::label),
 					EUtil::radio => new input(inputType::radio),
@@ -50,6 +52,12 @@
 					if ($E_arr[$ind_K]->type == "number") $E_arr[$ind_K]->min(1)->max(10);
 			}
 			return $E_arr;
+		}
+
+		public static function createColors(int $cnumber = 4):Div {
+			$cDiv = new Div();
+			for ($ind_K = 0; $ind_K < $cnumber; $ind_K++) $cDiv->inject(new input(inputType::color));
+			return $cDiv;
 		}
 
 	}#endif ElementUtils
