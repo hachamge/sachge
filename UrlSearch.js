@@ -9,16 +9,8 @@ document.querySelector("#hsearch").addEventListener("click", function(){
 		const text = item.innerHTML;
 		const regx = new RegExp(search,"gi");
 		const result = text.replace(regx, `<mark>${search}</mark>`);
-
-		//highlighted search results
 		item.innerHTML = result;
 	});
-	//alert(document.querySelector("#descriptor"));
 }, true);
 
-function pinnSearch(hsearch) {
-	var pinn_phrase = document.createElement('p');
-	pinn_phrase.innerHTML = hsearch;
-	pinn_phrase.setAttribute("id","pointer");
-	document.querySelector(".UrlSearchTags").append(pinn_phrase);
-}
+
