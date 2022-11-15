@@ -8,6 +8,7 @@
 		case h4;
 		case h5;
 		case div;
+		case date;
 		case time;
 		case href;
 		case image;
@@ -39,6 +40,7 @@
 					EUtil::h3 => new Heading(Size::h3),
 					EUtil::h4 => new Heading(Size::h4),
 					EUtil::h5 => new Heading(Size::h5),
+					EUtil::date => new input(inputType::date),
 					EUtil::time => new input(inputType::time),
 					EUtil::range => new input(inputType::range),
 					EUtil::label => new input(inputType::label),

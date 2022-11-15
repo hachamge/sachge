@@ -50,7 +50,7 @@
 		private function config_radio():void {
 			$degree = [1,2,3];
 			$descriptor = ["find post before: ", "end search for date: ", "end search for date: "];
-			$radio = [EUtil::time, EUtil::time, EUtil::time];
+			$radio = [EUtil::date, EUtil::date, EUtil::date];
 			$div = Url::createSelection($radio,$descriptor,$degree);
 			$div->cset("advanceSearch");
 			$this->searchFrame->inject($div);

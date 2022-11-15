@@ -101,5 +101,5 @@
 
 .chash {position: relative; top: 13px; }
 .advanceSearch * { left: 30px; position: relative; }
-.advanceSearch input[type="time"] { margin-top: 13px; text-align: center; }
+.advanceSearch input[type="date"] { margin-top: 13px; text-align: center; }
 
