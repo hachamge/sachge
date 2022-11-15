@@ -2,33 +2,28 @@
 	require_once ("Html.php");
 
 	class Url {
-		public string $date;
-		public string $origin;
-		public string $folder;
-		public string $reference;
-		public string $descriptor;
-		public function __construct() { $date = $origin = $folder = $reference = $descriptor = "!set"; }
-	}
+		public ?string $date;
+		public ?string $origin;
+		public ?string $source;
+		public ?string $reference;
+		public ?string $descriptor;
 
-	class Url_node {
-		public Url $Url_info;
-		public $next_Url;
-
-		public function __construct(Url $Url_info) {
-			$this->Url_info = $Url_info;
-			$next_Url = null;
+		public function render() {
+			$Url_properties = $this->Array_fromUrl();
+			foreach ($Url_properties as $properties) { fprint("<td>$properties</td>"); }
 		}
 
-		public function render(int $indStart = 1) {
-			fprint("<tr>", true, $indStart);
-			fprint("<td>", true, $indStart);
-				fprint($this->Url_info->date, true, $indStart+1);
-				fprint($this->Url_info->origin, true, $indStart+1);
-				fprint($this->Url_info->folder, true, $indStart+1);
-				fprint($this->Url_info->reference, true, $indStart+1);
-				fprint($this->Url_info->descriptor, true, $indStart+1);
-			fprint("</td>", true, $indStart);
-			fprint("</tr>", true, $indStart);
+		public function __construct() {
+			$this->date = "!set";
+			$this->origin = "!set";
+			$this->source = "!set";
+			$this->reference = "!set";
+			$this->descriptor = "!set";
 		}
-	}#endif Url_node
+		public function inject(Url $Url) {}
+		public function Array_fromUrl():array {
+			return [ $this->date, $this->origin, $this->source, $this->reference, $this->descriptor];
+		}
+	}#endif Url
+
 ?>
