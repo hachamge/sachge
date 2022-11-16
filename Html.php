@@ -269,7 +269,7 @@ class iframe extends Element {
 class href extends Element {
 	public function __construct() {
 		parent::__construct();
-		$this->tag = "<a></a>";
+		$this->tag = "<a target=\"_blank\"></a>";
 	}
 
 	public function render($ind = 1):void { fprint($this->tag, true, $ind); }

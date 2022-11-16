@@ -1,50 +1,46 @@
 <html>
 <head>
-	<link rel="stylesheet" href="CSS3/Url/main.css">
-	<link rel="stylesheet" href="UrlSearch.css">
+	<link rel="stylesheet" href="Diagram.css">
 </head>
 <body>
 <?php
-	require_once ("Url.php");
-	require_once ("UrlSearch.php");
-	require_once ("ElementUtils.php");
-
-	$UrlSearch = new UrlSearch();
-	$UrlSearch->render();
+	require_once ("Html.php");
+	require_once ("Diagram.php");
 	
-	$href = ["github.blog/","nodejs.org/en/", "dev.java/","message.choomno.com/"];
-	$descriptor = "Copyright OpenJS Foundation and Node.js contributors. All rights reserved. The OpenJS Foundation has registered trademarks and uses trademarks. For a list of trademarks of the OpenJS Foundation, please see our Trademark Policy and Trademark List. ";
-
-foreach($href as $ind_k=>$E_info) {
-	$EUtil_arr = ElementUtils::createElements([
-		EUtil::p,
-		EUtil::h4,
-		EUtil::h5,
-		EUtil::href,
-		EUtil::iframe,
-		ElementUtils::createElements([EUtil::href,EUtil::href,EUtil::href])
-	]);
-	$EUtil_arr[0]->iset("Descriptor");
-	Url::setDegree($EUtil_arr, [5,3,4,1,1]);
-
-		#initialize
-		$EUtil_arr[0]->innerHtml($descriptor);
-		$EUtil_arr[1]->innerHtml("08/15/202$ind_k 9:50");
-		$EUtil_arr[2]->innerHtml("$ind_k minutes ago");
-		$EUtil_arr[3]->href("http://$E_info")->iset("pointer");
-		$EUtil_arr[3]->innerHtml($E_info);
-		$EUtil_arr[4]->href("http://$E_info");
-		$EUtil_arr[5][0]->href("http://1.com/")->iset("pointer")->innerHtml("http://1.com/");
-		$EUtil_arr[5][1]->href("http://2.com/")->iset("pointer")->innerHtml("http://2.com/");
-		$EUtil_arr[5][2]->href("http://3.com/")->iset("pointer")->innerHtml("http://3.com/");
-
-		$Url = new Url($EUtil_arr);
+	$Url_ref = scandir("Url_info");
+	unset($Url_ref[0]); // .
+	unset($Url_ref[1]); // ..
+	unset($Url_ref[2]); // .DS_Store
 	
-		$Url->render();
- }
+	# instantiate Url Diagram
+	$Url_Diagram = new Url_Diagram();
+	$Url_Diagram->heading(["date", "edit","chash", "source","origin", "hsearch","reference","descriptor"]);
 
+	foreach ($Url_ref as $KEY=>$Url_dir) {
+
+		$Url_references = scandir("Url_info/$Url_dir");
+		unset($Url_references[0]); // .
+		unset($Url_references[1]); // ..
+		unset($Url_references[2]); // .DS_Store
+
+		foreach ($Url_references as $Url_DirContents) {
+			# declare Url properties
+			$Url = new Url_properties();
+
+			# instantiate Url properties
+			$href = file_get_contents("Url_info/$Url_dir/$Url_DirContents/href");
+			$Url->dir->innerHtml($Url_DirContents);
+			$Url->descriptor->innerHtml($Url_DirContents);
+			$Url->reference->innerHtml("http://$KEY")->href($href);
+
+			
+			$Url_Diagram->inject($Url);
+		}
+		
+		#print_r($Url_references);
+		#fprint($Url_references);	
+	}
+	$Url_Diagram->render();
 ?>
-
-<script src="UrlSearch.js"></script>
 </body>
 </html>

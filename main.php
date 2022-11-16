@@ -23,7 +23,7 @@
 		$Url = new Url_properties();
 		$Url->reference->innerHtml("http://$KEY")->href($ref);
 		$Url->descriptor->innerHtml($descriptor[$KEY]);
-		$Url->source->innerHtml($source[$KEY]);
+		$Url->dir->innerHtml($source[$KEY]);
 
 		$Url_ref->inject($Url);
 	

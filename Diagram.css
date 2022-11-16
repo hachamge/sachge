@@ -7,6 +7,7 @@ body {
 	*/
 }
 
+body { background-color: #eee; }
 * {
 	font-size: 21px;
 	font-family: 'Ubuntu Condensed', sans-serif;
@@ -14,7 +15,7 @@ body {
 
 a { padding: 0 5px; }
 th, td { width: 150px; height: 50px; }
-table { background-color: #eee; margin: 0 auto; }
+table { background-color: #FFFFFF; margin: 0 auto; }
 p { padding: 5px; display:inline; border: 2px solid black; }
 table, th,td { text-align: center; border: 2px solid #000000; }
 
