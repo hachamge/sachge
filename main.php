@@ -1,6 +1,6 @@
 <html>
 <head>
-	<link rel="stylesheet" href="UrlSearch.css"> 
+	<link rel="stylesheet" href="Diagram.css">
 </head>
 <body>
 <?php
@@ -13,6 +13,8 @@
 	#$Url_node = new Url_node($Url_properties);
 	#$Url_node->render();
 	$diagram = new Url_Diagram();
+	$diagram->heading(["reference", "date", "source", "descriptor","origin"]);
+	$diagram->inject(new Url_properties());
 	$diagram->inject(new Url_properties());
 	$diagram->render();
 ?>

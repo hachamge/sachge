@@ -11,7 +11,9 @@
 		# render the Url properties including:<td></td>
 		public function render(int $indStart = 1) {
 			$Url_properties = $this->Array_fromUrl();
-			foreach ($Url_properties as $properties) { fprint("<td>$properties</td>", true, $indStart); }
+			foreach ($Url_properties as $properties) { 
+				fprint("<td><p>$properties<p></td>", true, $indStart); 
+			}
 		}
 		# set the Url properties to !set:string
 		public function __construct() {
