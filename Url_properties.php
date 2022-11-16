@@ -3,14 +3,14 @@
 	require_once ("input.php");
 	# color hash
 	$chash = [
-		'hsearch' => "#FFFFFF",
-		'dir' => input::randomColor(),
-		'edit' => "#EEDC82",
 		'time' => "#eee",
-		'chash' => input::randomColor(),
+		'edit' => "#EEDC82",
+		'hsearch' => "#FFFFFF",
 		'origin' => "#FCF55F",
 		'reference' => "#FFEA00",
-		'descriptor' => "#FFFF8F"
+		'descriptor' => "#FFFF8F",
+		'dir' => input::randomColor(),
+		'chash' => input::randomColor()
 	];
 
 	class Url_properties {
@@ -58,8 +58,6 @@
 				'descriptor' => $this->descriptor
 			];
 			$properties['edit']->value("edit");
-			#$properties['origin']->innerHtml(input::randomColor());
-			$properties['dir']->tag = substr_replace($properties['dir']->tag, $radio,-4,0);
 			return $properties;
 		}
 	}#endif Url

@@ -11,6 +11,7 @@
 	unset($Url_ref[0]); // .
 	unset($Url_ref[1]); // ..
 	unset($Url_ref[2]); // .DS_Store
+	$IND_KEY = 1;
 	
 	# instantiate Url Diagram
 	$Url_Diagram = new Url_Diagram();
@@ -31,11 +32,12 @@
 			$href = file_get_contents("Url_info/$Url_dir/$Url_DirContents/href");
 			$Url->dir->innerHtml($Url_DirContents);
 			$Url->descriptor->innerHtml($Url_DirContents);
-			$Url->reference->innerHtml("http://$KEY")->href($href);
+			$Url->reference->innerHtml("http://$IND_KEY")->href($href);
 			$Url->origin->innerHtml($Url_dir);
 
 			
 			$Url_Diagram->inject($Url);
+			$IND_KEY++;
 		}
 		
 		#print_r($Url_references);
