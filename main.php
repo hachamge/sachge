@@ -4,22 +4,32 @@
 </head>
 <body>
 <?php
-	#require_once ("Html.php");
 	require_once ("Diagram.php");
-	#require_once ("Url_properties.php");
 	
-	$Url_properties = new Url_properties();
-	$Url_properties->reference->innerHtml("Etz");
-	$Url_properties->descriptor->innerHtml("reading");
-	$Url_properties->source->innerHtml("config");
+	$href = [
+		"https://vimcolorschemes.com/",
+		"https://vim.fandom.com/wiki/Folding",
+		"https://vimhelp.org/options.txt.html?#%27guifont%27"
+	];
 
-	$Url2 = new Url_properties();
-	$Url2->reference->innerHtml("Etz Hayim");
-	$Url2->descriptor->innerHtml("AirForce");
-	$diagram = new Url_Diagram();
-	$diagram->heading(["date", "edit","chash", "source","origin", "hsearch","reference","descriptor"]);
-	$diagram->inject($Url_properties);
-	$diagram->render();
+	$source = ["vim","gui","config"];
+	$descriptor = [ "colors", "Folding", "guifont"];
+
+	$Url_ref = new Url_Diagram();
+	$Url_ref->heading(["date", "edit","chash", "source","origin", "hsearch","reference","descriptor"]);
+
+	foreach ($href as $KEY=>$ref) {
+		# config Url
+		$Url = new Url_properties();
+		$Url->reference->innerHtml("http://$KEY")->href($ref);
+		$Url->descriptor->innerHtml($descriptor[$KEY]);
+		$Url->source->innerHtml($source[$KEY]);
+
+		$Url_ref->inject($Url);
+	
+	}
+	# print
+	$Url_ref->render();
 ?>
 </body>
 </html>
