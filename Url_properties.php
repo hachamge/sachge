@@ -1,5 +1,6 @@
 <?php
 	require_once ("Html.php");
+	require_once ("input.php");
 
 	class Url_properties {
 		# Url properties
@@ -11,8 +12,10 @@
 		# render the Url properties including:<td></td>
 		public function render(int $indStart = 1) {
 			$Url_properties = $this->Array_fromUrl();
-			foreach ($Url_properties as $properties) { 
-				fprint("<td><p>$properties<p></td>", true, $indStart); 
+			foreach ($Url_properties as $properties) {
+				$chash = input::randomColor();
+				$CSS_rule = "background-color: $chash;";
+				fprint("<td><p style=\"$CSS_rule\">$properties<p></td>", true, $indStart); 
 			}
 		}
 		# set the Url properties to !set:string
