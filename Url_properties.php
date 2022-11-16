@@ -4,13 +4,13 @@
 
 	class Url_properties {
 		# Url properties
-		public ?input $date;
+		public ?input $time;
 		public ?input $edit;
-		public ?Paragraph $origin;
-		public ?Paragraph $source;
+		public ?input $chash;
 		public ?input $hsearch;
 		public ?href $reference;
-		public ?input $chash;
+		public ?Paragraph $origin;
+		public ?Paragraph $source;
 		public ?Paragraph $descriptor;
 		# render the Url properties including:<td></td>
 		public function render(int $indStart = 1) {
@@ -26,7 +26,7 @@
 		public function __construct() {
 			$this->reference = new href();
 			$this->edit = new input(inputType::button);
-			$this->date = new input(inputType::time);
+			$this->time = new input(inputType::time);
 			$this->origin = new Paragraph();
 			$this->source = new Paragraph();
 			$this->chash = new input(inputType::color);
@@ -35,8 +35,9 @@
 		}
 		# convert the Url properties into an Array
 		public function Array_fromUrl():array {
+			$radio = "<input type=\"radio\">";
 			$properties = [
-				'date' => $this->date,
+				'time' => $this->time,
 				'edit' => $this->edit,
 				'chash' => $this->chash,
 				'source' => $this->source,
@@ -45,7 +46,8 @@
 				'reference' => $this->reference,
 				'descriptor' => $this->descriptor
 			];
-			$properties['edit']->value("edit");
+			$properties['edit']->value("edit");	
+			$properties['source']->tag = substr_replace($properties['source']->tag, $radio,-4,0);
 			return $properties;
 		}
 	}#endif Url

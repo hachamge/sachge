@@ -16,17 +16,9 @@
 	$Url2 = new Url_properties();
 	$Url2->reference->innerHtml("Etz Hayim");
 	$Url2->descriptor->innerHtml("AirForce");
-	#$Url_properties->reference = "Etz Hayim";
-	#$Url_node = new Url_node($Url_properties);
-	#$Url_node->render();
 	$diagram = new Url_Diagram();
-	$diagram->heading(["reference", "hsearch","date", "edit","source", "chash","descriptor","origin"]);
+	$diagram->heading(["date", "edit","chash", "source","origin", "hsearch","reference","descriptor"]);
 	$diagram->inject($Url_properties);
-	#$diagram->inject($Url2);
-	#$diagram->inject($Url2);
-	#$diagram->inject($Url2);
-	#$diagram->inject($Url2);
-	#$diagram->inject($Url2);
 	$diagram->render();
 ?>
 </body>
