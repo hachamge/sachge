@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
 
+body {
+	/**
+	background-image: url("pexels-lewis-ashton-10677765.jpg");
+	background-repeat: no-repeat;
+	*/
+}
+
+* {
+	font-size: 21px;
+	font-family: 'Ubuntu Condensed', sans-serif;
+}
+
 table, th,td {
 	font-size: 21px;
 	text-align: center;
@@ -7,7 +19,20 @@ table, th,td {
 	font-family: 'Ubuntu Condensed', sans-serif;
 }
 
+table { background-color: #eee; }
+
 th, td {
 	width: 150px;
 	height: 50px;
 }
+
+p {
+	padding: 5px;
+	display:inline;
+	border: 2px solid black;
+}
+
+a {
+	padding: 0 5px;
+}
+

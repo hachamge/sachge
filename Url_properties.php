@@ -4,31 +4,49 @@
 
 	class Url_properties {
 		# Url properties
-		public ?string $date;
-		public ?string $origin;
-		public ?string $source;
-		public ?string $reference;
-		public ?string $descriptor;
+		public ?input $date;
+		public ?input $edit;
+		public ?Paragraph $origin;
+		public ?Paragraph $source;
+		public ?input $hsearch;
+		public ?href $reference;
+		public ?input $chash;
+		public ?Paragraph $descriptor;
 		# render the Url properties including:<td></td>
 		public function render(int $indStart = 1) {
+			#$htg = function(Element $Element_tg):string { return "<td>$Element_tg</td>";}
+
 			$Url_properties = $this->Array_fromUrl();
 			foreach ($Url_properties as $properties) {
-				$chash = input::randomColor();
-				$CSS_rule = "background-color: $chash;";
-				fprint("<td><p style=\"$CSS_rule\">$properties<p></td>", true, $indStart); 
+				$properties->chash();
+				fprint("<td>$properties->tag</td>", true, $indStart);
 			}
 		}
 		# set the Url properties to !set:string
 		public function __construct() {
-			$this->date = "!set";
-			$this->origin = "!set";
-			$this->source = "!set";
-			$this->reference = "!set";
-			$this->descriptor = "!set";
+			$this->reference = new href();
+			$this->edit = new input(inputType::button);
+			$this->date = new input(inputType::time);
+			$this->origin = new Paragraph();
+			$this->source = new Paragraph();
+			$this->chash = new input(inputType::color);
+			$this->descriptor = new Paragraph();
+			$this->hsearch = new input(inputType::checkbox);
 		}
 		# convert the Url properties into an Array
 		public function Array_fromUrl():array {
-			return [ $this->date, $this->origin, $this->source, $this->reference, $this->descriptor];
+			$properties = [
+				'date' => $this->date,
+				'edit' => $this->edit,
+				'chash' => $this->chash,
+				'source' => $this->source,
+				'origin' => $this->origin,
+				'hsearch' => $this->hsearch,
+				'reference' => $this->reference,
+				'descriptor' => $this->descriptor
+			];
+			$properties['edit']->value("edit");
+			return $properties;
 		}
 	}#endif Url
 

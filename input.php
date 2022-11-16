@@ -57,6 +57,12 @@ class input extends Element {
 				default => "<input type=\"text\" $this->regx>"
 		};
 	}
+
+	public function chash():void {
+		$chash = input::randomColor();
+		$CSS_rule = "background-color: $chash";
+		$this->tag = substr_replace($this->tag, " style=\"$CSS_rule\"", 6, 0);
+	}
 	
 	public function setColor(string $color = "!set"):void {
 		($color == "!set") ? ($color = $this->randomColor()) : ($color); 
@@ -77,12 +83,12 @@ class input extends Element {
 	}
 
 	public function innerHtml(string $buffer):input {
-		$this->tag = substr_replace($this->tag, "$buffer", -8, 0);
+		$this->tag = substr_replace($this->tag, "$buffer", 6, 0);
 		return $this;
 	}
 
 	public function value(string $input):input {
-		$this->tag = substr_replace($this->tag, " value=\"$input\"", -1, 0);
+		$this->tag = substr_replace($this->tag, " value=\"$input\"", 6, 0);
 		return $this;
 	}
 

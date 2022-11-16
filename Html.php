@@ -1,7 +1,8 @@
 <?php
 declare(strict_types = 1);
 
-include_once("Listing.php");
+	require_once ("Listing.php");
+	require_once ("input.php");
 /**
  * Degree: 
  * represents the priority level of an element.
@@ -49,8 +50,8 @@ abstract class Element {
 	 * @label ('the max sorting priority')
 	 */
 	public int $degree;
+	public ?string $tag;
 	protected ?string $id;
-	protected ?string $tag;
 	protected ?string $class;
 	protected ?string $innerHtml;
 
@@ -90,6 +91,12 @@ class Paragraph extends Element {
 		parent::iset($id);
 		$this->tag = substr_replace($this->tag, " id=\"$id\"", 2, 0);
 		return $this;
+	}
+
+	public function chash():void {
+		$chash = input::randomColor();
+		$CSS_rule = "background-color: $chash";
+		$this->tag = substr_replace($this->tag, " style=\"$CSS_rule\"", 2, 0);
 	}
 
 	/**
@@ -270,6 +277,12 @@ class href extends Element {
 	public function href(string $href):href {
 		$this->tag = substr_replace($this->tag, " href=\"$href\"", 2, 0);
 		return $this;
+	}
+
+	public function chash():void {
+		$chash = input::randomColor();
+		$CSS_rule = "background-color: $chash";
+		$this->tag = substr_replace($this->tag, " style=\"$CSS_rule\"", 2, 0);
 	}
 
 	public function iset(string $id):href {
