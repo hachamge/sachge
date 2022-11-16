@@ -68,11 +68,6 @@ class input extends Element {
 		$CSS_rule = "background-color: $chash";
 		$this->tag = substr_replace($this->tag, " style=\"$CSS_rule\"", 6, 0);
 	}
-	
-	public function setColor(string $color = "!set"):void {
-		($color == "!set") ? ($color = $this->randomColor()) : ($color); 
-		$this->tag = substr_replace($this->tag, " value=\"$color\"", -1, 0);
-	}
 
 	public static function randomColor():string {
 		$cHash = "0123456789ABCDEF";

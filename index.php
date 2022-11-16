@@ -32,6 +32,7 @@
 			$Url->dir->innerHtml($Url_DirContents);
 			$Url->descriptor->innerHtml($Url_DirContents);
 			$Url->reference->innerHtml("http://$KEY")->href($href);
+			$Url->origin->innerHtml($Url_dir);
 
 			
 			$Url_Diagram->inject($Url);

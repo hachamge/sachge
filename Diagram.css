@@ -1,13 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
 
-body {
-	/**
-	background-image: url("pexels-lewis-ashton-10677765.jpg");
-	background-repeat: no-repeat;
-	*/
-}
 
-body { background-color: #eee; }
+body { background-color: #000000; }
 * {
 	font-size: 21px;
 	font-family: 'Ubuntu Condensed', sans-serif;

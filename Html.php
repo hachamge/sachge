@@ -279,7 +279,12 @@ class href extends Element {
 		return $this;
 	}
 
-	public function chash():void {
+	public function chash(?string $chash = null):void {
+		if ($chash != null) {
+			$CSS_rule = "background-color: $chash";
+			$this->tag = substr_replace($this->tag, " style=\"$CSS_rule\"", 2, 0);
+			return;
+		}
 		$chash = input::randomColor();
 		$CSS_rule = "background-color: $chash";
 		$this->tag = substr_replace($this->tag, " style=\"$CSS_rule\"", 2, 0);

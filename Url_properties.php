@@ -5,12 +5,12 @@
 	$chash = [
 		'hsearch' => "#FFFFFF",
 		'dir' => input::randomColor(),
-		'edit' => input::randomColor(),
-		'time' => input::randomColor(),
+		'edit' => "#EEDC82",
+		'time' => "#eee",
 		'chash' => input::randomColor(),
-		'origin' => input::randomColor(),
-		'reference' => input::randomColor(),
-		'descriptor' => input::randomColor()
+		'origin' => "#FCF55F",
+		'reference' => "#FFEA00",
+		'descriptor' => "#FFFF8F"
 	];
 
 	class Url_properties {
@@ -58,7 +58,7 @@
 				'descriptor' => $this->descriptor
 			];
 			$properties['edit']->value("edit");
-			$properties['origin']->innerHtml(input::randomColor());
+			#$properties['origin']->innerHtml(input::randomColor());
 			$properties['dir']->tag = substr_replace($properties['dir']->tag, $radio,-4,0);
 			return $properties;
 		}
