@@ -188,6 +188,11 @@ class Div extends Element {
 		$this->tag = substr_replace($this->tag, " class=\"$cset\"", 4, 0);
 		return $this;
 	}
+	# set the id for the parent div
+	public function iset(string $id) {
+		parent::iset($id);
+		$this->start_tg = substr_replace($this->start_tg, " id=\"$id\"", -1, 0);
+	}
 
 	/**
 	 * renders the elements inside the Listing $tgs to the document
