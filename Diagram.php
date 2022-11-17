@@ -29,7 +29,9 @@
 		public function render(){ 
 			fprint("<table id=\"fixed_header\">", true, 0);
 			$this->hprint();
-			$this->render_r($this->head); 
+			fprint("<tbody>", true, 0);
+				$this->render_r($this->head); 
+			fprint("</tbody>", true, 0);
 			fprint("</table>", true, 0);
 		}
 		
@@ -41,9 +43,11 @@
 
 		# print the heading tags before the content
 		private function hprint() {
+			fprint("<thead>");
 			fprint("<tr>");
 				foreach ($this->heading_tgs as $htg) { fprint($htg, true, 2); }
 			fprint("</tr>");
+			fprint("</thead>");
 		}
 
 		# inject an Url properties

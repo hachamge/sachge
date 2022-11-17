@@ -1,22 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
 
 
-body { background-color: #000000; }
-* {
-	font-size: 21px;
-	font-family: 'Ubuntu Condensed', sans-serif;
-}
+body { background-color: #000000; overflow: hidden; }
+* { font-size: 21px; font-family: 'Ubuntu Condensed', sans-serif; }
 
 a { padding: 0 5px; }
+thead,tbody { display: block; }
 th, td { width: 150px; height: 50px; }
-table { background-color: #FFFFFF; margin: 0 auto; overflow: auto; }
+table { background-color: #FFFFFF; margin: 0 auto; }
+thead > tr * { color: #000000; background-color: gray; }
 p > input[type="radio"] { left: 3px; position: absolute; }
+tbody { height: 95vh; overflow-y: auto; overflow-x: hidden; }
 table, th,td { text-align: center; border: 2px solid #000000; }
+p { width: 70%; padding: 5px; margin: 0 auto; position: relative;}
 
-p { 
-	width: 70%; 
-	padding: 5px; 
-	margin: 0 auto; 
-	position: relative;
-}
 
