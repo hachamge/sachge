@@ -17,9 +17,9 @@
 	$Url_Diagram = new Url_Diagram();
 	$Url_Diagram->heading([
 		"date <input type=\"time\">", 
-		"edit",
+		"edit <input type=\"button\" value=\"add Url\">",
 		"chash", 
-		"source <input type=\"color\" value=\"#00ff2a\">",
+		"summary <input type=\"color\" value=\"#00ff2a\">",
 		"origin <input type=\"search\" size=\"10\" id=\"searchDir\">", 
 		"hsearch <input type=\"search\" size=\"10\" id=\"hsearch\">",
 		"reference",

@@ -6,10 +6,10 @@
 		'time' => "#eee",
 		'edit' => "#EEDC82",
 		'hsearch' => "#FFFFFF",
-		'origin' => "#FCF55F",
+		'origin' => "#FFEA00",
 		'reference' => "#FFEA00",
-		'descriptor' => "#FFFF8F",
-		'dir' => input::randomColor(),
+		'descriptor' => input::randomColor(),
+		'dir' => "#8fbc8f",
 		'chash' => input::randomColor()
 	];
 
