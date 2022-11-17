@@ -1,10 +1,12 @@
 <html>
 <head>
 	<link rel="stylesheet" href="Diagram.css">
+	<link rel="stylesheet" href="UrlSearch.css">
 </head>
 <body>
 <?php
 	require_once ("Html.php");
+	require_once ("UrlSearch.php");
 	require_once ("Diagram.php");
 	
 	$Url_ref = scandir("Url_info");
@@ -13,6 +15,9 @@
 	unset($Url_ref[2]); // .DS_Store
 	$IND_KEY = 1;
 	
+	$UrlSearch = new UrlSearch();
+	$UrlSearch->render();
+
 	# instantiate Url Diagram
 	$Url_Diagram = new Url_Diagram();
 	$Url_Diagram->heading(["date", "edit","chash", "source","origin", "hsearch","reference","descriptor"]);
@@ -38,10 +43,7 @@
 			
 			$Url_Diagram->inject($Url);
 			$IND_KEY++;
-		}
-		
-		#print_r($Url_references);
-		#fprint($Url_references);	
+		}	
 	}
 	$Url_Diagram->render();
 ?>
