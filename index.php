@@ -51,5 +51,7 @@
 	}
 	$Url_Diagram->render();
 ?>
+
+<script src="UrlSearch.js"></script>
 </body>
 </html>

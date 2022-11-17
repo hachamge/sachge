@@ -7,7 +7,7 @@ body { background-color: #000000; overflow: hidden; }
 a { padding: 0 5px; }
 thead,tbody { display: block; }
 th, td { width: 150px; height: 50px; }
-table { background-color: #FFFFFF; margin: 0 auto; }
+table { background-color: #FFFFFF; margin: 0 auto; border: 2px groove green; }
 thead > tr * { color: green; background-color: #FFFFFF; }
 p > input[type="radio"] { left: 3px; position: absolute; }
 tbody { height: 95vh; overflow-y: auto; overflow-x: hidden; }

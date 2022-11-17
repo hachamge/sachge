@@ -27,7 +27,7 @@
 		public function __construct() { $this->head = null; }
 		# wrapper function to the recursive print render_r
 		public function render(){ 
-			fprint("<table id=\"fixed_header\">", true, 0);
+			fprint("<table id=\"Url_index\">", true, 0);
 			$this->hprint();
 			fprint("<tbody>", true, 0);
 				$this->render_r($this->head); 
