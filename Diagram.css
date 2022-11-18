@@ -6,14 +6,15 @@ body { background-color: #000000; overflow: hidden; }
 
 a { padding: 0 5px; }
 thead,tbody { display: block; }
+table, th,td { text-align: center; }
 th, td { width: 150px; height: 50px; }
-table { background-color: #FFFFFF; margin: 0 auto; border: 2px groove green; }
-thead > tr * { color: green; background-color: #FFFFFF; }
 p > input[type="radio"] { left: 3px; position: absolute; }
+thead > tr * { color: #FFFFFF; background-color: #FFFFFF; }
 tbody { height: 95vh; overflow-y: auto; overflow-x: hidden; }
-table, th,td { text-align: center; border: 2px solid #000000; }
+table { background-color: #FFFFFF; margin: 0 auto; border: none; }
 p { width: 70%; padding: 5px; margin: 0 auto; position: relative;}
 
 #hsearch,#searchDir { color: #000000; }
 input[type="color"] { width: 30px; height: 30px; border: none; }
 
+th,tbody { background: linear-gradient(to right, #0033FF, #3399FF); }
