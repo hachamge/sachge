@@ -1,6 +1,6 @@
 <html>
 <head>
-	<link rel="stylesheet" href="Diagram.css">
+	<link rel="stylesheet" href="CSS3/Url_config/Diagram.css">
 </head>
 <body>
 <?php
