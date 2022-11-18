@@ -18,7 +18,7 @@ document.querySelector("#hsearch").addEventListener("change", function(){
 	}
 }, true);
 
-// search for UrlDirectories 
+// find the Directory being queried (origin for Url) 
 document.querySelector("#searchDir").addEventListener("keyup", function(){
 	const tbody = document.getElementsByTagName("tbody");
 	const tr = document.getElementsByTagName("tr");
@@ -27,6 +27,7 @@ document.querySelector("#searchDir").addEventListener("keyup", function(){
 	for (var i = 1; i < size; i++) searchDir_tr(tr[i], this.value);
 }, true);
 
+// refactored function to the event listener on #searchDir (origin td)
 function searchDir_tr(tr, DirSearch) {
 	const size = tr.children.length;
 	const td = tr.children;
@@ -40,11 +41,4 @@ function searchDir_tr(tr, DirSearch) {
 	}
 	else if (DirSearch == "") tr.style.display = "block";
 	else if (DirSearch != td_Dir) checkbox.checked = false;
-}
-
-function hsearch(hinput) {
-	const text = hinput.innerHTML;
-	const regx = new RegExp(search,"gi");
-	const result = text.replace(regx, `<mark>${search}</mark>`);
-	item.innerHTML = result;
-}
+}// endif searchDir_tr
