@@ -34,7 +34,10 @@ function searchDir_tr(tr, DirSearch) {
 	const checkbox = td[5].children[0];
 	const td_Dir = td[4].children[0].innerHTML;
 
-	if (DirSearch == td_Dir) checkbox.checked = true;
+	if (DirSearch == td_Dir) {
+		checkbox.checked = true;
+		tr.scrollIntoView();
+	}
 	else if (DirSearch == "") tr.style.display = "block";
 	else if (DirSearch != td_Dir) checkbox.checked = false;
 }
