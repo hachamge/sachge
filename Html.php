@@ -215,6 +215,12 @@ class Div extends Element {
 		if ($this->class == "!set") fprint($this->start_tg, true, $indStart); 
 		else fprint(substr_replace($this->start_tg," class=\"$this->class\"",4,0), true, $indStart);
 	}
+
+	public static function inject_insideDiv(Div &$div, array $E_contents):Div {
+		foreach ($E_contents as $E_info) { $div->inject($E_info); }	
+		return $div;
+	}
+
 	/** 
 	 * print the ending div tag flags can be enabled for customization
 	 * such as whether to insert a newline after the div is printed

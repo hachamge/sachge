@@ -67,10 +67,6 @@ class Url {
 		}
 		return self::inject_insideDiv($div,$radio_arr);
 	}
-	public static function inject_insideDiv(Div &$div, array $E_contents):Div {
-		foreach ($E_contents as $E_info) { $div->inject($E_info); }	
-		return $div;
-	}
 	private function config_href(href $href):void { $this->Url->inject($href); }
 
 }#endif
