@@ -18,3 +18,5 @@ p { width: 70%; padding: 5px; margin: 0 auto; position: relative;}
 input[type="color"] { width: 30px; height: 30px; border: none; }
 
 th,tbody { background: linear-gradient(to right, #0033FF, #3399FF); }
+td > input[type="color"] { width: 60px; height: 30px; }
+th > input[type="button"] { color: #000000; background-color: gray; }

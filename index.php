@@ -19,11 +19,11 @@
 		"date <input type=\"time\">", 
 		"edit <input type=\"button\" value=\"add Url\">",
 		"chash", 
-		"summary <input type=\"color\" value=\"#00ff2a\">",
+		"descriptor <input type=\"color\" value=\"#00ff2a\">",
 		"origin <input type=\"search\" size=\"10\" id=\"searchDir\">", 
 		"hsearch <input type=\"search\" size=\"10\" id=\"hsearch\">",
 		"reference",
-		"descriptor",
+		"summary",
 	]);
 
 	foreach ($Url_ref as $KEY=>$Url_dir) {
