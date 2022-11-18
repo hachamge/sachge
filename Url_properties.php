@@ -1,6 +1,6 @@
 <?php
-	require_once ("Html.php");
-	require_once ("input.php");
+	require_once ("php_packages/Html.php");
+	require_once ("php_packages/input.php");
 	# color hash
 	$chash = [
 		'time' => "#eee",
