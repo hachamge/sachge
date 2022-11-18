@@ -7,7 +7,7 @@
 	require_once ("Html.php");
 	require_once ("Diagram.php");
 	
-	$Url_ref = scandir("Url_info");
+	$Url_ref = scandir("Url_Directories");
 	unset($Url_ref[0]); // .
 	unset($Url_ref[1]); // ..
 	unset($Url_ref[2]); // .DS_Store
@@ -28,7 +28,7 @@
 
 	foreach ($Url_ref as $KEY=>$Url_dir) {
 
-		$Url_references = scandir("Url_info/$Url_dir");
+		$Url_references = scandir("Url_Directories/$Url_dir");
 		unset($Url_references[0]); // .
 		unset($Url_references[1]); // ..
 		unset($Url_references[2]); // .DS_Store
@@ -38,7 +38,7 @@
 			$Url = new Url_properties();
 
 			# instantiate Url properties
-			$href = file_get_contents("Url_info/$Url_dir/$Url_DirContents/href");
+			$href = file_get_contents("Url_Directories/$Url_dir/$Url_DirContents/href");
 			$Url->dir->innerHtml($Url_DirContents);
 			$Url->descriptor->innerHtml($Url_DirContents);
 			$Url->reference->innerHtml("http://$IND_KEY")->href($href);
