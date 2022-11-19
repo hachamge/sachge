@@ -3,18 +3,16 @@ include_once("Html.php");
 
 enum inputType:string {
 	case url = "url";
-	case color = "color";
 	case date = "date";
 	case file = "file";
-	case image = "image";
-	case code = "code";
-	case radio = "radio";
-	case reset = "reset";
 	case text = "text";
 	case time = "time";
+	case color = "color";
+	case image = "image";
+	case radio = "radio";
+	case reset = "reset";
 	case email = "email";
 	case month = "month";
-	case label = "label";
 	case range = "range";
 	case hidden = "hidden";
 	case number = "number";
@@ -30,7 +28,6 @@ class input extends Element {
 	public int $size;
 	public int $value;
 	public int $maxlen;
-	public string $regx;
 	public string $name;
 	public string $type;
 
@@ -38,24 +35,16 @@ class input extends Element {
 		parent::__construct();
 	
 		$this->type = $type->value;
-		$cHash = self::randomColor();
-		$this->regx = "pattern=\"[A-Za-z]{15}\"";
+		# config the html based on the type that is set
+		$this->tag = "<input type=\"$this->type\">";
+	}
+	
+	public function regex(string $regex) {
+		$this->tag = substr_replace($this->tag, " pattern=\"$regex\"", -1, 0);
+	}
 
-		# set the default iframe to configure
-		$this->tag = match($type) {
-			inputType::reset,inputType::url,inputType::file,inputType::time,
-				inputType::date, inputType::radio, inputType::email, inputType::hidden,
-				inputType::number, inputType::submit, inputType::button, inputType::checkbox, 
-				inputType::month, inputType::range => "<input type=\"$this->type\">",
-
-				inputType::code, inputType::search, 
-				inputType::text => "<input type=\"$this->type\" $this->regx>",
-
-				inputType::label => "<label></label>",
-				inputType::color => "<input type=\"color\" value=\"$cHash\">",
-
-				default => "<input type=\"text\" $this->regx>"
-		};
+	public function regexDescriptor(string $descriptor) {
+		$this->tag = substr_replace($this->tag, " title=\"$descriptor\"", -1, 0);	
 	}
 
 	public function chash(?string $chash = null):void {
@@ -75,16 +64,6 @@ class input extends Element {
 
   		for ($i = 0; $i < 6; $i++) $color .= $cHash[rand(0,15)];
   		return $color;	
-	}
-
-	public function for(string $fset):input {
-		$this->tag = substr_replace($this->tag, " for=\"$fset\"", 6, 0);
-		return $this;
-	}
-
-	public function innerHtml(string $buffer):input {
-		$this->tag = substr_replace($this->tag, "$buffer", 6, 0);
-		return $this;
 	}
 
 	public function value(string $input):input {
@@ -112,91 +91,39 @@ class input extends Element {
 		return $this;
 	}
 
-	/**
-	 * inject the min value into the input element. if the min is not set
-	 * throw an exception if the correct input is not being reference before
-	 * the min attribute can be set.
-	 *
-	 * @param int $min - the max value to set for the input element
-	 * @return the min value is injected into the input element
-	 */
-
+	// set the corresponding html attribute: min
 	public function min(int $min):input {
 		$this->min = $min;
 		$this->append_str(" min=\"$min\"");
 		return $this;
 	}
 
-	/**
-	 * inject the max value into the input element. if the min is not set
-	 * throw an exception so that the min value can be set first before max
-	 * can be injected.
-	 *
-	 * @param int $max - the max value to set for the input element
-	 * @return the max value is injected into the input element
-	 */
-	public function max(int $max):void {
-		$this->max = $max;
-		$this->append_str(" max=\"$max\"");
-	}
+	// set the corresponding html attribute: max
+	public function max(int $max):void { $this->append_str(" max=\"$max\""); }
 
-	/**
-	 * set the autocomplete attribute for the element
-	 */
-	public function autocomplete():void {
-		$this->append_str(" autocomplete=\"on\"");
-	}
+	// set the corresponding html attribute: disable 
+	public function disable():void { $this->append_str(" disabled"); }
 
-	/**
-	 * set the disabled attribute for the element
-	 */
-	public function disable():void {
-		$this->append_str(" disabled");
-	}
-
-	/**
-	 * set the required attribute for the element
-	 */
-	public function required():void {
-		$this->append_str(" required");
-	}
-
-	/**
-	 * set the auto focus attribute for the element
-	 */
-	public function autofocus():void {
-		$this->append_str(" autofocus");
-	}
-
-	/**
-	 * set the size attribute for the input element.
-	 * @param string $size - the size to set for the input element
-	 */
-	public function size(string $size):void {
-		$this->size = $size;
-		$this->append_str("\" size=$size\"");
-	}
-
-	/**
-	 * set the multiple attribute for the input element
-	 */
-	public function multiple():void {
-		$this->append_str(" multiple");
-	}
+	// set the corresponding html attribute: autofocus
+	public function autofocus():void { $this->append_str(" autofocus"); }
 	
-	/** 
-	* set the max length for the text html element
-	* @param int $maxlen - the max length to set the input for text
-	*/
-	public function maxlen(int $maxlen):void {
-		$this->maxlen = $maxlen;
-		$this->append_str($this->tag, " maxlength=\"$maxlen\"", -1, 0);
-	}
+	// set the corresponding html attribute: required
+	public function required():void { $this->append_str(" required"); }
 	
-	/**
-	 * set the place holder for the input element
-	 */
-	public function placeHolder(string $pholder):void {
+	// set the corresponding html attribute: multiple
+	public function multiple():void { $this->append_str(" multiple"); }
+
+	// set the corresponding html attribute: size
+	public function size(string $size):void { $this->append_str("\" size=$size\""); }
+	
+	// set the corresponding html attribute: autocomplete
+	public function autocomplete():void { $this->append_str(" autocomplete=\"on\""); }
+	
+	// set the corresponding html attribute: maxlen
+	public function maxlen(int $maxlen):void { $this->append_str($this->tag, " maxlength=\"$maxlen\"", -1, 0); }
+	
+	// set the corresponding html attribute: placeholder
+	public function descriptor(string $pholder):void {
 		$this->tag = substr_replace($this->tag, " placeholder=\"$pholder\"", -1, 0);
 	}
 
@@ -211,5 +138,21 @@ class input extends Element {
 		$this->tag = substr_replace($this->tag, $append_str, -1, 0);
 	}
 
-}#endif
+}#endif input
+
+class Descriptor extends Element {
+	public function __construct() {
+		$this->tag = "<lable></label>";
+	}
+	
+	public function for(string $fset):input {
+		$this->tag = substr_replace($this->tag, " for=\"$fset\"", 6, 0);
+		return $this;
+	}
+
+	public function innerHtml(string $buffer):input {
+		$this->tag = substr_replace($this->tag, "$buffer", 6, 0);
+		return $this;
+	}
+}#endif Descriptor
 ?>
