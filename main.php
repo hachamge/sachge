@@ -1,7 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="Url_form.css">
+</head>
+<body>
 <?php
-	require_once ("php_packages/input.php");
-	
-	$input = new input(inputType::search);
-	$input->regex("[A-Za-z]{15}");
-	$input->render();
+	require_once ("Url_form.php");
+
+	$Url_form = new Url_form();	
+	$Url_form->render();
 ?>
+
+<script src="hash_Url_reference.js"></script>
+</body>
+</html>

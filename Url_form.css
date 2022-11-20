@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
+
+body {
+	overflow: hidden;
+}
+
+form {
+	color: #FFFFFF;
+	position: relative;
+	margin: 0 auto;
+	width: 440px;
+	height: 500px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	background: linear-gradient(to right, #0033FF, #3399FF);
+	font-size: 21px; font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+form * {
+	width: 80%;
+	font-size: 21px;
+	font-size: 21px; font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+input[type="url"] {
+	color: purple;
+}
+
+form > input {
+	font-size: 25px;
+	margin-bottom: 20px;
+	background-color: #eee;
+}
+
+textarea {
+	width: 80%;
+	height: 100px;
+	background-color: #eee;
+}
+
+input[type="button"] {
+	position: absolute;
+	bottom: 15px;
+}
+
+label {
+	font-size: 24px;
+}

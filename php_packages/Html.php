@@ -37,6 +37,9 @@ function fprint($input, bool $ind_set = true, int $ind = 1):void {
 	echo ("$indent $input\n");
 }
 
+function fprint_r(array $html_tgs) {
+	foreach ($html_tgs as $html_tg) $html_tg->render();
+}
 /**
  * --Element referes to every tag on a document
  * this class packages all the main features that
@@ -317,8 +320,41 @@ class href extends Element {
 		$this->tag = substr_replace($this->tag, $innerHtml, -4, 0);
 		return $this;
 	}
-
-
 }#endif href
+
+class textarea extends Element {
+	public function __construct() {
+		parent::__construct();
+		$this->tag = "<textarea></textarea>";
+	}
+
+	public function iset(string $id) {
+		parent::iset($id);
+		$this->tag = substr_replace($this->tag, " id=\"$id\"", -1, 0);
+	}
+
+	public function name(string $name) {
+		$this->tag = substr_replace($this->tag, " name=\"$name\"", 9, 0);
+	}
+
+	public function rows(int $rows):textarea {
+		$this->tag = substr_replace($this->tag, " rows=\"$rows\"", -1, 0);
+		return $this;
+	}
+
+	public function cols(int $rows):textarea {
+		$this->tag = substr_replace($this->tag, " cols=\"$cols\"", -1, 0);
+		return $this;
+	}
+
+	public function innerHtml(string $innerHtml):textarea {
+		$this->tag = substr_replace($this->tag, "$innerHtml", -11, 0);
+		return $this;
+	}
+
+	public function render(int $ind = 1) {
+		fprint($this->tag, true, $ind);
+	}
+}#endif textarea
 
 ?>

@@ -67,7 +67,12 @@ class input extends Element {
 	}
 
 	public function value(string $input):input {
-		$this->tag = substr_replace($this->tag, " value=\"$input\"", 6, 0);
+		$this->tag = substr_replace($this->tag, " value=\"$input\"", -1, 0);
+		return $this;
+	}
+
+	public function name(string $name):input {
+		$this->tag = substr_replace($this->tag, " name=\"$name\"", -1, 0);
 		return $this;
 	}
 
@@ -142,17 +147,21 @@ class input extends Element {
 
 class Descriptor extends Element {
 	public function __construct() {
-		$this->tag = "<lable></label>";
+		$this->tag = "<label></label>";
 	}
 	
 	public function for(string $fset):input {
-		$this->tag = substr_replace($this->tag, " for=\"$fset\"", 6, 0);
+		$this->tag = substr_replace($this->tag, " for=\"$fset\"", -8, 0);
 		return $this;
 	}
 
-	public function innerHtml(string $buffer):input {
-		$this->tag = substr_replace($this->tag, "$buffer", 6, 0);
+	public function innerHtml(string $buffer):Descriptor {
+		$this->tag = substr_replace($this->tag, "$buffer", -8, 0);
 		return $this;
+	}
+
+	public function render() {
+		fprint($this->tag);
 	}
 }#endif Descriptor
 ?>
