@@ -13,7 +13,7 @@ class Url_form {
 			'folder' => html::search,
 			'annotation_descriptor' => html::descriptor,
 			'annotation' => html::textarea,
-			'submit' => html::button
+			'submit' => html::submit
 		];
 		
 		$this->html_tgs = ElementUtils::createElements($this->html_tgs);

@@ -1,12 +1,17 @@
 <html>
 <head>
 	<link rel="stylesheet" href="CSS3/Url_config/Diagram.css">
+	<link rel="stylesheet" href="Url_form.css">
 </head>
-<body>
+<body id="Url_indexBody">
 <?php
 	require_once ("php_packages/Html.php");
 	require_once ("Diagram.php");
-	
+	require_once ("Url_form.php");
+
+	$Url_form = new Url_form();	
+	$Url_form->render();
+
 	$Url_ref = scandir("Url_Directories");
 	unset($Url_ref[0]); // .
 	unset($Url_ref[1]); // ..
@@ -17,7 +22,7 @@
 	$Url_Diagram = new Url_Diagram();
 	$Url_Diagram->heading([
 		"date <input type=\"time\">", 
-		"edit <input type=\"button\" value=\"add Url\">",
+		"edit <input type=\"button\" value=\"add Url\" id=\"edit\">",
 		"chash", 
 		"descriptor <input type=\"color\" value=\"#00ff2a\">",
 		"origin <input type=\"search\" size=\"10\" id=\"searchDir\">", 
@@ -53,5 +58,6 @@
 ?>
 
 <script src="Url_search.js"></script>
+<script src="hash_Url_reference.js"></script>
 </body>
 </html>

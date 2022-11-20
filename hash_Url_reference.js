@@ -5,6 +5,7 @@ function record_Url() {
 	requestToStoreUrl.onload = function () {
 		alert(this.response);
 		document.querySelector("#UrlForm").reset();
+		document.querySelector("#UrlForm").style.display = "none";
 	}
 	requestToStoreUrl.send(new FormData(document.querySelector("#UrlForm")));
 }

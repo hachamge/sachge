@@ -4,7 +4,8 @@
 	$folder = $_POST['folder'];
 	$group = $_POST['group'];
 	$annotation = $_POST['annotation'];
-	
+
+	if (strlen($href) < 5) exit();
 	$Url_Dir = "Url_Directories/$folder";
 	$Url_group = "Url_Directories/$folder/$group";
 

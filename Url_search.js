@@ -42,3 +42,7 @@ function searchDir_tr(tr, DirSearch) {
 	else if (DirSearch == "") tr.style.display = "block";
 	else if (DirSearch != td_Dir) checkbox.checked = false;
 }// endif searchDir_tr
+
+document.querySelector("#edit").addEventListener("click", function() {
+	document.querySelector("#UrlForm").style.display = "flex";	
+}, true);
